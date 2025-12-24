@@ -5,8 +5,9 @@ require "json"
 module Qualspec
   module Suite
     class Reporter
-      def initialize(results)
+      def initialize(results, show_responses: false)
         @results = results
+        @show_responses = show_responses
       end
 
       def to_stdout
@@ -19,6 +20,7 @@ module Qualspec
         output << ""
         output << scenario_breakdown
         output << ""
+        output << responses_section if @show_responses
         output << winner_announcement
 
         output.compact.join("\n")
@@ -50,32 +52,39 @@ module Qualspec
         scores = @results.scores_by_candidate
         return "No results" if scores.empty?
 
-        # Calculate column widths
         candidates = scores.keys
         max_name = [candidates.map(&:length).max, 10].max
+
+        # Count scenario wins
+        wins = count_wins
 
         lines = []
         lines << "## Summary"
         lines << ""
 
-        # Header row
-        header = "| #{"Candidate".ljust(max_name)} | Pass Rate |  Avg  | Passed | Total |"
+        header = "| #{"Candidate".ljust(max_name)} | Score |  Wins | Pass Rate |"
         lines << header
-        lines << "|#{"-" * (max_name + 2)}|-----------|-------|--------|-------|"
+        lines << "|#{"-" * (max_name + 2)}|-------|-------|-----------|"
 
-        # Sort by avg_score descending
         sorted = scores.sort_by { |_, v| -v[:avg_score] }
 
         sorted.each do |candidate, stats|
+          score = stats[:avg_score].to_s.rjust(5)
+          win_count = (wins[candidate] || 0).to_s.rjust(5)
           pass_rate = "#{stats[:pass_rate]}%".rjust(8)
-          avg = stats[:avg_score].to_s.rjust(5)
-          passed = stats[:passed].to_s.rjust(6)
-          total = stats[:total].to_s.rjust(5)
 
-          lines << "| #{candidate.ljust(max_name)} | #{pass_rate} | #{avg} | #{passed} | #{total} |"
+          lines << "| #{candidate.ljust(max_name)} | #{score} | #{win_count} | #{pass_rate} |"
         end
 
         lines.join("\n")
+      end
+
+      def count_wins
+        wins = Hash.new(0)
+        @results.evaluations.each do |eval|
+          wins[eval[:candidate]] += 1 if eval[:winner] == true
+        end
+        wins
       end
 
       def has_timing?
@@ -92,14 +101,12 @@ module Qualspec
         lines << "## Performance"
         lines << ""
 
-        # Sort by avg response time
         sorted = timing.sort_by { |_, v| v[:avg_ms] }
 
         sorted.each do |candidate, stats|
           line = "  #{candidate}: #{format_duration(stats[:avg_ms])} avg"
           line += " (#{format_duration(stats[:total_ms])} total)"
 
-          # Add cost if available
           if costs[candidate] && costs[candidate] > 0
             line += " - $#{format_cost(costs[candidate])}"
           end
@@ -137,16 +144,21 @@ module Qualspec
         lines << ""
 
         by_scenario.each do |scenario, candidate_scores|
-          lines << "### #{scenario}"
+          # Find winner for this scenario
+          winner = find_scenario_winner(scenario)
+          winner_label = winner == :tie ? " [TIE]" : winner ? " [Winner: #{winner}]" : ""
+
+          lines << "### #{scenario}#{winner_label}"
 
           candidates.each do |candidate|
             stats = candidate_scores[candidate]
             next unless stats
 
-            score_bar = score_visualization(stats[:avg_score])
+            score_bar = score_visualization(stats[:score])
             timing_info = format_scenario_timing(candidate, scenario)
+            win_marker = (winner == candidate) ? " *" : ""
 
-            line = "  #{candidate}: #{score_bar} #{stats[:avg_score]}/10 (#{stats[:passed]}/#{stats[:total]} passed)"
+            line = "  #{candidate}: #{score_bar} #{stats[:score]}/10#{win_marker}"
             line += " #{timing_info}" if timing_info
 
             lines << line
@@ -156,6 +168,17 @@ module Qualspec
         end
 
         lines.join("\n")
+      end
+
+      def find_scenario_winner(scenario)
+        scenario_evals = @results.evaluations.select { |e| e[:scenario] == scenario }
+        winner_eval = scenario_evals.find { |e| e[:winner] == true }
+        return winner_eval[:candidate] if winner_eval
+
+        tie_eval = scenario_evals.find { |e| e[:winner] == :tie }
+        return :tie if tie_eval
+
+        nil
       end
 
       def format_scenario_timing(candidate, scenario)
@@ -171,10 +194,42 @@ module Qualspec
         "[#{"█" * filled}#{"░" * empty}]"
       end
 
+      def responses_section
+        responses = @results.responses
+        return nil if responses.empty?
+
+        lines = []
+        lines << "## Responses"
+        lines << ""
+
+        # Group by scenario
+        scenarios = responses.values.first&.keys || []
+
+        scenarios.each do |scenario|
+          lines << "### #{scenario}"
+          lines << ""
+
+          responses.each do |candidate, candidate_responses|
+            response = candidate_responses[scenario]
+            next unless response
+
+            lines << "**#{candidate}:**"
+            lines << "```"
+            lines << response.to_s.strip[0..500]
+            lines << "..." if response.to_s.length > 500
+            lines << "```"
+            lines << ""
+          end
+        end
+
+        lines.join("\n")
+      end
+
       def winner_announcement
         scores = @results.scores_by_candidate
         return "" if scores.empty?
 
+        wins = count_wins
         sorted = scores.sort_by { |_, v| -v[:avg_score] }
         winner = sorted.first
         runner_up = sorted[1]
@@ -190,12 +245,12 @@ module Qualspec
           lines << "        All scored #{winner[1][:avg_score]}/10 average"
         else
           margin = (winner[1][:avg_score] - runner_up[1][:avg_score]).round(2)
+          win_count = wins[winner[0]] || 0
           lines << "Winner: #{winner[0]}"
-          lines << "        #{winner[1][:avg_score]}/10 avg (#{winner[1][:pass_rate]}% pass rate)"
+          lines << "        #{winner[1][:avg_score]}/10 avg | #{win_count} scenario wins | #{winner[1][:pass_rate]}% pass rate"
           lines << "        Beat #{runner_up[0]} by #{margin} points"
         end
 
-        # Add timing comparison if available
         timing = @results.timing_by_candidate
         if timing.size > 1
           fastest = timing.min_by { |_, v| v[:avg_ms] }

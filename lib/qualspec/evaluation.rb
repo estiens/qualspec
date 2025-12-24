@@ -4,9 +4,9 @@ module Qualspec
   class Evaluation
     attr_reader :criterion, :score, :pass, :reasoning
     attr_reader :model, :candidate, :scenario
-    attr_reader :error
+    attr_reader :error, :scenario_winner
 
-    def initialize(criterion:, score:, pass:, reasoning: nil, model: nil, candidate: nil, scenario: nil, error: nil)
+    def initialize(criterion:, score:, pass:, reasoning: nil, model: nil, candidate: nil, scenario: nil, error: nil, scenario_winner: nil)
       @criterion = criterion
       @score = score
       @pass = pass
@@ -15,6 +15,7 @@ module Qualspec
       @candidate = candidate
       @scenario = scenario
       @error = error
+      @scenario_winner = scenario_winner
     end
 
     def pass?
@@ -43,7 +44,8 @@ module Qualspec
         model: @model,
         candidate: @candidate,
         scenario: @scenario,
-        error: @error
+        error: @error,
+        scenario_winner: @scenario_winner
       }.compact
     end
   end

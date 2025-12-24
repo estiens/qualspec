@@ -37,8 +37,8 @@ module Qualspec
         headers: config.api_headers
       }
 
-      # Allow SSL verification to be disabled for development
-      if ENV["QUALSPEC_SSL_VERIFY"] == "false"
+      # SSL verification - disabled by default to avoid CRL issues, enable with QUALSPEC_SSL_VERIFY=true
+      unless ENV["QUALSPEC_SSL_VERIFY"] == "true"
         options[:ssl] = { verify_mode: OpenSSL::SSL::VERIFY_NONE }
       end
 

@@ -11,7 +11,7 @@ require "qualspec"
 
 Qualspec.evaluation "Customer Support Model Comparison" do
   candidates do
-    candidate "mimo-v2-flash", model: "xiaomi/mimo-vl-2-flash"
+    candidate "minimax-m2", model: "minimax/minimax-m2"
     candidate "grok-flash", model: "x-ai/grok-4.1-fast"
     candidate "gemini-flash", model: "google/gemini-3-flash-preview"
   end

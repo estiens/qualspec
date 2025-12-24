@@ -7,7 +7,8 @@ require "optparse"
 options = {
   output: :stdout,
   progress: true,
-  json_path: nil
+  json_path: nil,
+  show_responses: false
 }
 
 parser = OptionParser.new do |opts|
@@ -23,6 +24,10 @@ parser = OptionParser.new do |opts|
 
   opts.on("--no-progress", "Disable progress output") do
     options[:progress] = false
+  end
+
+  opts.on("-r", "--responses", "Show model responses in output") do
+    options[:show_responses] = true
   end
 
   opts.on("-m", "--model MODEL", "Override judge model") do |model|
@@ -100,6 +105,7 @@ begin
     progress: options[:progress],
     output: options[:output],
     json_path: options[:json_path],
+    show_responses: options[:show_responses],
     load_builtins: false  # Already loaded above
   )
 rescue Qualspec::Error => e

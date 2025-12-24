@@ -63,7 +63,7 @@ module Qualspec
     end
 
     # Run an evaluation suite
-    def run(suite_name, progress: true, output: :stdout, json_path: nil, load_builtins: true)
+    def run(suite_name, progress: true, output: :stdout, json_path: nil, show_responses: false, load_builtins: true)
       # Load builtins (idempotent, can be called multiple times)
       if load_builtins
         BuiltinRubrics.load!
@@ -76,7 +76,7 @@ module Qualspec
       results = runner.run(progress: progress)
       results.finish!
 
-      reporter = Suite::Reporter.new(results)
+      reporter = Suite::Reporter.new(results, show_responses: show_responses)
 
       case output
       when :stdout

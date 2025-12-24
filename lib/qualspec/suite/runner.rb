@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "time"
+
 module Qualspec
   module Suite
     class Runner
@@ -12,18 +14,17 @@ module Qualspec
       end
 
       def run(progress: true, &block)
-        total = @definition.candidates_list.size * @definition.scenarios_list.size
+        total_scenarios = @definition.scenarios_list.size
         current = 0
 
-        @definition.candidates_list.each do |candidate|
-          @definition.scenarios_list.each do |scenario|
-            current += 1
-            log_progress(current, total, candidate, scenario) if progress
+        # Process by scenario - collect all candidate responses, then judge together
+        @definition.scenarios_list.each do |scenario|
+          current += 1
+          log_scenario_progress(current, total_scenarios, scenario) if progress
 
-            run_scenario(candidate, scenario)
+          run_scenario_comparison(scenario, progress: progress)
 
-            yield(@results) if block_given?
-          end
+          yield(@results) if block_given?
         end
 
         @results
@@ -31,42 +32,88 @@ module Qualspec
 
       private
 
-      def run_scenario(candidate, scenario)
-        # Generate response from candidate with timing
-        response_data = generate_response(candidate, scenario)
+      def run_scenario_comparison(scenario, progress: false)
+        responses = {}
+        errors = {}
 
-        if response_data[:error]
-          record_error(candidate, scenario, response_data[:error])
-          return
+        # Phase 1: Collect all candidate responses
+        @definition.candidates_list.each do |candidate|
+          log_candidate_progress(candidate, scenario, "generating") if progress
+
+          response_data = generate_response(candidate, scenario)
+
+          if response_data[:error]
+            log_error(candidate, scenario, response_data[:error])
+            errors[candidate.name] = response_data[:error]
+          else
+            response = response_data[:response]
+            response_content = response.is_a?(Client::Response) ? response.content : response
+
+            responses[candidate.name] = response_content
+
+            @results.record_response(
+              candidate: candidate.name,
+              scenario: scenario.name,
+              response: response_content,
+              duration_ms: response.is_a?(Client::Response) ? response.duration_ms : response_data[:duration_ms],
+              cost: response.is_a?(Client::Response) ? response.cost : nil
+            )
+          end
         end
 
-        response = response_data[:response]
-        response_content = response.is_a?(Client::Response) ? response.content : response
+        # Phase 2: Judge all responses together (if we have any)
+        if responses.any?
+          log_candidate_progress(nil, scenario, "judging") if progress
 
-        # Record the response with metadata
-        @results.record_response(
-          candidate: candidate.name,
-          scenario: scenario.name,
-          response: response_content,
-          duration_ms: response.is_a?(Client::Response) ? response.duration_ms : response_data[:duration_ms],
-          cost: response.is_a?(Client::Response) ? response.cost : nil
-        )
+          context = build_context(scenario)
+          criteria = scenario.all_criteria
 
-        # Evaluate each criterion
-        context = build_context(candidate, scenario)
+          # Use comparison mode for multiple candidates, single eval for one
+          if responses.size == 1
+            candidate, response = responses.first
+            evaluation = @judge.evaluate(
+              response: response,
+              criterion: criteria.join("\n"),
+              context: context
+            )
+            @results.record_evaluation(
+              candidate: candidate,
+              scenario: scenario.name,
+              criteria: criteria,
+              evaluation: evaluation,
+              winner: true  # Only candidate wins by default
+            )
+          else
+            evaluations = @judge.evaluate_comparison(
+              responses: responses,
+              criteria: criteria,
+              context: context
+            )
 
-        scenario.all_criteria.each do |criterion|
-          evaluation = @judge.evaluate(
-            response: response_content,
-            criterion: criterion,
-            context: context
-          )
+            evaluations.each do |candidate, evaluation|
+              @results.record_evaluation(
+                candidate: candidate,
+                scenario: scenario.name,
+                criteria: criteria,
+                evaluation: evaluation,
+                winner: evaluation.scenario_winner
+              )
+            end
+          end
+        end
 
+        # Record errors for failed candidates
+        errors.each do |candidate, error_message|
           @results.record_evaluation(
-            candidate: candidate.name,
+            candidate: candidate,
             scenario: scenario.name,
-            criterion: criterion,
-            evaluation: evaluation
+            criteria: scenario.all_criteria,
+            evaluation: Evaluation.new(
+              criterion: scenario.all_criteria.join("\n"),
+              score: 0,
+              pass: false,
+              error: error_message
+            )
           )
         end
       end
@@ -86,7 +133,7 @@ module Qualspec
         { error: e.message }
       end
 
-      def build_context(candidate, scenario)
+      def build_context(scenario)
         parts = []
         parts << "System prompt: #{scenario.system_prompt}" if scenario.system_prompt
         parts << "User prompt: #{scenario.prompt_text}"
@@ -94,26 +141,18 @@ module Qualspec
         parts.join("\n\n")
       end
 
-      def record_error(candidate, scenario, error_message)
-        scenario.all_criteria.each do |criterion|
-          @results.record_evaluation(
-            candidate: candidate.name,
-            scenario: scenario.name,
-            criterion: criterion,
-            evaluation: Evaluation.new(
-              criterion: criterion,
-              score: 0,
-              pass: false,
-              error: error_message
-            )
-          )
-        end
+      def log_scenario_progress(current, total, scenario)
+        pct = ((current.to_f / total) * 100).round
+        $stderr.print "\r[#{pct}%] Scenario: #{scenario.name}".ljust(60)
       end
 
-      def log_progress(current, total, candidate, scenario)
-        pct = ((current.to_f / total) * 100).round
-        $stderr.print "\r[#{pct}%] #{candidate.name}: #{scenario.name}".ljust(60)
-        $stderr.print "\n" if current == total
+      def log_candidate_progress(candidate, scenario, phase)
+        name = candidate&.name || "all"
+        $stderr.print "\r       #{name}: #{phase}...".ljust(60)
+      end
+
+      def log_error(candidate, scenario, error)
+        $stderr.puts "\n  ERROR (#{candidate.name}/#{scenario.name}): #{error[0..100]}"
       end
     end
 
@@ -126,8 +165,8 @@ module Qualspec
         @suite_name = suite_name
         @evaluations = []
         @responses = {}
-        @timing = {}    # candidate => { scenario => duration_ms }
-        @costs = {}     # candidate => total_cost
+        @timing = {}
+        @costs = {}
         @started_at = Time.now
         @finished_at = nil
       end
@@ -136,28 +175,28 @@ module Qualspec
         @responses[candidate] ||= {}
         @responses[candidate][scenario] = response
 
-        # Track timing
         if duration_ms
           @timing[candidate] ||= {}
           @timing[candidate][scenario] = duration_ms
         end
 
-        # Track costs
         if cost && cost > 0
           @costs[candidate] ||= 0.0
           @costs[candidate] += cost
         end
       end
 
-      def record_evaluation(candidate:, scenario:, criterion:, evaluation:)
+      def record_evaluation(candidate:, scenario:, criteria:, evaluation:, winner: nil)
         @evaluations << {
           candidate: candidate,
           scenario: scenario,
-          criterion: criterion,
+          criteria: criteria,
+          criteria_count: Array(criteria).size,
           score: evaluation.score,
           pass: evaluation.pass?,
           reasoning: evaluation.reasoning,
-          error: evaluation.error
+          error: evaluation.error,
+          winner: winner
         }
       end
 
@@ -165,27 +204,25 @@ module Qualspec
         @finished_at = Time.now
       end
 
-      # Aggregate scores by candidate
       def scores_by_candidate
         @evaluations.group_by { |e| e[:candidate] }.transform_values do |evals|
           passed = evals.count { |e| e[:pass] }
           total = evals.size
-          avg_score = evals.sum { |e| e[:score] }.to_f / total
+          avg_score = total > 0 ? evals.sum { |e| e[:score] }.to_f / total : 0
 
           {
             passed: passed,
             total: total,
-            pass_rate: (passed.to_f / total * 100).round(1),
+            pass_rate: total > 0 ? (passed.to_f / total * 100).round(1) : 0,
             avg_score: avg_score.round(2)
           }
         end
       end
 
-      # Aggregate timing by candidate
       def timing_by_candidate
         @timing.transform_values do |scenarios|
           total_ms = scenarios.values.sum
-          avg_ms = total_ms / scenarios.size
+          avg_ms = scenarios.size > 0 ? total_ms / scenarios.size : 0
           {
             total_ms: total_ms,
             avg_ms: avg_ms.round,
@@ -194,15 +231,14 @@ module Qualspec
         end
       end
 
-      # Aggregate scores by scenario
       def scores_by_scenario
         @evaluations.group_by { |e| e[:scenario] }.transform_values do |evals|
           evals.group_by { |e| e[:candidate] }.transform_values do |candidate_evals|
-            avg_score = candidate_evals.sum { |e| e[:score] }.to_f / candidate_evals.size
+            eval_data = candidate_evals.first
             {
-              avg_score: avg_score.round(2),
-              passed: candidate_evals.count { |e| e[:pass] },
-              total: candidate_evals.size
+              score: eval_data[:score],
+              pass: eval_data[:pass],
+              reasoning: eval_data[:reasoning]
             }
           end
         end
