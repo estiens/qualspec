@@ -1,0 +1,111 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "qualspec"
+require "optparse"
+
+options = {
+  output: :stdout,
+  progress: true,
+  json_path: nil
+}
+
+parser = OptionParser.new do |opts|
+  opts.banner = "Usage: qualspec [options] <eval_file.rb>"
+
+  opts.on("-o", "--output FORMAT", [:stdout, :json, :silent], "Output format (stdout, json, silent)") do |format|
+    options[:output] = format
+  end
+
+  opts.on("-j", "--json PATH", "Write JSON results to PATH") do |path|
+    options[:json_path] = path
+  end
+
+  opts.on("--no-progress", "Disable progress output") do
+    options[:progress] = false
+  end
+
+  opts.on("-m", "--model MODEL", "Override judge model") do |model|
+    Qualspec.configuration.judge_model = model
+  end
+
+  opts.on("-u", "--url URL", "Override API URL") do |url|
+    Qualspec.configuration.api_url = url
+  end
+
+  opts.on("-k", "--key KEY", "Override API key") do |key|
+    Qualspec.configuration.api_key = key
+  end
+
+  opts.on("-v", "--version", "Show version") do
+    puts "qualspec #{Qualspec::VERSION}"
+    exit
+  end
+
+  opts.on("-h", "--help", "Show this help") do
+    puts opts
+    puts
+    puts "Environment variables:"
+    puts "  QUALSPEC_API_URL   API endpoint (default: http://localhost:11434/v1)"
+    puts "  QUALSPEC_API_KEY   API key for authentication"
+    puts "  QUALSPEC_MODEL     Default model for candidates"
+    puts "  QUALSPEC_JUDGE_MODEL  Model to use as judge"
+    puts
+    puts "Example:"
+    puts "  qualspec eval/model_comparison.rb"
+    puts "  qualspec -j results.json eval/model_comparison.rb"
+    puts "  QUALSPEC_API_URL=https://openrouter.ai/api/v1 qualspec eval/test.rb"
+    exit
+  end
+end
+
+parser.parse!
+
+if ARGV.empty?
+  puts parser
+  exit 1
+end
+
+eval_file = ARGV.first
+
+unless File.exist?(eval_file)
+  $stderr.puts "Error: File not found: #{eval_file}"
+  exit 1
+end
+
+# Load builtins before the evaluation file
+Qualspec::BuiltinRubrics.load!
+Qualspec::Suite::BuiltinBehaviors.load!
+
+# Load the evaluation file
+load eval_file
+
+# Find and run the suite
+# The file should have defined exactly one suite
+suites = Qualspec::Suite.registry.keys
+
+if suites.empty?
+  $stderr.puts "Error: No evaluation suite defined in #{eval_file}"
+  $stderr.puts "Make sure your file calls Qualspec.evaluation 'Name' do ... end"
+  exit 1
+end
+
+if suites.size > 1
+  $stderr.puts "Warning: Multiple suites defined, running first: #{suites.first}"
+end
+
+begin
+  Qualspec.run(
+    suites.first,
+    progress: options[:progress],
+    output: options[:output],
+    json_path: options[:json_path],
+    load_builtins: false  # Already loaded above
+  )
+rescue Qualspec::Error => e
+  $stderr.puts "Error: #{e.message}"
+  exit 1
+rescue Interrupt
+  $stderr.puts "\nInterrupted"
+  exit 130
+end
