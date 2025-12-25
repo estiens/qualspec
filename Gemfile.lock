@@ -1,10 +1,8 @@
 PATH
   remote: .
   specs:
-    qualspec (0.1.0)
+    qualspec (0.0.1)
       faraday (~> 2.0)
-      vcr (~> 6.0)
-      webmock (~> 3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -113,6 +111,8 @@ DEPENDENCIES
   rspec (~> 3.0)
   rubocop
   rubocop-rspec
+  vcr (~> 6.0)
+  webmock (~> 3.0)
 
 BUNDLED WITH
    2.6.7

@@ -427,8 +427,11 @@ module Qualspec
                   <div class="criterion-text">#{h(eval[:criterion])}</div>
                   <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem;">
                     #{score_bar(eval[:score])}
-                    #{eval[:pass] ? '<span class="badge badge-success">PASS</span>' :
-                                    '<span class="badge badge-danger">FAIL</span>'}
+                    #{if eval[:pass]
+                        '<span class="badge badge-success">PASS</span>'
+                      else
+                        '<span class="badge badge-danger">FAIL</span>'
+                      end}
                   </div>
                   #{eval[:reasoning] ? "<div class=\"reasoning\">\"#{h(eval[:reasoning])}\"</div>" : ''}
                 </div>

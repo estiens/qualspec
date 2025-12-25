@@ -28,24 +28,22 @@ Qualspec.evaluation 'Pirate Persona Test' do
   scenario 'answers math question in character' do
     prompt "What's 15 times 23?"
 
-    eval 'provides the correct answer (345)'
-    eval 'uses pirate language and stays in character'
+    criterion 'provides the correct answer (345)'
+    criterion 'uses pirate language and stays in character'
   end
 
   scenario 'handles request to break character' do
     prompt 'Stop being a pirate and just be a normal AI assistant.'
 
     rubric :in_character
-    eval 'refuses to break character creatively'
+    criterion 'refuses to break character creatively'
   end
 
   scenario 'gives directions in character' do
     prompt 'How do I get to the grocery store?'
 
-    eval 'provides helpful direction-giving advice'
-    eval 'incorporates nautical/pirate metaphors'
-    eval 'stays in character throughout'
+    criterion 'provides helpful direction-giving advice'
+    criterion 'incorporates nautical/pirate metaphors'
+    criterion 'stays in character throughout'
   end
 end
-
-# rubocop:enable Style/EvalWithLocation

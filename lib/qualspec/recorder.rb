@@ -1,11 +1,18 @@
 # frozen_string_literal: true
 
-require 'vcr'
-
 module Qualspec
   class Recorder
     class << self
+      def available?
+        require 'vcr'
+        true
+      rescue LoadError
+        false
+      end
+
       def setup(cassette_dir: '.qualspec_cassettes')
+        require_vcr!
+
         VCR.configure do |config|
           config.cassette_library_dir = cassette_dir
           config.hook_into :faraday
@@ -31,6 +38,17 @@ module Qualspec
       def playback(name, &block)
         setup unless configured?
         VCR.use_cassette(name, record: :none, &block)
+      end
+
+      private
+
+      def require_vcr!
+        require 'vcr'
+      rescue LoadError
+        raise Qualspec::Error, <<~MSG.strip
+          VCR gem is required for recording/playback features.
+          Add to your Gemfile: gem 'vcr'
+        MSG
       end
     end
   end

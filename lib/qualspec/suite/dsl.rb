@@ -10,12 +10,12 @@ module Qualspec
         @candidates_list = []
         @scenarios_list = []
 
-        instance_eval(&block) if block_given? # rubocop:disable Style/EvalWithLocation
+        instance_eval(&block) if block_given? # rubocop:disable Style/EvalWithLocation -- DSL pattern requires eval
       end
 
       # DSL: define candidates
       def candidates(&block)
-        instance_eval(&block) # rubocop:disable Style/EvalWithLocation
+        instance_eval(&block) # rubocop:disable Style/EvalWithLocation -- DSL pattern requires eval
       end
 
       def candidate(name, model:, system_prompt: nil, **options)

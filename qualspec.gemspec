@@ -30,6 +30,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'faraday', '~> 2.0'
-  spec.add_dependency 'vcr', '~> 6.0'
-  spec.add_dependency 'webmock', '~> 3.0'
+
+  # Optional: only needed for recording/playback features
+  spec.add_development_dependency 'vcr', '~> 6.0'
+  spec.add_development_dependency 'webmock', '~> 3.0'
 end

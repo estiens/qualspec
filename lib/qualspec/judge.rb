@@ -199,7 +199,7 @@ module Qualspec
       end
 
       # Store tie info
-      evals.each_value { |e| e.instance_variable_set(:@scenario_winner, :tie) } if winner == 'tie'
+      evals.each_value { |e| e.scenario_winner = :tie } if winner == 'tie'
 
       evals
     rescue JSON::ParserError

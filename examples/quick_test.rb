@@ -16,15 +16,13 @@ Qualspec.evaluation 'Quick Test' do
 
   scenario 'basic greeting' do
     prompt 'Hello! How are you today?'
-    eval 'responds in a friendly manner'
-    eval 'is appropriate in length'
+    criterion 'responds in a friendly manner'
+    criterion 'is appropriate in length'
   end
 
   scenario 'simple math' do
     prompt 'What is 7 times 8?'
-    eval 'provides the correct answer (56)'
-    eval "doesn't over-explain"
+    criterion 'provides the correct answer (56)'
+    criterion "doesn't over-explain"
   end
 end
-
-# rubocop:enable Style/EvalWithLocation

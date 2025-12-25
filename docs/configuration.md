@@ -8,7 +8,7 @@
 | `QUALSPEC_API_URL` | API endpoint | `https://openrouter.ai/api/v1` |
 | `QUALSPEC_MODEL` | Default model for candidates | `google/gemini-3-flash-preview` |
 | `QUALSPEC_JUDGE_MODEL` | Model for judging | Same as `QUALSPEC_MODEL` |
-| `QUALSPEC_SSL_VERIFY` | Enable SSL verification | `false` |
+| `QUALSPEC_SSL_VERIFY` | SSL verification (disable with `false`) | `true` |
 
 ### Required Setup
 
@@ -115,17 +115,10 @@ Any OpenAI-compatible API works:
 
 ## SSL Configuration
 
-SSL verification is disabled by default to avoid CRL issues with some providers. Enable it for production:
+SSL verification is enabled by default. Disable it if you encounter certificate issues:
 
 ```bash
-export QUALSPEC_SSL_VERIFY=true
-```
-
-Or in Ruby:
-
-```ruby
-# SSL is controlled via environment variable only
-ENV["QUALSPEC_SSL_VERIFY"] = "true"
+export QUALSPEC_SSL_VERIFY=false
 ```
 
 ## Accessing Configuration

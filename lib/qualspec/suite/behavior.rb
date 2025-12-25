@@ -9,7 +9,7 @@ module Qualspec
         @name = name
         @scenarios_list = []
 
-        instance_eval(&block) if block_given? # rubocop:disable Style/EvalWithLocation
+        instance_eval(&block) if block_given? # rubocop:disable Style/EvalWithLocation -- DSL pattern requires eval
       end
 
       def scenario(name, &block)

@@ -1,6 +1,10 @@
 # Recording and Playback
 
-Qualspec integrates with VCR to record API calls and replay them later. This enables:
+Qualspec integrates with VCR to record API calls and replay them later.
+
+> **Note:** Recording requires the VCR gem. Add `gem 'vcr'` to your Gemfile.
+
+This enables:
 
 - **Reproducible tests** - Same results every time
 - **Fast CI** - No API calls during playback

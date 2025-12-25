@@ -11,14 +11,12 @@ Qualspec.evaluation 'Model Comparison' do
 
   scenario 'greeting' do
     prompt 'Say hello in a friendly way!'
-    eval 'responds in a friendly and welcoming manner'
+    criterion 'responds in a friendly and welcoming manner'
   end
 
   scenario 'explanation' do
     prompt 'Explain why the sky is blue in one sentence.'
-    eval 'provides a correct scientific explanation'
-    eval 'is concise'
+    criterion 'provides a correct scientific explanation'
+    criterion 'is concise'
   end
 end
-
-# rubocop:enable Style/EvalWithLocation

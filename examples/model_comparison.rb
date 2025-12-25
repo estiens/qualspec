@@ -23,18 +23,16 @@ Qualspec.evaluation 'Customer Support Model Comparison' do
   scenario 'handles refund request' do
     prompt "I want a refund. The product arrived broken and I'm very disappointed."
 
-    eval 'acknowledges the problem'
-    eval 'apologizes appropriately'
-    eval 'offers clear next steps for the refund'
+    criterion 'acknowledges the problem'
+    criterion 'apologizes appropriately'
+    criterion 'offers clear next steps for the refund'
   end
 
   scenario 'technical troubleshooting' do
     prompt "The app keeps crashing when I try to upload photos. I've tried restarting."
 
-    eval 'asks clarifying questions about device/version'
-    eval 'provides systematic troubleshooting steps'
-    eval "doesn't assume user error"
+    criterion 'asks clarifying questions about device/version'
+    criterion 'provides systematic troubleshooting steps'
+    criterion "doesn't assume user error"
   end
 end
-
-# rubocop:enable Style/EvalWithLocation

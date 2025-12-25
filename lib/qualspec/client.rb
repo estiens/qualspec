@@ -52,7 +52,7 @@ module Qualspec
       return if defined?(VCR) && VCR.current_cassette && !VCR.current_cassette.recording?
       return if @config.api_key_configured?
 
-      raise ConfigurationError, <<~MSG.strip
+      raise Qualspec::Error, <<~MSG.strip
         QUALSPEC_API_KEY is required but not set.
         Set it via environment variable or Qualspec.configure { |c| c.api_key = '...' }
       MSG

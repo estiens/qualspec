@@ -18,18 +18,21 @@ bundle install
 
 ## Configuration
 
-Qualspec auto-detects your API configuration from environment variables:
+Set your API key:
 
 ```bash
-# OpenRouter (recommended)
-export OPENROUTER_API_KEY=your_key
+export QUALSPEC_API_KEY=your_openrouter_key
+```
 
-# Or OpenAI
-export OPENAI_API_KEY=your_key
+For other providers, also set the API URL:
 
-# Or custom endpoint
+```bash
+# OpenAI
+export QUALSPEC_API_URL=https://api.openai.com/v1
+export QUALSPEC_API_KEY=sk-...
+
+# Local Ollama
 export QUALSPEC_API_URL=http://localhost:11434/v1
-export QUALSPEC_API_KEY=your_key
 ```
 
 You can also configure programmatically:

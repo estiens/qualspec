@@ -36,7 +36,7 @@ RSpec.describe Qualspec do
       Qualspec.define_behavior :test_behavior do
         scenario 'greeting' do
           prompt 'Hello!'
-          eval 'responds warmly'
+          criterion 'responds warmly'
         end
       end
 
@@ -56,7 +56,7 @@ RSpec.describe Qualspec do
 
         scenario 'test scenario' do
           prompt 'Test prompt'
-          eval 'is correct'
+          criterion 'is correct'
         end
       end
 
@@ -69,7 +69,7 @@ RSpec.describe Qualspec do
       Qualspec.define_behavior :shared do
         scenario 'shared test' do
           prompt 'Shared prompt'
-          eval 'works'
+          criterion 'works'
         end
       end
 
@@ -82,7 +82,7 @@ RSpec.describe Qualspec do
 
         scenario 'custom test' do
           prompt 'Custom'
-          eval 'also works'
+          criterion 'also works'
         end
       end
 
@@ -92,5 +92,3 @@ RSpec.describe Qualspec do
     end
   end
 end
-
-# rubocop:enable Style/EvalWithLocation
