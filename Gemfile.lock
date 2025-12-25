@@ -101,8 +101,11 @@ GEM
       hashdiff (>= 0.4.0, < 2.0.0)
 
 PLATFORMS
+  arm64-darwin
   arm64-darwin-24
   ruby
+  x86_64-darwin
+  x86_64-linux
 
 DEPENDENCIES
   irb
