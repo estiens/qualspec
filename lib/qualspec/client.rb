@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "httpx"
+require "faraday"
 require "json"
 
 module Qualspec
@@ -32,17 +32,20 @@ module Qualspec
     def initialize(config = Qualspec.configuration)
       @config = config
 
-      options = {
-        timeout: { operation_timeout: config.request_timeout },
-        headers: config.api_headers
-      }
+      @conn = Faraday.new(url: config.api_url) do |f|
+        f.request :json
+        f.response :json
+        f.headers = config.api_headers
+        f.options.timeout = config.request_timeout
+        f.options.open_timeout = 10
 
-      # SSL verification - disabled by default to avoid CRL issues, enable with QUALSPEC_SSL_VERIFY=true
-      unless ENV["QUALSPEC_SSL_VERIFY"] == "true"
-        options[:ssl] = { verify_mode: OpenSSL::SSL::VERIFY_NONE }
+        # SSL verification - disabled by default to avoid CRL issues
+        unless ENV["QUALSPEC_SSL_VERIFY"] == "true"
+          f.ssl.verify = false
+        end
+
+        f.adapter Faraday.default_adapter
       end
-
-      @http = HTTPX.with(**options)
     end
 
     def chat(model:, messages:, json_mode: true, with_metadata: false)
@@ -56,10 +59,7 @@ module Qualspec
 
       start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
-      response = @http.post(
-        "#{@config.api_url}/chat/completions",
-        json: payload
-      )
+      response = @conn.post("chat/completions", payload)
 
       duration_ms = ((Process.clock_gettime(Process::CLOCK_MONOTONIC) - start_time) * 1000).round
 
@@ -69,16 +69,13 @@ module Qualspec
     private
 
     def handle_response(response, duration_ms, with_metadata)
-      # HTTPX returns ErrorResponse for connection/timeout errors
-      if response.is_a?(HTTPX::ErrorResponse)
-        raise RequestError, "Request failed: #{response.error.message}"
-      end
-
-      unless response.status == 200
+      unless response.success?
         raise RequestError, "API request failed (#{response.status}): #{response.body}"
       end
 
-      data = JSON.parse(response.body.to_s)
+      data = response.body
+      data = JSON.parse(data) if data.is_a?(String)
+
       content = data.dig("choices", 0, "message", "content")
 
       raise RequestError, "No content in response: #{data}" if content.nil?
@@ -88,20 +85,19 @@ module Qualspec
       # Extract metadata
       cost = extract_cost(response, data)
       tokens = extract_tokens(data)
-      model = data["model"]
+      model_name = data["model"]
 
       Response.new(
         content: content,
         duration_ms: duration_ms,
         cost: cost,
-        model: model,
+        model: model_name,
         tokens: tokens
       )
     end
 
     def extract_cost(response, data)
       # OpenRouter includes cost in response or headers
-      # Check x-openrouter-cost header first
       header_cost = response.headers["x-openrouter-cost"]
       return header_cost.to_f if header_cost
 

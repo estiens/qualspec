@@ -8,7 +8,9 @@ options = {
   output: :stdout,
   progress: true,
   json_path: nil,
-  show_responses: false
+  show_responses: false,
+  record: nil,
+  playback: nil
 }
 
 parser = OptionParser.new do |opts|
@@ -28,6 +30,14 @@ parser = OptionParser.new do |opts|
 
   opts.on("-r", "--responses", "Show model responses in output") do
     options[:show_responses] = true
+  end
+
+  opts.on("--record NAME", "Record API calls to cassette NAME") do |name|
+    options[:record] = name
+  end
+
+  opts.on("--playback NAME", "Playback API calls from cassette NAME") do |name|
+    options[:playback] = name
   end
 
   opts.on("-m", "--model MODEL", "Override judge model") do |model|
@@ -99,7 +109,7 @@ if suites.size > 1
   $stderr.puts "Warning: Multiple suites defined, running first: #{suites.first}"
 end
 
-begin
+run_eval = lambda do
   Qualspec.run(
     suites.first,
     progress: options[:progress],
@@ -108,6 +118,16 @@ begin
     show_responses: options[:show_responses],
     load_builtins: false  # Already loaded above
   )
+end
+
+begin
+  if options[:record]
+    Qualspec::Recorder.record(options[:record], &run_eval)
+  elsif options[:playback]
+    Qualspec::Recorder.playback(options[:playback], &run_eval)
+  else
+    run_eval.call
+  end
 rescue Qualspec::Error => e
   $stderr.puts "Error: #{e.message}"
   exit 1

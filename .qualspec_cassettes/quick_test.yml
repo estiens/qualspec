@@ -1,0 +1,232 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"google/gemini-3-flash-preview","messages":[{"role":"user","content":"Hello!
+        How are you today?"}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 25 Dec 2025 00:26:39 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      content-encoding:
+      - gzip
+      access-control-allow-origin:
+      - "*"
+      vary:
+      - Accept-Encoding
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      server:
+      - cloudflare
+      cf-ray:
+      - 9b343544ce98a201-MSP
+    body:
+      encoding: ASCII-8BIT
+      string: "\n         \n\n         \n{\"id\":\"gen-1766622398-RkCshdTuH7jzWuOcPVbF\",\"provider\":\"Google\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766622398,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"I'm
+        doing great, thank you for asking! I'm ready to help you with whatever you
+        need. \\n\\nHow are things going with you? Is there anything specific I can
+        help you with today?\",\"refusal\":null,\"reasoning\":null}}],\"usage\":{\"prompt_tokens\":7,\"completion_tokens\":43,\"total_tokens\":50,\"cost\":0.0001325,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0000035,\"upstream_inference_completions_cost\":0.000129},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 00:26:39 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"google/gemini-3-flash-preview","messages":[{"role":"system","content":"You
+        are an evaluation judge. You will be given a response and one or more evaluation
+        criteria.\nYour job is to score how well the response meets the criteria.\n\nScoring:\n-
+        0: Completely fails to meet the criteria\n- 1-3: Mostly fails, with minor
+        positive elements\n- 4-6: Partially meets criteria, significant room for improvement\n-
+        7-8: Mostly meets criteria with minor issues\n- 9: Meets criteria well\n-
+        10: Perfectly meets all criteria\n\nBe strict but fair. Consider each criterion
+        carefully.\n\nYou MUST respond with valid JSON in this exact format:\n{\"score\":
+        <0-10>, \"reasoning\": \"Brief explanation of the score\"}\n\nYour reasoning
+        should be concise (1-2 sentences max).\n"},{"role":"user","content":"## Response
+        to evaluate:\nI''m doing great, thank you for asking! I''m ready to help you
+        with whatever you need. \n\nHow are things going with you? Is there anything
+        specific I can help you with today?\n\n## Additional context:\nUser prompt:
+        Hello! How are you today?\n\n## Evaluation criteria:\nresponds in a friendly
+        manner\nis appropriate in length\n\nScore this response from 0-10. Respond
+        with JSON only."}],"response_format":{"type":"json_object"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 25 Dec 2025 00:26:40 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      content-encoding:
+      - gzip
+      access-control-allow-origin:
+      - "*"
+      vary:
+      - Accept-Encoding
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      server:
+      - cloudflare
+      cf-ray:
+      - 9b34354c5bada1d1-MSP
+    body:
+      encoding: ASCII-8BIT
+      string: "\n         \n{\"id\":\"gen-1766622399-NovBTMk4uVXaHxIReaM3\",\"provider\":\"Google
+        AI Studio\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766622399,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"score\\\":
+        10, \\\"reasoning\\\": \\\"The response is warm and friendly while maintaining
+        a perfectly concise and appropriate length for the greeting.\\\"}\",\"refusal\":null,\"reasoning\":null,\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.encrypted\",\"data\":\"EjQKMgFyyNp8oYVEKG82B2pc5SoTKa1N7Hmj3FgVav3EngLEb3J24El8ffeyEsycGIylLBcv\"}]}}],\"usage\":{\"prompt_tokens\":265,\"completion_tokens\":31,\"total_tokens\":296,\"cost\":0.0002255,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0001325,\"upstream_inference_completions_cost\":0.000093},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 00:26:40 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"google/gemini-3-flash-preview","messages":[{"role":"user","content":"What
+        is 7 times 8?"}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 25 Dec 2025 00:26:40 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      content-encoding:
+      - gzip
+      access-control-allow-origin:
+      - "*"
+      vary:
+      - Accept-Encoding
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      server:
+      - cloudflare
+      cf-ray:
+      - 9b343551efdee02b-MSP
+    body:
+      encoding: ASCII-8BIT
+      string: "\n         \n{\"id\":\"gen-1766622400-FZhCKv98cSCsFMYiK3QW\",\"provider\":\"Google
+        AI Studio\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766622400,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"7
+        times 8 is **56**.\",\"refusal\":null,\"reasoning\":null,\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.encrypted\",\"data\":\"EjQKMgFyyNp88llrW7rph3pu6U7rTIoXdbn+DMh3mGII1VQPcclBfCOU7g7KA42LUdRSJuDx\"}]}}],\"usage\":{\"prompt_tokens\":9,\"completion_tokens\":9,\"total_tokens\":18,\"cost\":0.0000315,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0000045,\"upstream_inference_completions_cost\":0.000027},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 00:26:40 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"google/gemini-3-flash-preview","messages":[{"role":"system","content":"You
+        are an evaluation judge. You will be given a response and one or more evaluation
+        criteria.\nYour job is to score how well the response meets the criteria.\n\nScoring:\n-
+        0: Completely fails to meet the criteria\n- 1-3: Mostly fails, with minor
+        positive elements\n- 4-6: Partially meets criteria, significant room for improvement\n-
+        7-8: Mostly meets criteria with minor issues\n- 9: Meets criteria well\n-
+        10: Perfectly meets all criteria\n\nBe strict but fair. Consider each criterion
+        carefully.\n\nYou MUST respond with valid JSON in this exact format:\n{\"score\":
+        <0-10>, \"reasoning\": \"Brief explanation of the score\"}\n\nYour reasoning
+        should be concise (1-2 sentences max).\n"},{"role":"user","content":"## Response
+        to evaluate:\n7 times 8 is **56**.\n\n## Additional context:\nUser prompt:
+        What is 7 times 8?\n\n## Evaluation criteria:\nprovides the correct answer
+        (56)\ndoesn''t over-explain\n\nScore this response from 0-10. Respond with
+        JSON only."}],"response_format":{"type":"json_object"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 25 Dec 2025 00:26:41 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      content-encoding:
+      - gzip
+      access-control-allow-origin:
+      - "*"
+      vary:
+      - Accept-Encoding
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      server:
+      - cloudflare
+      cf-ray:
+      - 9b34355638a3aced-MSP
+    body:
+      encoding: ASCII-8BIT
+      string: "\n         \n\n         \n{\"id\":\"gen-1766622401-oGF5F5TOjGtBql8KEu7Y\",\"provider\":\"Google
+        AI Studio\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766622401,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"score\\\":
+        10, \\\"reasoning\\\": \\\"The response provides the correct mathematical
+        answer and is perfectly concise without any unnecessary explanation.\\\"}\",\"refusal\":null,\"reasoning\":null,\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.encrypted\",\"data\":\"EjQKMgFyyNp8+lZt6C5XsGlmh2G0c/l+peG53Biq0ZHTLBRF89P+OMYjEIbfqTnuKPtgolfx\"}]}}],\"usage\":{\"prompt_tokens\":237,\"completion_tokens\":29,\"total_tokens\":266,\"cost\":0.0002055,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0001185,\"upstream_inference_completions_cost\":0.000087},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 00:26:41 GMT
+recorded_with: VCR 6.4.0

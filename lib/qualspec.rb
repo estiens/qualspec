@@ -19,6 +19,7 @@ require_relative "qualspec/suite/dsl"
 require_relative "qualspec/suite/runner"
 require_relative "qualspec/suite/reporter"
 require_relative "qualspec/suite/builtin_behaviors"
+require_relative "qualspec/recorder"
 
 module Qualspec
   class << self
