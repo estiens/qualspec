@@ -33,7 +33,7 @@ GEM
       ast (~> 2.4.1)
       racc
     prism (1.7.0)
-    public_suffix (7.0.0)
+    public_suffix (6.0.2)
     racc (1.8.1)
     rainbow (3.1.1)
     rake (13.3.1)
@@ -87,6 +87,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  public_suffix (< 7)
   qualspec!
   rake (~> 13.0)
   rspec (~> 3.0)

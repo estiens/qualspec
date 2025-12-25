@@ -11,3 +11,6 @@ gem 'rspec', '~> 3.0'
 
 gem 'rubocop', require: false
 gem 'rubocop-rspec', require: false
+
+# Pin for Ruby 3.1 compatibility
+gem 'public_suffix', '< 7'
