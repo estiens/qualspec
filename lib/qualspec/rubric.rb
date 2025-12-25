@@ -7,7 +7,7 @@ module Qualspec
     def initialize(name, &block)
       @name = name
       @criteria = []
-      instance_eval(&block) if block_given?
+      instance_eval(&block) if block_given? # rubocop:disable Style/EvalWithLocation -- DSL pattern requires eval
     end
 
     def criterion(description)

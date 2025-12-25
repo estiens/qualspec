@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Comparison - Qualspec Report</title>
+  <style>
+  :root {
+    --bg: #0d1117;
+    --card-bg: #161b22;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --success: #3fb950;
+    --warning: #d29922;
+    --danger: #f85149;
+    --purple: #a371f7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  header .subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .card h2 .icon { font-size: 1.1rem; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  .score-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .score-bar .bar {
+    flex: 1;
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 120px;
+  }
+
+  .score-bar .bar .fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+
+  .score-bar .value {
+    font-weight: 600;
+    min-width: 3rem;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .badge-success { background: rgba(63, 185, 80, 0.2); color: var(--success); }
+  .badge-warning { background: rgba(210, 153, 34, 0.2); color: var(--warning); }
+  .badge-danger { background: rgba(248, 81, 73, 0.2); color: var(--danger); }
+  .badge-winner { background: rgba(163, 113, 247, 0.2); color: var(--purple); }
+
+  .scenario {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .scenario:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .scenario h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .scenario-row {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    gap: 1rem;
+  }
+
+  .scenario-row .name {
+    min-width: 120px;
+    font-weight: 500;
+  }
+
+  .scenario-row .score-bar { flex: 1; }
+
+  .scenario-row .timing {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    min-width: 80px;
+    text-align: right;
+  }
+
+  .winner-box {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .winner-box .crown { font-size: 3rem; margin-bottom: 1rem; }
+
+  .winner-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    justify-content: center;
+  }
+
+  .winner-box .stats {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .winner-box .comparison {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .response-block {
+    margin-bottom: 1rem;
+  }
+
+  .response-block h4 {
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .response-block pre {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1rem;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .perf-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .perf-row:last-child { border-bottom: none; }
+
+  .perf-row .name { font-weight: 500; }
+
+  .perf-row .metrics {
+    display: flex;
+    gap: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  footer {
+    text-align: center;
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <header>
+  <h1>Model Comparison</h1>
+  <p class="subtitle">Generated 2025-12-24 19:33:30</p>
+</header>
+
+    <div class="card">
+  <h2><span class="icon">📊</span> Summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Candidate</th>
+        <th>Score</th>
+        <th>Wins</th>
+        <th>Pass Rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+  <td><strong>gemini-flash</strong> <span class="badge badge-winner">WINNER</span></td>
+  <td><div class="score-bar">
+  <div class="bar">
+    <div class="fill" style="width: 95%; background: var(--success);"></div>
+  </div>
+  <span class="value">9.5/10</span>
+</div>
+</td>
+  <td>1</td>
+  <td><span class="badge badge-success">100.0%</span></td>
+</tr>
+<tr>
+  <td><strong>gemini-pro</strong> <span class="badge badge-winner">WINNER</span></td>
+  <td><div class="score-bar">
+  <div class="bar">
+    <div class="fill" style="width: 95%; background: var(--success);"></div>
+  </div>
+  <span class="value">9.5/10</span>
+</div>
+</td>
+  <td>1</td>
+  <td><span class="badge badge-success">100.0%</span></td>
+</tr>
+
+    </tbody>
+  </table>
+</div>
+
+    <div class="card">
+  <h2><span class="icon">⚡</span> Performance</h2>
+  <div class="perf-row">
+  <span class="name">gemini-flash</span>
+  <div class="metrics">
+    <span>639ms avg</span>
+    <span>1.28s total</span>
+    <span>-</span>
+  </div>
+</div>
+<div class="perf-row">
+  <span class="name">gemini-pro</span>
+  <div class="metrics">
+    <span>16.27s avg</span>
+    <span>32.54s total</span>
+    <span>-</span>
+  </div>
+</div>
+
+</div>
+
+    <div class="card">
+  <h2><span class="icon">🎯</span> By Scenario</h2>
+  <div class="scenario">
+  <h3>greeting <span class="badge badge-winner">WINNER</span></h3>
+  <div class="scenario-row">
+  <span class="name">gemini-flash</span>
+  <div class="score-bar">
+  <div class="bar">
+    <div class="fill" style="width: 90%; background: var(--success);"></div>
+  </div>
+  <span class="value">9/10</span>
+</div>
+
+  <span class="timing">620ms</span>
+</div>
+<div class="scenario-row">
+  <span class="name">gemini-pro ⭐</span>
+  <div class="score-bar">
+  <div class="bar">
+    <div class="fill" style="width: 100%; background: var(--success);"></div>
+  </div>
+  <span class="value">10/10</span>
+</div>
+
+  <span class="timing">12.14s</span>
+</div>
+
+</div>
+<div class="scenario">
+  <h3>explanation <span class="badge badge-winner">WINNER</span></h3>
+  <div class="scenario-row">
+  <span class="name">gemini-flash ⭐</span>
+  <div class="score-bar">
+  <div class="bar">
+    <div class="fill" style="width: 100%; background: var(--success);"></div>
+  </div>
+  <span class="value">10/10</span>
+</div>
+
+  <span class="timing">659ms</span>
+</div>
+<div class="scenario-row">
+  <span class="name">gemini-pro</span>
+  <div class="score-bar">
+  <div class="bar">
+    <div class="fill" style="width: 90%; background: var(--success);"></div>
+  </div>
+  <span class="value">9/10</span>
+</div>
+
+  <span class="timing">20.4s</span>
+</div>
+
+</div>
+
+</div>
+
+    
+    <div class="card winner-box">
+  <div class="crown">🤝</div>
+<h2>It's a Tie!</h2>
+<p class="stats">gemini-flash vs gemini-pro tied at 9.5/10</p>
+
+  <p class="comparison">
+  ⚡ gemini-flash was 25.5x faster than gemini-pro
+</p>
+
+</div>
+
+    <footer>
+  Generated by <a href="https://github.com/your-org/qualspec">Qualspec</a>
+</footer>
+
+  </div>
+</body>
+</html>

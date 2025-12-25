@@ -35,7 +35,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 25 Dec 2025 01:21:49 GMT
+      - Thu, 25 Dec 2025 01:40:18 GMT
       content-type:
       - application/json
       transfer-encoding:
@@ -58,16 +58,17 @@ http_interactions:
       server:
       - cloudflare
       cf-ray:
-      - 9b348614eebf4c99-MSP
+      - 9b34a12d3ce8ace8-MSP
     body:
       encoding: ASCII-8BIT
-      string: "\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1766625708-rB8NYFXzc4bugNXoY497\",\"provider\":\"Google\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766625708,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n
+      string: "\n         \n\n         \n\n         \n{\"id\":\"gen-1766626818-FSxtQ3HPfU9FWJEX4pnT\",\"provider\":\"Google
+        AI Studio\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766626818,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n
         \ \\\"friendly\\\": {\\n    \\\"score\\\": 10,\\n    \\\"reasoning\\\": \\\"The
-        response is exceptionally warm, welcoming, and directly aligns with the friendly
-        criteria.\\\"\\n  },\\n  \\\"terse\\\": {\\n    \\\"score\\\": 4,\\n    \\\"reasoning\\\":
-        \\\"The response is neutral and polite enough for a basic greeting, but lacks
-        any actual warmth or friendliness.\\\"\\n  },\\n  \\\"rude\\\": {\\n    \\\"score\\\":
-        0,\\n    \\\"reasoning\\\": \\\"The response is aggressive and dismissive,
-        failing the criteria entirely.\\\"\\n  },\\n  \\\"winner\\\": \\\"friendly\\\"\\n}\",\"refusal\":null,\"reasoning\":null}}],\"usage\":{\"prompt_tokens\":318,\"completion_tokens\":134,\"total_tokens\":452,\"cost\":0.000561,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.000159,\"upstream_inference_completions_cost\":0.000402},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
-  recorded_at: Thu, 25 Dec 2025 01:21:50 GMT
+        response is enthusiastic, welcoming, and directly meets the criteria of being
+        friendly.\\\"\\n  },\\n  \\\"terse\\\": {\\n    \\\"score\\\": 4,\\n    \\\"reasoning\\\":
+        \\\"While technically polite, it lacks warmth and does not fulfill the spirit
+        of being friendly; it is merely functional.\\\"\\n  },\\n  \\\"rude\\\": {\\n
+        \   \\\"score\\\": 0,\\n    \\\"reasoning\\\": \\\"The response is aggressive
+        and the opposite of friendly.\\\"\\n  },\\n  \\\"winner\\\": \\\"friendly\\\"\\n}\",\"refusal\":null,\"reasoning\":null,\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.encrypted\",\"data\":\"EjQKMgFyyNp8R9isWZ8CZf+iYSwmyMvnjsqKZIwcMwHEyqCKNfIsiqHbk7AtqLL42DKbfXoM\"}]}}],\"usage\":{\"prompt_tokens\":320,\"completion_tokens\":133,\"total_tokens\":453,\"cost\":0.000559,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.00016,\"upstream_inference_completions_cost\":0.000399},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 01:40:19 GMT
 recorded_with: VCR 6.4.0

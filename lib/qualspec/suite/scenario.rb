@@ -13,7 +13,7 @@ module Qualspec
         @rubric_name = nil
         @context = nil
 
-        instance_eval(&block) if block_given?
+        instance_eval(&block) if block_given? # rubocop:disable Style/EvalWithLocation
       end
 
       # DSL methods
@@ -25,9 +25,11 @@ module Qualspec
         @system_prompt = text
       end
 
+      # rubocop:disable Naming/AccessorMethodName - DSL method, not a getter
       def eval(criterion)
         @evaluations << criterion
       end
+      # rubocop:enable Naming/AccessorMethodName
 
       def rubric(name)
         @rubric_name = name

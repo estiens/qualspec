@@ -16,8 +16,8 @@ module Qualspec
         messages = []
 
         sys = system_prompt || @system_prompt
-        messages << { role: "system", content: sys } if sys
-        messages << { role: "user", content: prompt }
+        messages << { role: 'system', content: sys } if sys
+        messages << { role: 'user', content: prompt }
 
         Qualspec.client.chat(
           model: @model,

@@ -30,7 +30,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 25 Dec 2025 01:21:44 GMT
+      - Thu, 25 Dec 2025 01:40:14 GMT
       content-type:
       - application/json
       transfer-encoding:
@@ -53,12 +53,12 @@ http_interactions:
       server:
       - cloudflare
       cf-ray:
-      - 9b3485f86bc8a1b9-MSP
+      - 9b34a1129c0c7816-MSP
     body:
       encoding: ASCII-8BIT
-      string: "\n         \n\n         \n{\"id\":\"gen-1766625703-vgf71t6pCFRgMtaWPTvE\",\"provider\":\"Google
-        AI Studio\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766625703,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"score\\\":
-        0, \\\"reasoning\\\": \\\"The response is brief and blunt, lacking any friendliness
-        or welcoming tone.\\\"}\",\"refusal\":null,\"reasoning\":null,\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.encrypted\",\"data\":\"EjQKMgFyyNp8jMu/vudw0KN9xVDWYxGeli7DtU7wlkNMkDQyGk7oDmBXuhA7doaOIsK5kZ5V\"}]}}],\"usage\":{\"prompt_tokens\":204,\"completion_tokens\":26,\"total_tokens\":230,\"cost\":0.00018,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.000102,\"upstream_inference_completions_cost\":0.000078},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
-  recorded_at: Thu, 25 Dec 2025 01:21:44 GMT
+      string: "\n         \n{\"id\":\"gen-1766626813-9z6V9Op2Q5JFbSXf1Z6Y\",\"provider\":\"Google
+        AI Studio\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766626813,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"score\\\":
+        0, \\\"reasoning\\\": \\\"The response is brief, dismissive, and lacks any
+        friendliness or welcoming tone.\\\"}\",\"refusal\":null,\"reasoning\":null,\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.encrypted\",\"data\":\"EjQKMgFyyNp8Pa5r5K1I7RC9Oq6B+l2jKYr0LmFbNW4QifEcYT04+ALwUAA0JCGKFpfd9wZY\"}]}}],\"usage\":{\"prompt_tokens\":204,\"completion_tokens\":28,\"total_tokens\":232,\"cost\":0.000186,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.000102,\"upstream_inference_completions_cost\":0.000084},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 01:40:14 GMT
 recorded_with: VCR 6.4.0

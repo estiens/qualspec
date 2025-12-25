@@ -2,11 +2,10 @@
 
 module Qualspec
   class Evaluation
-    attr_reader :criterion, :score, :pass, :reasoning
-    attr_reader :model, :candidate, :scenario
-    attr_reader :error, :scenario_winner
+    attr_reader :criterion, :score, :pass, :reasoning, :model, :candidate, :scenario, :error, :scenario_winner
 
-    def initialize(criterion:, score:, pass:, reasoning: nil, model: nil, candidate: nil, scenario: nil, error: nil, scenario_winner: nil)
+    def initialize(criterion:, score:, pass:, reasoning: nil, model: nil, candidate: nil, scenario: nil, error: nil,
+                   scenario_winner: nil)
       @criterion = criterion
       @score = score
       @pass = pass

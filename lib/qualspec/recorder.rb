@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require "vcr"
+require 'vcr'
 
 module Qualspec
   class Recorder
     class << self
-      def setup(cassette_dir: ".qualspec_cassettes")
+      def setup(cassette_dir: '.qualspec_cassettes')
         VCR.configure do |config|
           config.cassette_library_dir = cassette_dir
           config.hook_into :faraday
@@ -14,7 +14,7 @@ module Qualspec
             match_requests_on: %i[method uri body]
           }
           # Filter out API keys
-          config.filter_sensitive_data("<API_KEY>") { Qualspec.configuration.api_key }
+          config.filter_sensitive_data('<API_KEY>') { Qualspec.configuration.api_key }
         end
         @configured = true
       end

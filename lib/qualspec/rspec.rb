@@ -36,11 +36,11 @@
 #   end
 #
 
-require "qualspec"
-require_relative "rspec/configuration"
-require_relative "rspec/evaluation_result"
-require_relative "rspec/helpers"
-require_relative "rspec/matchers"
+require 'qualspec'
+require_relative 'rspec/configuration'
+require_relative 'rspec/evaluation_result'
+require_relative 'rspec/helpers'
+require_relative 'rspec/matchers'
 
 module Qualspec
   module RSpec
@@ -52,15 +52,13 @@ module Qualspec
       #
       def setup!
         # Load builtin rubrics if configured
-        if configuration.load_builtins
-          Qualspec::BuiltinRubrics.load!
-        end
+        Qualspec::BuiltinRubrics.load! if configuration.load_builtins
 
         # Configure RSpec if available
-        if defined?(::RSpec) && ::RSpec.respond_to?(:configure)
-          ::RSpec.configure do |config|
-            config.include Qualspec::RSpec::Helpers
-          end
+        return unless defined?(::RSpec) && ::RSpec.respond_to?(:configure)
+
+        ::RSpec.configure do |config|
+          config.include Qualspec::RSpec::Helpers
         end
       end
     end

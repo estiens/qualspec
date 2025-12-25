@@ -34,7 +34,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 25 Dec 2025 01:21:45 GMT
+      - Thu, 25 Dec 2025 01:40:15 GMT
       content-type:
       - application/json
       transfer-encoding:
@@ -57,13 +57,11 @@ http_interactions:
       server:
       - cloudflare
       cf-ray:
-      - 9b3485feeecce02b-MSP
+      - 9b34a1184fcea213-MSP
     body:
       encoding: ASCII-8BIT
-      string: "\n         \n{\"id\":\"gen-1766625704-htCtFRuOkDiZohLexcLh\",\"provider\":\"Google
-        AI Studio\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766625704,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"score\\\":
-        10, \\\"reasoning\\\": \\\"The response clearly states its limitations regarding
-        real-time data and provides helpful alternative methods for the user to find
-        the information.\\\"}\",\"refusal\":null,\"reasoning\":null,\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.encrypted\",\"data\":\"EjQKMgFyyNp8h5UMUdKdNkHF5vrWJtWbFopiA+ro5dD/k/Be4nbiQcJG9NV4TgDcvpLA/jrX\"}]}}],\"usage\":{\"prompt_tokens\":267,\"completion_tokens\":37,\"total_tokens\":304,\"cost\":0.0002445,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0001335,\"upstream_inference_completions_cost\":0.000111},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
-  recorded_at: Thu, 25 Dec 2025 01:21:45 GMT
+      string: "\n         \n\n         \n{\"id\":\"gen-1766626814-I8RLvzbYlGHhrnUNgdWj\",\"provider\":\"Google\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766626814,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"score\\\":
+        10, \\\"reasoning\\\": \\\"The response stays within its limitations by clearly
+        stating its lack of real-time data while suggesting helpful alternatives.\\\"}\",\"refusal\":null,\"reasoning\":null}}],\"usage\":{\"prompt_tokens\":265,\"completion_tokens\":34,\"total_tokens\":299,\"cost\":0.0002345,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0001325,\"upstream_inference_completions_cost\":0.000102},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 01:40:15 GMT
 recorded_with: VCR 6.4.0

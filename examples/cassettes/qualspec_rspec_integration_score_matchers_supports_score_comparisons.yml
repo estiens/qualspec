@@ -31,7 +31,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 25 Dec 2025 01:21:48 GMT
+      - Thu, 25 Dec 2025 01:40:17 GMT
       content-type:
       - application/json
       transfer-encoding:
@@ -54,11 +54,12 @@ http_interactions:
       server:
       - cloudflare
       cf-ray:
-      - 9b34860c7c3ba1b9-MSP
+      - 9b34a127382bacdc-MSP
     body:
       encoding: ASCII-8BIT
-      string: "\n         \n\n         \n{\"id\":\"gen-1766625706-M2WF89HEo7dis08bhGxl\",\"provider\":\"Google\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766625707,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"score\\\":
-        10, \\\"reasoning\\\": \\\"The response is polite, helpful, and provides a
-        standard, appropriate opening for a conversation.\\\"}\",\"refusal\":null,\"reasoning\":null}}],\"usage\":{\"prompt_tokens\":217,\"completion_tokens\":31,\"total_tokens\":248,\"cost\":0.0002015,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0001085,\"upstream_inference_completions_cost\":0.000093},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
-  recorded_at: Thu, 25 Dec 2025 01:21:48 GMT
+      string: "\n         \n{\"id\":\"gen-1766626817-IX8xLUoy6Oscjj2fBaWq\",\"provider\":\"Google
+        AI Studio\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766626817,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"score\\\":
+        10, \\\"reasoning\\\": \\\"The response is polite, conversational, and invites
+        further interaction, which is highly reasonable for a general greeting.\\\"}\",\"refusal\":null,\"reasoning\":null,\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.encrypted\",\"data\":\"EjQKMgFyyNp8of2xo0yU211U4gDq60Wjxc9vruja/4yS2MlazegF6esjie2f8XQpbSAMU1wW\"}]}}],\"usage\":{\"prompt_tokens\":219,\"completion_tokens\":34,\"total_tokens\":253,\"cost\":0.0002115,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0001095,\"upstream_inference_completions_cost\":0.000102},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 01:40:18 GMT
 recorded_with: VCR 6.4.0

@@ -31,7 +31,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 25 Dec 2025 01:21:50 GMT
+      - Thu, 25 Dec 2025 01:40:20 GMT
       content-type:
       - application/json
       transfer-encoding:
@@ -54,12 +54,12 @@ http_interactions:
       server:
       - cloudflare
       cf-ray:
-      - 9b34862128851e27-MSP
+      - 9b34a1360819a20d-MSP
     body:
       encoding: ASCII-8BIT
-      string: "\n         \n{\"id\":\"gen-1766625710-DVhnwRM20aMWcUN9nCRZ\",\"provider\":\"Google
-        AI Studio\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766625710,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"score\\\":
-        10, \\\"reasoning\\\": \\\"The response is a perfect example of a friendly
-        greeting and an offer of assistance.\\\"}\",\"refusal\":null,\"reasoning\":null,\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.encrypted\",\"data\":\"EjQKMgFyyNp8sCMqkA9PJEALf5/3uOlJh1eOoOEO3gN47IJ644LPeAgISb+M4nwwmWZw+YY3\"}]}}],\"usage\":{\"prompt_tokens\":219,\"completion_tokens\":29,\"total_tokens\":248,\"cost\":0.0001965,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0001095,\"upstream_inference_completions_cost\":0.000087},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
-  recorded_at: Thu, 25 Dec 2025 01:21:51 GMT
+      string: "\n         \n{\"id\":\"gen-1766626819-cwszKPb5TYdNlsdM6wXx\",\"provider\":\"Google
+        AI Studio\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766626819,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"score\\\":
+        10, \\\"reasoning\\\": \\\"The response is a perfect example of a polite greeting
+        that answers the initial check-in and offers further assistance.\\\"}\",\"refusal\":null,\"reasoning\":null,\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.encrypted\",\"data\":\"EjQKMgFyyNp8jSP3SGP1mfnfQ8XosyevKsQG2o0utylFyYWkt17Q92DKVN2vMFNAtAwMN8B8\"}]}}],\"usage\":{\"prompt_tokens\":219,\"completion_tokens\":35,\"total_tokens\":254,\"cost\":0.0002145,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0001095,\"upstream_inference_completions_cost\":0.000105},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 01:40:20 GMT
 recorded_with: VCR 6.4.0

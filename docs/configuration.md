@@ -2,31 +2,39 @@
 
 ## Environment Variables
 
-Qualspec auto-detects configuration from environment variables:
-
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `QUALSPEC_API_URL` | API endpoint | Auto-detected |
-| `QUALSPEC_API_KEY` | API key | Auto-detected |
-| `QUALSPEC_MODEL` | Default model for candidates | `google/gemini-2.5-flash-preview` |
-| `QUALSPEC_JUDGE_MODEL` | Model for judging | Same as default |
+| `QUALSPEC_API_KEY` | API key (required) | - |
+| `QUALSPEC_API_URL` | API endpoint | `https://openrouter.ai/api/v1` |
+| `QUALSPEC_MODEL` | Default model for candidates | `google/gemini-3-flash-preview` |
+| `QUALSPEC_JUDGE_MODEL` | Model for judging | Same as `QUALSPEC_MODEL` |
 | `QUALSPEC_SSL_VERIFY` | Enable SSL verification | `false` |
 
-### Auto-Detection
+### Required Setup
 
-Qualspec checks these environment variables in order:
+```bash
+export QUALSPEC_API_KEY=your_openrouter_api_key
+```
 
-**API URL:**
-1. `QUALSPEC_API_URL`
-2. `OPENROUTER_API_URL`
-3. If `OPENROUTER_API_KEY` set → `https://openrouter.ai/api/v1`
-4. If `OPENAI_API_KEY` set → `https://api.openai.com/v1`
-5. Default: `http://localhost:11434/v1` (Ollama)
+### Using Different Providers
 
-**API Key:**
-1. `QUALSPEC_API_KEY`
-2. `OPENROUTER_API_KEY`
-3. `OPENAI_API_KEY`
+**OpenRouter (default):**
+```bash
+export QUALSPEC_API_KEY=sk-or-...
+# API URL defaults to https://openrouter.ai/api/v1
+```
+
+**OpenAI:**
+```bash
+export QUALSPEC_API_KEY=sk-...
+export QUALSPEC_API_URL=https://api.openai.com/v1
+```
+
+**Ollama (local):**
+```bash
+export QUALSPEC_API_URL=http://localhost:11434/v1
+# No API key needed for local Ollama
+```
 
 ## Programmatic Configuration
 

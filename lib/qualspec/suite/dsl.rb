@@ -10,12 +10,12 @@ module Qualspec
         @candidates_list = []
         @scenarios_list = []
 
-        instance_eval(&block) if block_given?
+        instance_eval(&block) if block_given? # rubocop:disable Style/EvalWithLocation
       end
 
       # DSL: define candidates
       def candidates(&block)
-        instance_eval(&block)
+        instance_eval(&block) # rubocop:disable Style/EvalWithLocation
       end
 
       def candidate(name, model:, system_prompt: nil, **options)
@@ -34,8 +34,8 @@ module Qualspec
       end
 
       # Alias for readability
-      alias_method :it_behaves_like, :behaves_like
-      alias_method :include_behavior, :behaves_like
+      alias it_behaves_like behaves_like
+      alias include_behavior behaves_like
     end
 
     class << self

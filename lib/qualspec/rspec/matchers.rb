@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rspec/expectations"
+require 'rspec/expectations'
 
 module Qualspec
   module RSpec
@@ -156,6 +156,8 @@ module Qualspec
 end
 
 # Auto-include matchers when RSpec is loaded
-RSpec.configure do |config|
-  config.include Qualspec::RSpec::Matchers
-end if defined?(RSpec) && RSpec.respond_to?(:configure)
+if defined?(RSpec) && RSpec.respond_to?(:configure)
+  RSpec.configure do |config|
+    config.include Qualspec::RSpec::Matchers
+  end
+end

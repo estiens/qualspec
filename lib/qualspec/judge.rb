@@ -65,8 +65,8 @@ module Qualspec
       result = @client.chat(
         model: @model,
         messages: [
-          { role: "system", content: @system_prompt },
-          { role: "user", content: user_prompt }
+          { role: 'system', content: @system_prompt },
+          { role: 'user', content: user_prompt }
         ],
         json_mode: true
       )
@@ -93,8 +93,8 @@ module Qualspec
       result = @client.chat(
         model: @model,
         messages: [
-          { role: "system", content: COMPARISON_SYSTEM_PROMPT },
-          { role: "user", content: user_prompt }
+          { role: 'system', content: COMPARISON_SYSTEM_PROMPT },
+          { role: 'user', content: user_prompt }
         ],
         json_mode: true
       )
@@ -127,37 +127,37 @@ module Qualspec
       parts << "## Response to evaluate:\n#{response}"
       parts << "## Additional context:\n#{context}" if context
       parts << "## Evaluation criteria:\n#{criterion}"
-      parts << "Score this response from 0-10. Respond with JSON only."
+      parts << 'Score this response from 0-10. Respond with JSON only.'
       parts.join("\n\n")
     end
 
     def build_comparison_prompt(responses, criteria, context)
-      candidate_names = responses.keys.map { |k| "\"#{k}\"" }.join(", ")
+      candidate_names = responses.keys.map { |k| "\"#{k}\"" }.join(', ')
 
       parts = []
       parts << "## Evaluation criteria:\n#{criteria}"
       parts << "## Context:\n#{context}" if context
       parts << "## Candidates to evaluate: #{candidate_names}"
-      parts << "## Responses:"
+      parts << '## Responses:'
 
       responses.each do |candidate, response|
         parts << "\n### #{candidate}:\n#{response}"
       end
 
       parts << "\nScore each candidate (#{candidate_names}) from 0-10."
-      parts << "Use these EXACT names in your JSON response. Declare a winner."
+      parts << 'Use these EXACT names in your JSON response. Declare a winner.'
       parts.join("\n")
     end
 
     def parse_result(result, criterion, threshold)
       json = JSON.parse(result)
-      score = json["score"].to_i.clamp(0, 10)
+      score = json['score'].to_i.clamp(0, 10)
 
       Evaluation.new(
         criterion: criterion,
         score: score,
         pass: score >= threshold,
-        reasoning: json["reasoning"]
+        reasoning: json['reasoning']
       )
     rescue JSON::ParserError
       Evaluation.new(
@@ -171,20 +171,20 @@ module Qualspec
 
     def parse_comparison_result(result, criterion, threshold, candidates)
       json = JSON.parse(result)
-      winner = json["winner"]
+      winner = json['winner']
 
       evals = candidates.to_h do |candidate|
         candidate_result = json[candidate] || json[candidate.to_s]
 
         if candidate_result
-          score = candidate_result["score"].to_i.clamp(0, 10)
-          is_winner = (winner == candidate || winner == candidate.to_s)
+          score = candidate_result['score'].to_i.clamp(0, 10)
+          is_winner = winner == candidate || winner == candidate.to_s
 
           [candidate, Evaluation.new(
             criterion: criterion,
             score: score,
             pass: score >= threshold,
-            reasoning: candidate_result["reasoning"],
+            reasoning: candidate_result['reasoning'],
             scenario_winner: is_winner
           )]
         else
@@ -193,15 +193,13 @@ module Qualspec
             score: 0,
             pass: false,
             reasoning: nil,
-            error: "No result for candidate in judge response"
+            error: 'No result for candidate in judge response'
           )]
         end
       end
 
       # Store tie info
-      if winner == "tie"
-        evals.each_value { |e| e.instance_variable_set(:@scenario_winner, :tie) }
-      end
+      evals.each_value { |e| e.instance_variable_set(:@scenario_winner, :tie) } if winner == 'tie'
 
       evals
     rescue JSON::ParserError

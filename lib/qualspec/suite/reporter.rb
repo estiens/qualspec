@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "json"
+require 'json'
 
 module Qualspec
   module Suite
@@ -13,13 +13,13 @@ module Qualspec
       def to_stdout
         output = []
         output << header
-        output << ""
+        output << ''
         output << summary_table
-        output << ""
-        output << timing_section if has_timing?
-        output << ""
+        output << ''
+        output << timing_section if timing?
+        output << ''
         output << scenario_breakdown
-        output << ""
+        output << ''
         output << responses_section if @show_responses
         output << winner_announcement
 
@@ -42,15 +42,15 @@ module Qualspec
 
       def header
         lines = []
-        lines << "=" * 60
+        lines << '=' * 60
         lines << @results.suite_name.center(60)
-        lines << "=" * 60
+        lines << '=' * 60
         lines.join("\n")
       end
 
       def summary_table
         scores = @results.scores_by_candidate
-        return "No results" if scores.empty?
+        return 'No results' if scores.empty?
 
         candidates = scores.keys
         max_name = [candidates.map(&:length).max, 10].max
@@ -59,12 +59,12 @@ module Qualspec
         wins = count_wins
 
         lines = []
-        lines << "## Summary"
-        lines << ""
+        lines << '## Summary'
+        lines << ''
 
-        header = "| #{"Candidate".ljust(max_name)} | Score |  Wins | Pass Rate |"
+        header = "| #{'Candidate'.ljust(max_name)} | Score |  Wins | Pass Rate |"
         lines << header
-        lines << "|#{"-" * (max_name + 2)}|-------|-------|-----------|"
+        lines << "|#{'-' * (max_name + 2)}|-------|-------|-----------|"
 
         sorted = scores.sort_by { |_, v| -v[:avg_score] }
 
@@ -87,7 +87,7 @@ module Qualspec
         wins
       end
 
-      def has_timing?
+      def timing?
         !@results.timing.empty?
       end
 
@@ -98,8 +98,8 @@ module Qualspec
         costs = @results.costs
 
         lines = []
-        lines << "## Performance"
-        lines << ""
+        lines << '## Performance'
+        lines << ''
 
         sorted = timing.sort_by { |_, v| v[:avg_ms] }
 
@@ -107,9 +107,7 @@ module Qualspec
           line = "  #{candidate}: #{format_duration(stats[:avg_ms])} avg"
           line += " (#{format_duration(stats[:total_ms])} total)"
 
-          if costs[candidate] && costs[candidate] > 0
-            line += " - $#{format_cost(costs[candidate])}"
-          end
+          line += " - $#{format_cost(costs[candidate])}" if costs[candidate]&.positive?
 
           lines << line
         end
@@ -117,36 +115,40 @@ module Qualspec
         lines.join("\n")
       end
 
-      def format_duration(ms)
-        if ms >= 1000
-          "#{(ms / 1000.0).round(2)}s"
+      def format_duration(milliseconds)
+        if milliseconds >= 1000
+          "#{(milliseconds / 1000.0).round(2)}s"
         else
-          "#{ms}ms"
+          "#{milliseconds}ms"
         end
       end
 
       def format_cost(cost)
         if cost < 0.01
-          "%.4f" % cost
+          format('%.4f', cost)
         else
-          "%.2f" % cost
+          format('%.2f', cost)
         end
       end
 
       def scenario_breakdown
         by_scenario = @results.scores_by_scenario
-        return "" if by_scenario.empty?
+        return '' if by_scenario.empty?
 
         candidates = @results.scores_by_candidate.keys
 
         lines = []
-        lines << "## By Scenario"
-        lines << ""
+        lines << '## By Scenario'
+        lines << ''
 
         by_scenario.each do |scenario, candidate_scores|
           # Find winner for this scenario
           winner = find_scenario_winner(scenario)
-          winner_label = winner == :tie ? " [TIE]" : winner ? " [Winner: #{winner}]" : ""
+          winner_label = if winner == :tie
+                           ' [TIE]'
+                         else
+                           winner ? " [Winner: #{winner}]" : ''
+                         end
 
           lines << "### #{scenario}#{winner_label}"
 
@@ -156,7 +158,7 @@ module Qualspec
 
             score_bar = score_visualization(stats[:score])
             timing_info = format_scenario_timing(candidate, scenario)
-            win_marker = (winner == candidate) ? " *" : ""
+            win_marker = winner == candidate ? ' *' : ''
 
             line = "  #{candidate}: #{score_bar} #{stats[:score]}/10#{win_marker}"
             line += " #{timing_info}" if timing_info
@@ -164,7 +166,7 @@ module Qualspec
             lines << line
           end
 
-          lines << ""
+          lines << ''
         end
 
         lines.join("\n")
@@ -189,9 +191,9 @@ module Qualspec
       end
 
       def score_visualization(score)
-        filled = (score.to_f).round
+        filled = score.to_f.round
         empty = 10 - filled
-        "[#{"█" * filled}#{"░" * empty}]"
+        "[#{'█' * filled}#{'░' * empty}]"
       end
 
       def responses_section
@@ -199,26 +201,26 @@ module Qualspec
         return nil if responses.empty?
 
         lines = []
-        lines << "## Responses"
-        lines << ""
+        lines << '## Responses'
+        lines << ''
 
         # Group by scenario
         scenarios = responses.values.first&.keys || []
 
         scenarios.each do |scenario|
           lines << "### #{scenario}"
-          lines << ""
+          lines << ''
 
           responses.each do |candidate, candidate_responses|
             response = candidate_responses[scenario]
             next unless response
 
             lines << "**#{candidate}:**"
-            lines << "```"
+            lines << '```'
             lines << response.to_s.strip[0..500]
-            lines << "..." if response.to_s.length > 500
-            lines << "```"
-            lines << ""
+            lines << '...' if response.to_s.length > 500
+            lines << '```'
+            lines << ''
           end
         end
 
@@ -227,7 +229,7 @@ module Qualspec
 
       def winner_announcement
         scores = @results.scores_by_candidate
-        return "" if scores.empty?
+        return '' if scores.empty?
 
         wins = count_wins
         sorted = scores.sort_by { |_, v| -v[:avg_score] }
@@ -235,19 +237,21 @@ module Qualspec
         runner_up = sorted[1]
 
         lines = []
-        lines << "-" * 60
+        lines << '-' * 60
 
         if sorted.size == 1
           lines << "Result: #{winner[0]} scored #{winner[1][:avg_score]}/10"
         elsif winner[1][:avg_score] == runner_up&.dig(1, :avg_score)
           tied = sorted.take_while { |_, v| v[:avg_score] == winner[1][:avg_score] }
-          lines << "Result: TIE between #{tied.map(&:first).join(", ")}"
+          lines << "Result: TIE between #{tied.map(&:first).join(', ')}"
           lines << "        All scored #{winner[1][:avg_score]}/10 average"
         else
           margin = (winner[1][:avg_score] - runner_up[1][:avg_score]).round(2)
           win_count = wins[winner[0]] || 0
           lines << "Winner: #{winner[0]}"
-          lines << "        #{winner[1][:avg_score]}/10 avg | #{win_count} scenario wins | #{winner[1][:pass_rate]}% pass rate"
+          avg_score = winner[1][:avg_score]
+          pass_rate = winner[1][:pass_rate]
+          lines << "        #{avg_score}/10 avg | #{win_count} scenario wins | #{pass_rate}% pass rate"
           lines << "        Beat #{runner_up[0]} by #{margin} points"
         end
 
@@ -257,7 +261,7 @@ module Qualspec
           slowest = timing.max_by { |_, v| v[:avg_ms] }
           if fastest[0] != slowest[0]
             speedup = (slowest[1][:avg_ms].to_f / fastest[1][:avg_ms]).round(1)
-            lines << ""
+            lines << ''
             lines << "Fastest: #{fastest[0]} (#{format_duration(fastest[1][:avg_ms])} avg)"
             lines << "         #{speedup}x faster than #{slowest[0]}"
           end

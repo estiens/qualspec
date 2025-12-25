@@ -26,7 +26,7 @@ module Qualspec
 
       def initialize
         @default_threshold = 7
-        @vcr_cassette_dir = "spec/cassettes/qualspec"
+        @vcr_cassette_dir = 'spec/cassettes/qualspec'
         @record_mode = :new_episodes
         @load_builtins = true
       end

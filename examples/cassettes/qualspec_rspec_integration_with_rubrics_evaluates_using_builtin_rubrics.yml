@@ -32,7 +32,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 25 Dec 2025 01:21:46 GMT
+      - Thu, 25 Dec 2025 01:40:16 GMT
       content-type:
       - application/json
       transfer-encoding:
@@ -55,11 +55,13 @@ http_interactions:
       server:
       - cloudflare
       cf-ray:
-      - 9b3486045e32a224-MSP
+      - 9b34a1200ceaa1e2-MSP
     body:
       encoding: ASCII-8BIT
-      string: "\n         \n\n         \n{\"id\":\"gen-1766625705-dPI7aY37LiyOq5OlVmaU\",\"provider\":\"Google\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766625705,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"score\\\":
-        10, \\\"reasoning\\\": \\\"The response is concise, directly addresses the
-        user's implicit greeting, and avoids any unnecessary filler or repetition.\\\"}\",\"refusal\":null,\"reasoning\":null}}],\"usage\":{\"prompt_tokens\":236,\"completion_tokens\":35,\"total_tokens\":271,\"cost\":0.000223,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.000118,\"upstream_inference_completions_cost\":0.000105},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
-  recorded_at: Thu, 25 Dec 2025 01:21:46 GMT
+      string: "\n         \n\n         \n{\"id\":\"gen-1766626816-f7eSETM1M0krGjSvXPua\",\"provider\":\"Google
+        AI Studio\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766626816,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"score\\\":
+        7, \\\"reasoning\\\": \\\"The response includes polite social preamble and
+        filler that, while friendly, technically violates the 'no unnecessary preamble'
+        criterion for a direct task.\\\"}\",\"refusal\":null,\"reasoning\":null,\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.encrypted\",\"data\":\"EjQKMgFyyNp86sUsL/xIHgi50YKtFxIdNguYZ33wRoZ5us2d3/v0qElC5ziEAw6rvOz2yt/z\"}]}}],\"usage\":{\"prompt_tokens\":238,\"completion_tokens\":39,\"total_tokens\":277,\"cost\":0.000236,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.000119,\"upstream_inference_completions_cost\":0.000117},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 01:40:17 GMT
 recorded_with: VCR 6.4.0

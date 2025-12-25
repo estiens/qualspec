@@ -50,7 +50,7 @@ module Qualspec
 
       # Nice output for RSpec failure messages
       def inspect
-        status = passing? ? "PASS" : "FAIL"
+        status = passing? ? 'PASS' : 'FAIL'
         lines = [
           "#<Qualspec::RSpec::EvaluationResult #{status}>",
           "  Criterion: #{criterion}",
@@ -71,7 +71,7 @@ module Qualspec
           Score: #{score}/10 (needed #{threshold} to pass)
           Reasoning: #{reasoning}
           #{"Error: #{error}" if error?}
-          Response preview: #{response.to_s[0, 300]}#{"..." if response.to_s.length > 300}
+          Response preview: #{response.to_s[0, 300]}#{'...' if response.to_s.length > 300}
         MSG
       end
 
@@ -113,11 +113,11 @@ module Qualspec
       end
 
       def inspect
-        lines = ["#<Qualspec::RSpec::ComparisonResult>"]
+        lines = ['#<Qualspec::RSpec::ComparisonResult>']
         lines << "  Criterion: #{criterion}"
         lines << "  Winner: #{winner}"
         results.each do |name, result|
-          marker = winner?(name) ? "*" : " "
+          marker = winner?(name) ? '*' : ' '
           lines << "  #{marker} #{name}: #{result.score}/10 - #{result.reasoning}"
         end
         lines.join("\n")

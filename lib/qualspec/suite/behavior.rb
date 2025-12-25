@@ -9,7 +9,7 @@ module Qualspec
         @name = name
         @scenarios_list = []
 
-        instance_eval(&block) if block_given?
+        instance_eval(&block) if block_given? # rubocop:disable Style/EvalWithLocation
       end
 
       def scenario(name, &block)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "evaluation_result"
+require_relative 'evaluation_result'
 
 module Qualspec
   module RSpec
@@ -35,7 +35,7 @@ module Qualspec
       #   expect(result).to be_passing
       #
       def qualspec_evaluate(response, criterion = nil, rubric: nil, context: nil, threshold: nil)
-        raise ArgumentError, "Must provide either criterion or rubric:" if criterion.nil? && rubric.nil?
+        raise ArgumentError, 'Must provide either criterion or rubric:' if criterion.nil? && rubric.nil?
 
         effective_threshold = threshold || Qualspec::RSpec.configuration.default_threshold
         criterion_text, display_criterion = resolve_criterion(criterion, rubric)
@@ -75,7 +75,7 @@ module Qualspec
       def qualspec_compare(responses, criterion, context: nil, threshold: nil)
         effective_threshold = threshold || Qualspec::RSpec.configuration.default_threshold
         criteria_list = Array(criterion)
-        display_criterion = criteria_list.join("; ")
+        display_criterion = criteria_list.join('; ')
 
         evaluations = Qualspec.judge.evaluate_comparison(
           responses: responses.transform_values(&:to_s),
@@ -120,7 +120,7 @@ module Qualspec
       def skip_without_qualspec_api
         Qualspec.client.chat(
           model: Qualspec.configuration.judge_model,
-          messages: [{ role: "user", content: "test" }],
+          messages: [{ role: 'user', content: 'test' }],
           json_mode: false
         )
       rescue Qualspec::Client::RequestError => e
@@ -133,7 +133,7 @@ module Qualspec
         if rubric
           rubric_obj = rubric.is_a?(Symbol) ? Qualspec::Rubric.find(rubric) : rubric
           criterion_text = rubric_obj.criteria.join("\n")
-          display_criterion = rubric_obj.criteria.join("; ")
+          display_criterion = rubric_obj.criteria.join('; ')
           [criterion_text, display_criterion]
         else
           [criterion, criterion]

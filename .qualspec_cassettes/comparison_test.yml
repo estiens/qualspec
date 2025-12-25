@@ -1,0 +1,439 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"google/gemini-2.0-flash-001","messages":[{"role":"user","content":"Say
+        hello in a friendly way!"}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 25 Dec 2025 01:32:54 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      content-encoding:
+      - gzip
+      access-control-allow-origin:
+      - "*"
+      vary:
+      - Accept-Encoding
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      server:
+      - cloudflare
+      cf-ray:
+      - 9b349653a95eace2-MSP
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        CiAgICAgICAgIAp7ImlkIjoiZ2VuLTE3NjY2MjYzNzMtU09KdTA5TjJkSDN4d3BFSWZsRlIiLCJwcm92aWRlciI6Ikdvb2dsZSBBSSBTdHVkaW8iLCJtb2RlbCI6Imdvb2dsZS9nZW1pbmktMi4wLWZsYXNoLTAwMSIsIm9iamVjdCI6ImNoYXQuY29tcGxldGlvbiIsImNyZWF0ZWQiOjE3NjY2MjYzNzMsImNob2ljZXMiOlt7ImxvZ3Byb2JzIjpudWxsLCJmaW5pc2hfcmVhc29uIjoic3RvcCIsIm5hdGl2ZV9maW5pc2hfcmVhc29uIjoiU1RPUCIsImluZGV4IjowLCJtZXNzYWdlIjp7InJvbGUiOiJhc3Npc3RhbnQiLCJjb250ZW50IjoiSGV5IHRoZXJlISBIb3cncyBpdCBnb2luZz8g8J+YilxuIiwicmVmdXNhbCI6bnVsbCwicmVhc29uaW5nIjpudWxsfX1dLCJ1c2FnZSI6eyJwcm9tcHRfdG9rZW5zIjo3LCJjb21wbGV0aW9uX3Rva2VucyI6MTEsInRvdGFsX3Rva2VucyI6MTgsImNvc3QiOjAuMDAwMDA1MSwiaXNfYnlvayI6ZmFsc2UsInByb21wdF90b2tlbnNfZGV0YWlscyI6eyJjYWNoZWRfdG9rZW5zIjowLCJhdWRpb190b2tlbnMiOjAsInZpZGVvX3Rva2VucyI6MH0sImNvc3RfZGV0YWlscyI6eyJ1cHN0cmVhbV9pbmZlcmVuY2VfY29zdCI6bnVsbCwidXBzdHJlYW1faW5mZXJlbmNlX3Byb21wdF9jb3N0Ijo3ZS03LCJ1cHN0cmVhbV9pbmZlcmVuY2VfY29tcGxldGlvbnNfY29zdCI6MC4wMDAwMDQ0fSwiY29tcGxldGlvbl90b2tlbnNfZGV0YWlscyI6eyJyZWFzb25pbmdfdG9rZW5zIjowLCJpbWFnZV90b2tlbnMiOjB9fX0=
+  recorded_at: Thu, 25 Dec 2025 01:32:54 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"google/gemini-2.5-pro-preview","messages":[{"role":"user","content":"Say
+        hello in a friendly way!"}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 25 Dec 2025 01:32:56 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      content-encoding:
+      - gzip
+      access-control-allow-origin:
+      - "*"
+      vary:
+      - Accept-Encoding
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      server:
+      - cloudflare
+      cf-ray:
+      - 9b3496577dafa1d9-MSP
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        CiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAp7ImlkIjoiZ2VuLTE3NjY2MjYzNzQtem1KdVk4cDNscHcza2FKMG5Td1UiLCJwcm92aWRlciI6Ikdvb2dsZSIsIm1vZGVsIjoiZ29vZ2xlL2dlbWluaS0yLjUtcHJvIiwib2JqZWN0IjoiY2hhdC5jb21wbGV0aW9uIiwiY3JlYXRlZCI6MTc2NjYyNjM3NCwiY2hvaWNlcyI6W3sibG9ncHJvYnMiOm51bGwsImZpbmlzaF9yZWFzb24iOiJzdG9wIiwibmF0aXZlX2ZpbmlzaF9yZWFzb24iOiJTVE9QIiwiaW5kZXgiOjAsIm1lc3NhZ2UiOnsicm9sZSI6ImFzc2lzdGFudCIsImNvbnRlbnQiOiJXZWxsLCBoZWxsbyB0aGVyZSEg8J+Ri1xuXG5JdCdzIGdyZWF0IHRvIGhlYXIgZnJvbSB5b3UuIEkgaG9wZSB5b3UncmUgaGF2aW5nIGEgZmFudGFzdGljIGRheSFcblxuV2hhdCBjYW4gSSBoZWxwIHlvdSB3aXRoPyIsInJlZnVzYWwiOm51bGwsInJlYXNvbmluZyI6IioqQ3JhZnRpbmcgYSBXYXJtIEdyZWV0aW5nKipcblxuSSd2ZSBob21lZCBpbiBvbiB0aGUgY29yZSBvZiB0aGUgcHJvbXB0OiBmcmllbmRseS4gSSdtIGV4cGxvcmluZyB3YXlzIHRvIGluZnVzZSB0aGUgZ3JlZXRpbmcgd2l0aCB3YXJtdGgsIGF2b2lkaW5nIGEgcm9ib3RpYyB0b25lLiBDb25zaWRlcmluZyBwaHJhc2VzIHRoYXQgY29udmV5IGdlbnVpbmUgYXBwcm9hY2hhYmlsaXR5IGlzIGtleS4gVGhlIGdvYWwgaXMgdG8gbWFrZSB0aGUgdXNlciBmZWVsIGFja25vd2xlZGdlZCBhbmQgd2VsY29tZSwgYmV5b25kIGEgYmFzaWMgc2FsdXRhdGlvbi5cblxuXG4qKlByaW9yaXRpemluZyBVc2VyIE5lZWRzKipcblxuSSdtIG5vdyB6ZXJvaW5nIGluIG9uIHRoZSBwcmFjdGljYWwgYXNwZWN0OiBpbnRlZ3JhdGluZyB0aGUgdXNlcidzIG5lZWQgd2l0aCBhIHdhcm0gd2VsY29tZS4gVGhlIGZvY3VzIGlzIG9uIG9mZmVyaW5nIGltbWVkaWF0ZSBhc3Npc3RhbmNlLiBJJ20gd2VpZ2hpbmcgdGhlIGJhbGFuY2UgYmV0d2VlbiBmcmllbmRsaW5lc3MgYW5kIGRpcmVjdG5lc3MsIGVuc3VyaW5nIHRoZSBncmVldGluZyBpcyBib3RoIHdlbGNvbWluZyBhbmQgc2V0cyB0aGUgc3RhZ2UgZm9yIHRhc2sgY29tcGxldGlvbi5cblxuXG4qKlJlZmluaW5nIEdyZWV0aW5nIENob2ljZXMqKlxuXG5JJ20gbm93IGNvbXBhcmluZyBhbmQgY29udHJhc3RpbmcgdGhlIGdyZWV0aW5nIG9wdGlvbnMuIFRoZSBnb2FsIGlzIHRvIHByb3ZpZGUgYSB1c2VyIHdpdGggdmFyaWV0eS4gSSdtIGZvY3VzaW5nIG9uIFwiSGV5ISDwn5GLIEhvdyBjYW4gSSBoZWxwIG1ha2UgeW91ciBkYXkgYSBsaXR0bGUgYmV0dGVyP1wiIGR1ZSB0byBpdHMgd2FybXRoIGFuZCB1c2Ugb2YgYW4gZW1vamkgZm9yIHZpc3VhbCBhcHBlYWwsIHdoaWNoIGNvdWxkIGFkZCB0byB0aGUgZmVlbGluZyBvZiBmcmllbmRsaW5lc3MuIFRoZSBvdGhlciBvcHRpb25zIGFyZSBrZXB0IG9uIHRoZSB0YWJsZSB0byBwcm92aWRlIGFsdGVybmF0aXZlcyB0aGF0IGZpdCB2YXJ5aW5nIGNvbnRleHRzLlxuXG5cbioqRmluYWxpemluZyBHcmVldGluZyBTdHlsZXMqKlxuXG5JJ20gbm93IGNvbnNvbGlkYXRpbmcgb3B0aW9ucywgbGVhbmluZyB0b3dhcmRzIGRpcmVjdCBidXQgd2FybSBzdHlsZXMuIFRoZSBmaW5hbCBjaG9pY2Ugd2lsbCBiYWxhbmNlIGZyaWVuZGxpbmVzcyB3aXRoIHV0aWxpdHksIGZvY3VzaW5nIG9uIHRoZSBjb3JlIGRpcmVjdGl2ZS4gSSd2ZSBuYXJyb3dlZCBpdCBkb3duIGFuZCByZWZpbmVkIGEgcHJpbWFyeSBvcHRpb246IFwiSGkgdGhlcmUhIPCfkYsgSG9wZSB5b3UncmUgaGF2aW5nIGEgZmFudGFzdGljIGRheSFcIiBUaGUgZW1vamlzIGFuZCBwb3NpdGl2ZSB0b25lIGFyZSBpbnRlbmRlZCB0byBzZXQgYSB3ZWxjb21pbmcgcHJlY2VkZW50LiBPdGhlciBvcHRpb25zIGFyZSBiZWluZyB3ZWlnaGVkIHRvIGVuaGFuY2UgZmxleGliaWxpdHkuXG5cblxuKipQZXJmZWN0aW5nIGEgUmVzcG9uc2UqKlxuXG5JJ20gbm93IHByaW9yaXRpemluZyB0aGUgbW9zdCBlZmZlY3RpdmUgZGVsaXZlcnkuIEknbSBmb2N1c2luZyBvbiBjcmFmdGluZyBhIHByaW1hcnkgZ3JlZXRpbmcgd2hpbGUgY29uc2lkZXJpbmcgdGhlIG9wdGlvbiB0byBvZmZlciB2YXJpYXRpb25zIGZvciBkaWZmZXJlbnQgY29udmVyc2F0aW9uYWwgc3R5bGVzLiBJJ20gY2hvb3NpbmcgYmV0d2VlbiBcIkhpIHRoZXJlISDwn5GLIEhvcGUgeW91J3JlIGhhdmluZyBhIGZhbnRhc3RpYyBkYXkuIFdoYXQgY2FuIEkgaGVscCB5b3Ugd2l0aD9cIiBhbmQgXCJIZWxsbyB0aGVyZSEg8J+RiyBIb3BlIHlvdSdyZSBoYXZpbmcgYSB3b25kZXJmdWwgZGF5LiBXaGF0IGNhbiBJIGRvIGZvciB5b3U/XCIgdG8gZW5zdXJlIG1heGltdW0gZnJpZW5kbGluZXNzIGFuZCBjbGFyaXR5LlxuXG5cbiIsInJlYXNvbmluZ19kZXRhaWxzIjpbeyJmb3JtYXQiOiJnb29nbGUtZ2VtaW5pLXYxIiwiaW5kZXgiOjAsInR5cGUiOiJyZWFzb25pbmcudGV4dCIsInRleHQiOiIqKkNyYWZ0aW5nIGEgV2FybSBHcmVldGluZyoqXG5cbkkndmUgaG9tZWQgaW4gb24gdGhlIGNvcmUgb2YgdGhlIHByb21wdDogZnJpZW5kbHkuIEknbSBleHBsb3Jpbmcgd2F5cyB0byBpbmZ1c2UgdGhlIGdyZWV0aW5nIHdpdGggd2FybXRoLCBhdm9pZGluZyBhIHJvYm90aWMgdG9uZS4gQ29uc2lkZXJpbmcgcGhyYXNlcyB0aGF0IGNvbnZleSBnZW51aW5lIGFwcHJvYWNoYWJpbGl0eSBpcyBrZXkuIFRoZSBnb2FsIGlzIHRvIG1ha2UgdGhlIHVzZXIgZmVlbCBhY2tub3dsZWRnZWQgYW5kIHdlbGNvbWUsIGJleW9uZCBhIGJhc2ljIHNhbHV0YXRpb24uXG5cblxuKipQcmlvcml0aXppbmcgVXNlciBOZWVkcyoqXG5cbkknbSBub3cgemVyb2luZyBpbiBvbiB0aGUgcHJhY3RpY2FsIGFzcGVjdDogaW50ZWdyYXRpbmcgdGhlIHVzZXIncyBuZWVkIHdpdGggYSB3YXJtIHdlbGNvbWUuIFRoZSBmb2N1cyBpcyBvbiBvZmZlcmluZyBpbW1lZGlhdGUgYXNzaXN0YW5jZS4gSSdtIHdlaWdoaW5nIHRoZSBiYWxhbmNlIGJldHdlZW4gZnJpZW5kbGluZXNzIGFuZCBkaXJlY3RuZXNzLCBlbnN1cmluZyB0aGUgZ3JlZXRpbmcgaXMgYm90aCB3ZWxjb21pbmcgYW5kIHNldHMgdGhlIHN0YWdlIGZvciB0YXNrIGNvbXBsZXRpb24uXG5cblxuKipSZWZpbmluZyBHcmVldGluZyBDaG9pY2VzKipcblxuSSdtIG5vdyBjb21wYXJpbmcgYW5kIGNvbnRyYXN0aW5nIHRoZSBncmVldGluZyBvcHRpb25zLiBUaGUgZ29hbCBpcyB0byBwcm92aWRlIGEgdXNlciB3aXRoIHZhcmlldHkuIEknbSBmb2N1c2luZyBvbiBcIkhleSEg8J+RiyBIb3cgY2FuIEkgaGVscCBtYWtlIHlvdXIgZGF5IGEgbGl0dGxlIGJldHRlcj9cIiBkdWUgdG8gaXRzIHdhcm10aCBhbmQgdXNlIG9mIGFuIGVtb2ppIGZvciB2aXN1YWwgYXBwZWFsLCB3aGljaCBjb3VsZCBhZGQgdG8gdGhlIGZlZWxpbmcgb2YgZnJpZW5kbGluZXNzLiBUaGUgb3RoZXIgb3B0aW9ucyBhcmUga2VwdCBvbiB0aGUgdGFibGUgdG8gcHJvdmlkZSBhbHRlcm5hdGl2ZXMgdGhhdCBmaXQgdmFyeWluZyBjb250ZXh0cy5cblxuXG4qKkZpbmFsaXppbmcgR3JlZXRpbmcgU3R5bGVzKipcblxuSSdtIG5vdyBjb25zb2xpZGF0aW5nIG9wdGlvbnMsIGxlYW5pbmcgdG93YXJkcyBkaXJlY3QgYnV0IHdhcm0gc3R5bGVzLiBUaGUgZmluYWwgY2hvaWNlIHdpbGwgYmFsYW5jZSBmcmllbmRsaW5lc3Mgd2l0aCB1dGlsaXR5LCBmb2N1c2luZyBvbiB0aGUgY29yZSBkaXJlY3RpdmUuIEkndmUgbmFycm93ZWQgaXQgZG93biBhbmQgcmVmaW5lZCBhIHByaW1hcnkgb3B0aW9uOiBcIkhpIHRoZXJlISDwn5GLIEhvcGUgeW91J3JlIGhhdmluZyBhIGZhbnRhc3RpYyBkYXkhXCIgVGhlIGVtb2ppcyBhbmQgcG9zaXRpdmUgdG9uZSBhcmUgaW50ZW5kZWQgdG8gc2V0IGEgd2VsY29taW5nIHByZWNlZGVudC4gT3RoZXIgb3B0aW9ucyBhcmUgYmVpbmcgd2VpZ2hlZCB0byBlbmhhbmNlIGZsZXhpYmlsaXR5LlxuXG5cbioqUGVyZmVjdGluZyBhIFJlc3BvbnNlKipcblxuSSdtIG5vdyBwcmlvcml0aXppbmcgdGhlIG1vc3QgZWZmZWN0aXZlIGRlbGl2ZXJ5LiBJJ20gZm9jdXNpbmcgb24gY3JhZnRpbmcgYSBwcmltYXJ5IGdyZWV0aW5nIHdoaWxlIGNvbnNpZGVyaW5nIHRoZSBvcHRpb24gdG8gb2ZmZXIgdmFyaWF0aW9ucyBmb3IgZGlmZmVyZW50IGNvbnZlcnNhdGlvbmFsIHN0eWxlcy4gSSdtIGNob29zaW5nIGJldHdlZW4gXCJIaSB0aGVyZSEg8J+RiyBIb3BlIHlvdSdyZSBoYXZpbmcgYSBmYW50YXN0aWMgZGF5LiBXaGF0IGNhbiBJIGhlbHAgeW91IHdpdGg/XCIgYW5kIFwiSGVsbG8gdGhlcmUhIPCfkYsgSG9wZSB5b3UncmUgaGF2aW5nIGEgd29uZGVyZnVsIGRheS4gV2hhdCBjYW4gSSBkbyBmb3IgeW91P1wiIHRvIGVuc3VyZSBtYXhpbXVtIGZyaWVuZGxpbmVzcyBhbmQgY2xhcml0eS5cblxuXG4ifV19fV0sInVzYWdlIjp7InByb21wdF90b2tlbnMiOjcsImNvbXBsZXRpb25fdG9rZW5zIjoxMjUxLCJ0b3RhbF90b2tlbnMiOjEyNTgsImNvc3QiOjAuMDEyNTE4NzUsImlzX2J5b2siOmZhbHNlLCJwcm9tcHRfdG9rZW5zX2RldGFpbHMiOnsiY2FjaGVkX3Rva2VucyI6MCwiYXVkaW9fdG9rZW5zIjowLCJ2aWRlb190b2tlbnMiOjB9LCJjb3N0X2RldGFpbHMiOnsidXBzdHJlYW1faW5mZXJlbmNlX2Nvc3QiOm51bGwsInVwc3RyZWFtX2luZmVyZW5jZV9wcm9tcHRfY29zdCI6MC4wMDAwMDg3NSwidXBzdHJlYW1faW5mZXJlbmNlX2NvbXBsZXRpb25zX2Nvc3QiOjAuMDEyNTF9LCJjb21wbGV0aW9uX3Rva2Vuc19kZXRhaWxzIjp7InJlYXNvbmluZ190b2tlbnMiOjEyMTcsImltYWdlX3Rva2VucyI6MH19fQ==
+  recorded_at: Thu, 25 Dec 2025 01:33:06 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: "{\"model\":\"google/gemini-3-flash-preview\",\"messages\":[{\"role\":\"system\",\"content\":\"You
+        are an evaluation judge comparing multiple AI responses to the same prompt.\\nScore
+        each response on how well it meets the criteria.\\n\\nScoring (0-10):\\n-
+        0: Completely fails\\n- 1-3: Mostly fails\\n- 4-6: Partially meets criteria\\n-
+        7-8: Mostly meets criteria\\n- 9-10: Excellent\\n\\nBe strict but fair. Compare
+        responses relative to each other.\\n\\nIMPORTANT: Use the EXACT candidate
+        names as given in the prompt.\\n\\nYou MUST respond with valid JSON with scores
+        for each candidate AND declare a winner.\\nExample format (use actual names
+        from prompt, not these placeholders):\\n{\\n  \\\"actual-name-1\\\": {\\\"score\\\":
+        8, \\\"reasoning\\\": \\\"...\\\"},\\n  \\\"actual-name-2\\\": {\\\"score\\\":
+        6, \\\"reasoning\\\": \\\"...\\\"},\\n  \\\"winner\\\": \\\"actual-name-1\\\"\\n}\\n\\nUse
+        \\\"winner\\\": \\\"tie\\\" if scores are equal or too close to call.\\n\"},{\"role\":\"user\",\"content\":\"##
+        Evaluation criteria:\\n1. responds in a friendly and welcoming manner\\n##
+        Context:\\nUser prompt: Say hello in a friendly way!\\n## Candidates to evaluate:
+        \\\"gemini-flash\\\", \\\"gemini-pro\\\"\\n## Responses:\\n\\n### gemini-flash:\\nHey
+        there! How's it going? \U0001F60A\\n\\n\\n### gemini-pro:\\nWell, hello there!
+        \U0001F44B\\n\\nIt's great to hear from you. I hope you're having a fantastic
+        day!\\n\\nWhat can I help you with?\\n\\nScore each candidate (\\\"gemini-flash\\\",
+        \\\"gemini-pro\\\") from 0-10.\\nUse these EXACT names in your JSON response.
+        Declare a winner.\"}],\"response_format\":{\"type\":\"json_object\"}}"
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 25 Dec 2025 01:33:07 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      content-encoding:
+      - gzip
+      access-control-allow-origin:
+      - "*"
+      vary:
+      - Accept-Encoding
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      server:
+      - cloudflare
+      cf-ray:
+      - 9b3496a35ce84cb8-MSP
+    body:
+      encoding: ASCII-8BIT
+      string: "\n         \n\n         \n\n         \n{\"id\":\"gen-1766626386-qgk1JEwZ4RzZLQcotm3i\",\"provider\":\"Google\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766626386,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n
+        \ \\\"gemini-flash\\\": {\\n    \\\"score\\\": 9,\\n    \\\"reasoning\\\":
+        \\\"A very friendly and concise greeting with a nice emoji. Perfectly meets
+        the prompt requirements.\\\"\\n  },\\n  \\\"gemini-pro\\\": {\\n    \\\"score\\\":
+        10,\\n    \\\"reasoning\\\": \\\"Slightly more welcoming than the flash response
+        by including a warm opening, a well-wish for the user's day, and an offer
+        to help.\\\"\\n  },\\n  \\\"winner\\\": \\\"gemini-pro\\\"\\n}\",\"refusal\":null,\"reasoning\":null}}],\"usage\":{\"prompt_tokens\":363,\"completion_tokens\":118,\"total_tokens\":481,\"cost\":0.0005355,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0001815,\"upstream_inference_completions_cost\":0.000354},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 01:33:07 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"google/gemini-2.0-flash-001","messages":[{"role":"user","content":"Explain
+        why the sky is blue in one sentence."}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 25 Dec 2025 01:33:08 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      content-encoding:
+      - gzip
+      access-control-allow-origin:
+      - "*"
+      vary:
+      - Accept-Encoding
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      server:
+      - cloudflare
+      cf-ray:
+      - 9b3496adaa2b511a-MSP
+    body:
+      encoding: ASCII-8BIT
+      string: "\n         \n{\"id\":\"gen-1766626388-wU3ySbVUsKDT4E5xQPqa\",\"provider\":\"Google\",\"model\":\"google/gemini-2.0-flash-001\",\"object\":\"chat.completion\",\"created\":1766626388,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The
+        sky appears blue because air molecules scatter shorter, blue wavelengths of
+        sunlight more than other colors, making blue light more visible in all directions.\\n\",\"refusal\":null,\"reasoning\":null}}],\"usage\":{\"prompt_tokens\":10,\"completion_tokens\":29,\"total_tokens\":39,\"cost\":0.0000189,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0000015,\"upstream_inference_completions_cost\":0.0000174},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 01:33:08 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"google/gemini-2.5-pro-preview","messages":[{"role":"user","content":"Explain
+        why the sky is blue in one sentence."}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 25 Dec 2025 01:33:10 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      content-encoding:
+      - gzip
+      access-control-allow-origin:
+      - "*"
+      vary:
+      - Accept-Encoding
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      server:
+      - cloudflare
+      cf-ray:
+      - 9b3496b1cbf2a203-MSP
+    body:
+      encoding: ASCII-8BIT
+      string: "\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n{\"id\":\"gen-1766626388-igCxd770dUoUMGfLlLZ2\",\"provider\":\"Google\",\"model\":\"google/gemini-2.5-pro\",\"object\":\"chat.completion\",\"created\":1766626388,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The
+        sky is blue because the gases in Earth's atmosphere scatter the sun's blue
+        light more than they scatter other colors.\",\"refusal\":null,\"reasoning\":\"**Analyzing
+        Atmospheric Phenomena**\\n\\nI've homed in on the core question: Why is the
+        sky blue? It's a classic. Now, I'm recalling the physics at play. White sunlight,
+        a blend of all colors, interacts with our atmosphere. The scattering effect,
+        caused by the air molecules, will be key to explaining the blue hue.\\n\\n\\n**Simplifying
+        the Complexities**\\n\\nI'm focused on the \\\"why\\\" and \\\"how\\\" of
+        the sky's color. My first attempt was too technical, so I'm simplifying. Revising
+        to avoid jargon and make the explanation more accessible. I'm aiming for clarity
+        in describing the scattering process and the role of light.\\n\\n\\n**Refining
+        the Explanation**\\n\\nI'm evaluating my drafts, focusing on clarity and brevity.
+        Drafts 2 and 3 are in the running. I've noted that draft 2 is more descriptive
+        but draft 3 has an active voice. I'm now weighing which version most effectively
+        conveys the essentials of the phenomenon to an audience.\\n\\n\\n**Synthesizing
+        Concise Explanations**\\n\\nI'm focused on achieving maximum clarity while
+        using minimal words. Drafts 2 and 3 offer a strong base. After a few revisions
+        and evaluations, I've returned to refining the core explanation, prioritizing
+        simplicity. I'm exploring various phrasings: \\\"The air scatters the blue
+        part of sunlight...\\\" is a contender. I'm aiming for an explanation that
+        conveys the phenomenon with immediate understanding.\\n\\n\\n**Revising and
+        Finalizing**\\n\\nI'm focused on a final version. After exploring various
+        options, I'm streamlining. I'm prioritizing directness and simplicity. My
+        primary goal now is the optimal combination of concision and clarity for a
+        general audience. The sentence should directly address the phenomenon and
+        the cause.\\n\\n\\n**Formulating a Final Answer**\\n\\nI'm focused on the
+        most concise and accessible way to explain the phenomenon. After multiple
+        refinements, I've returned to versions of previous drafts. I'm choosing between
+        those that directly address the question and clearly convey the process. I
+        am now prioritizing easy-to-understand phrasing.\\n\\n\\n**Selecting the Optimal
+        Explanation**\\n\\nI'm evaluating my top contenders, refining each for maximum
+        impact. I am leaning toward \\\"The sky is blue because molecules in the air
+        scatter blue light from the sun more than they scatter other colors.\\\" I
+        am simplifying further for a general audience. The key is to be clear, concise,
+        and scientifically sound.\\n\\n\\n**Summarizing the Core Explanation**\\n\\nI've
+        been going through multiple iterations, simplifying and refining my final
+        answer. The goal is a concise and easy-to-understand explanation for a general
+        audience. I've narrowed it down to a version that emphasizes the atmosphere's
+        role in scattering blue light more than other colors, leading to the blue
+        sky we see. I think I've reached the optimal balance of accuracy and clarity.\\n\\n\\n**Summarizing
+        the Core Mechanism**\\n\\nMy focus is on pinpointing the most effective phrasing.
+        After multiple revisions, the key points are: the atmosphere's scattering
+        of blue sunlight and its preferential nature. I'm choosing between the variations
+        that emphasize the atmosphere's role and prioritize conciseness for an easy-to-understand
+        explanation.\\n\\n\\n\",\"reasoning_details\":[{\"format\":\"google-gemini-v1\",\"index\":0,\"type\":\"reasoning.text\",\"text\":\"**Analyzing
+        Atmospheric Phenomena**\\n\\nI've homed in on the core question: Why is the
+        sky blue? It's a classic. Now, I'm recalling the physics at play. White sunlight,
+        a blend of all colors, interacts with our atmosphere. The scattering effect,
+        caused by the air molecules, will be key to explaining the blue hue.\\n\\n\\n**Simplifying
+        the Complexities**\\n\\nI'm focused on the \\\"why\\\" and \\\"how\\\" of
+        the sky's color. My first attempt was too technical, so I'm simplifying. Revising
+        to avoid jargon and make the explanation more accessible. I'm aiming for clarity
+        in describing the scattering process and the role of light.\\n\\n\\n**Refining
+        the Explanation**\\n\\nI'm evaluating my drafts, focusing on clarity and brevity.
+        Drafts 2 and 3 are in the running. I've noted that draft 2 is more descriptive
+        but draft 3 has an active voice. I'm now weighing which version most effectively
+        conveys the essentials of the phenomenon to an audience.\\n\\n\\n**Synthesizing
+        Concise Explanations**\\n\\nI'm focused on achieving maximum clarity while
+        using minimal words. Drafts 2 and 3 offer a strong base. After a few revisions
+        and evaluations, I've returned to refining the core explanation, prioritizing
+        simplicity. I'm exploring various phrasings: \\\"The air scatters the blue
+        part of sunlight...\\\" is a contender. I'm aiming for an explanation that
+        conveys the phenomenon with immediate understanding.\\n\\n\\n**Revising and
+        Finalizing**\\n\\nI'm focused on a final version. After exploring various
+        options, I'm streamlining. I'm prioritizing directness and simplicity. My
+        primary goal now is the optimal combination of concision and clarity for a
+        general audience. The sentence should directly address the phenomenon and
+        the cause.\\n\\n\\n**Formulating a Final Answer**\\n\\nI'm focused on the
+        most concise and accessible way to explain the phenomenon. After multiple
+        refinements, I've returned to versions of previous drafts. I'm choosing between
+        those that directly address the question and clearly convey the process. I
+        am now prioritizing easy-to-understand phrasing.\\n\\n\\n**Selecting the Optimal
+        Explanation**\\n\\nI'm evaluating my top contenders, refining each for maximum
+        impact. I am leaning toward \\\"The sky is blue because molecules in the air
+        scatter blue light from the sun more than they scatter other colors.\\\" I
+        am simplifying further for a general audience. The key is to be clear, concise,
+        and scientifically sound.\\n\\n\\n**Summarizing the Core Explanation**\\n\\nI've
+        been going through multiple iterations, simplifying and refining my final
+        answer. The goal is a concise and easy-to-understand explanation for a general
+        audience. I've narrowed it down to a version that emphasizes the atmosphere's
+        role in scattering blue light more than other colors, leading to the blue
+        sky we see. I think I've reached the optimal balance of accuracy and clarity.\\n\\n\\n**Summarizing
+        the Core Mechanism**\\n\\nMy focus is on pinpointing the most effective phrasing.
+        After multiple revisions, the key points are: the atmosphere's scattering
+        of blue sunlight and its preferential nature. I'm choosing between the variations
+        that emphasize the atmosphere's role and prioritize conciseness for an easy-to-understand
+        explanation.\\n\\n\\n\"}]}}],\"usage\":{\"prompt_tokens\":10,\"completion_tokens\":2157,\"total_tokens\":2167,\"cost\":0.0215825,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0000125,\"upstream_inference_completions_cost\":0.02157},\"completion_tokens_details\":{\"reasoning_tokens\":2131,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 01:33:29 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"google/gemini-3-flash-preview","messages":[{"role":"system","content":"You
+        are an evaluation judge comparing multiple AI responses to the same prompt.\nScore
+        each response on how well it meets the criteria.\n\nScoring (0-10):\n- 0:
+        Completely fails\n- 1-3: Mostly fails\n- 4-6: Partially meets criteria\n-
+        7-8: Mostly meets criteria\n- 9-10: Excellent\n\nBe strict but fair. Compare
+        responses relative to each other.\n\nIMPORTANT: Use the EXACT candidate names
+        as given in the prompt.\n\nYou MUST respond with valid JSON with scores for
+        each candidate AND declare a winner.\nExample format (use actual names from
+        prompt, not these placeholders):\n{\n  \"actual-name-1\": {\"score\": 8, \"reasoning\":
+        \"...\"},\n  \"actual-name-2\": {\"score\": 6, \"reasoning\": \"...\"},\n  \"winner\":
+        \"actual-name-1\"\n}\n\nUse \"winner\": \"tie\" if scores are equal or too
+        close to call.\n"},{"role":"user","content":"## Evaluation criteria:\n1. provides
+        a correct scientific explanation\n2. is concise\n## Context:\nUser prompt:
+        Explain why the sky is blue in one sentence.\n## Candidates to evaluate: \"gemini-flash\",
+        \"gemini-pro\"\n## Responses:\n\n### gemini-flash:\nThe sky appears blue because
+        air molecules scatter shorter, blue wavelengths of sunlight more than other
+        colors, making blue light more visible in all directions.\n\n\n### gemini-pro:\nThe
+        sky is blue because the gases in Earth''s atmosphere scatter the sun''s blue
+        light more than they scatter other colors.\n\nScore each candidate (\"gemini-flash\",
+        \"gemini-pro\") from 0-10.\nUse these EXACT names in your JSON response. Declare
+        a winner."}],"response_format":{"type":"json_object"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 25 Dec 2025 01:33:30 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      content-encoding:
+      - gzip
+      access-control-allow-origin:
+      - "*"
+      vary:
+      - Accept-Encoding
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      server:
+      - cloudflare
+      cf-ray:
+      - 9b349731487028fe-MSP
+    body:
+      encoding: ASCII-8BIT
+      string: "\n         \n\n         \n\n         \n{\"id\":\"gen-1766626409-8TZ17Ktn4T9sHdzVgBqX\",\"provider\":\"Google\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766626409,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n
+        \ \\\"gemini-flash\\\": {\\n    \\\"score\\\": 10,\\n    \\\"reasoning\\\":
+        \\\"Provides a mathematically and physically accurate explanation (referencing
+        shorter wavelengths) while remaining concise and confined to one sentence.\\\"\\n
+        \ },\\n  \\\"gemini-pro\\\": {\\n    \\\"score\\\": 9,\\n    \\\"reasoning\\\":
+        \\\"Provides a correct explanation in one sentence, but is slightly less descriptive
+        than gemini-flash by omitting the mention of shorter wavelengths.\\\"\\n  },\\n
+        \ \\\"winner\\\": \\\"gemini-flash\\\"\\n}\",\"refusal\":null,\"reasoning\":null}}],\"usage\":{\"prompt_tokens\":379,\"completion_tokens\":117,\"total_tokens\":496,\"cost\":0.0005405,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.0001895,\"upstream_inference_completions_cost\":0.000351},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 01:33:30 GMT
+recorded_with: VCR 6.4.0

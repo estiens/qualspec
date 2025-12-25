@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "time"
+require 'time'
 
 module Qualspec
   module Suite
@@ -13,7 +13,7 @@ module Qualspec
         @judge = Qualspec.judge
       end
 
-      def run(progress: true, &block)
+      def run(progress: true)
         total_scenarios = @definition.scenarios_list.size
         current = 0
 
@@ -38,7 +38,7 @@ module Qualspec
 
         # Phase 1: Collect all candidate responses
         @definition.candidates_list.each do |candidate|
-          log_candidate_progress(candidate, scenario, "generating") if progress
+          log_candidate_progress(candidate, scenario, 'generating') if progress
 
           response_data = generate_response(candidate, scenario)
 
@@ -63,7 +63,7 @@ module Qualspec
 
         # Phase 2: Judge all responses together (if we have any)
         if responses.any?
-          log_candidate_progress(nil, scenario, "judging") if progress
+          log_candidate_progress(nil, scenario, 'judging') if progress
 
           context = build_context(scenario)
           criteria = scenario.all_criteria
@@ -81,7 +81,7 @@ module Qualspec
               scenario: scenario.name,
               criteria: criteria,
               evaluation: evaluation,
-              winner: true  # Only candidate wins by default
+              winner: true # Only candidate wins by default
             )
           else
             evaluations = @judge.evaluate_comparison(
@@ -146,20 +146,19 @@ module Qualspec
         $stderr.print "\r[#{pct}%] Scenario: #{scenario.name}".ljust(60)
       end
 
-      def log_candidate_progress(candidate, scenario, phase)
-        name = candidate&.name || "all"
+      def log_candidate_progress(candidate, _scenario, phase)
+        name = candidate&.name || 'all'
         $stderr.print "\r       #{name}: #{phase}...".ljust(60)
       end
 
       def log_error(candidate, scenario, error)
-        $stderr.puts "\n  ERROR (#{candidate.name}/#{scenario.name}): #{error[0..100]}"
+        warn "\n  ERROR (#{candidate.name}/#{scenario.name}): #{error[0..100]}"
       end
     end
 
     # Results container
     class Results
-      attr_reader :suite_name, :evaluations, :responses, :started_at, :finished_at
-      attr_reader :timing, :costs
+      attr_reader :suite_name, :evaluations, :responses, :started_at, :finished_at, :timing, :costs
 
       def initialize(suite_name)
         @suite_name = suite_name
@@ -180,10 +179,10 @@ module Qualspec
           @timing[candidate][scenario] = duration_ms
         end
 
-        if cost && cost > 0
-          @costs[candidate] ||= 0.0
-          @costs[candidate] += cost
-        end
+        return unless cost&.positive?
+
+        @costs[candidate] ||= 0.0
+        @costs[candidate] += cost
       end
 
       def record_evaluation(candidate:, scenario:, criteria:, evaluation:, winner: nil)
@@ -208,12 +207,12 @@ module Qualspec
         @evaluations.group_by { |e| e[:candidate] }.transform_values do |evals|
           passed = evals.count { |e| e[:pass] }
           total = evals.size
-          avg_score = total > 0 ? evals.sum { |e| e[:score] }.to_f / total : 0
+          avg_score = total.positive? ? evals.sum { |e| e[:score] }.to_f / total : 0
 
           {
             passed: passed,
             total: total,
-            pass_rate: total > 0 ? (passed.to_f / total * 100).round(1) : 0,
+            pass_rate: total.positive? ? (passed.to_f / total * 100).round(1) : 0,
             avg_score: avg_score.round(2)
           }
         end
@@ -222,7 +221,7 @@ module Qualspec
       def timing_by_candidate
         @timing.transform_values do |scenarios|
           total_ms = scenarios.values.sum
-          avg_ms = scenarios.size > 0 ? total_ms / scenarios.size : 0
+          avg_ms = !scenarios.empty? ? total_ms / scenarios.size : 0
           {
             total_ms: total_ms,
             avg_ms: avg_ms.round,

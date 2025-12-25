@@ -8,6 +8,23 @@ LLM-judged qualitative testing for Ruby. Evaluate AI agents, compare models, and
 gem "qualspec"
 ```
 
+## Configuration
+
+Set your API key (required):
+
+```bash
+export QUALSPEC_API_KEY=your_openrouter_key
+```
+
+### Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `QUALSPEC_API_KEY` | API key (required) | - |
+| `QUALSPEC_API_URL` | API endpoint | `https://openrouter.ai/api/v1` |
+| `QUALSPEC_MODEL` | Default model for candidates | `google/gemini-3-flash-preview` |
+| `QUALSPEC_JUDGE_MODEL` | Model used as judge | Same as `QUALSPEC_MODEL` |
+
 ## Quick Start
 
 ### Compare Models (CLI)
@@ -29,7 +46,11 @@ end
 ```
 
 ```bash
+# Run comparison
 qualspec eval/comparison.rb
+
+# Generate HTML report
+qualspec --html report.html eval/comparison.rb
 ```
 
 ### Test Your Agent (RSpec)
@@ -47,16 +68,6 @@ RSpec.describe MyAgent do
     expect(result).to be_passing
   end
 end
-```
-
-## Configuration
-
-Set your API key:
-
-```bash
-export OPENROUTER_API_KEY=your_key
-# or
-export OPENAI_API_KEY=your_key
 ```
 
 ## Documentation
