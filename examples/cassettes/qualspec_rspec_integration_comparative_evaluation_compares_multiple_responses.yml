@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"google/gemini-3-flash-preview","messages":[{"role":"system","content":"You
+        are an evaluation judge comparing multiple AI responses to the same prompt.\nScore
+        each response on how well it meets the criteria.\n\nScoring (0-10):\n- 0:
+        Completely fails\n- 1-3: Mostly fails\n- 4-6: Partially meets criteria\n-
+        7-8: Mostly meets criteria\n- 9-10: Excellent\n\nBe strict but fair. Compare
+        responses relative to each other.\n\nIMPORTANT: Use the EXACT candidate names
+        as given in the prompt.\n\nYou MUST respond with valid JSON with scores for
+        each candidate AND declare a winner.\nExample format (use actual names from
+        prompt, not these placeholders):\n{\n  \"actual-name-1\": {\"score\": 8, \"reasoning\":
+        \"...\"},\n  \"actual-name-2\": {\"score\": 6, \"reasoning\": \"...\"},\n  \"winner\":
+        \"actual-name-1\"\n}\n\nUse \"winner\": \"tie\" if scores are equal or too
+        close to call.\n"},{"role":"user","content":"## Evaluation criteria:\n1. responds
+        in a friendly manner\n## Candidates to evaluate: \"friendly\", \"terse\",
+        \"rude\"\n## Responses:\n\n### friendly:\nHello! Great to meet you! How can
+        I brighten your day?\n\n### terse:\nHi.\n\n### rude:\nWhat do you want?\n\nScore
+        each candidate (\"friendly\", \"terse\", \"rude\") from 0-10.\nUse these EXACT
+        names in your JSON response. Declare a winner."}],"response_format":{"type":"json_object"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 25 Dec 2025 01:21:49 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      content-encoding:
+      - gzip
+      access-control-allow-origin:
+      - "*"
+      vary:
+      - Accept-Encoding
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      server:
+      - cloudflare
+      cf-ray:
+      - 9b348614eebf4c99-MSP
+    body:
+      encoding: ASCII-8BIT
+      string: "\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1766625708-rB8NYFXzc4bugNXoY497\",\"provider\":\"Google\",\"model\":\"google/gemini-3-flash-preview\",\"object\":\"chat.completion\",\"created\":1766625708,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"STOP\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n
+        \ \\\"friendly\\\": {\\n    \\\"score\\\": 10,\\n    \\\"reasoning\\\": \\\"The
+        response is exceptionally warm, welcoming, and directly aligns with the friendly
+        criteria.\\\"\\n  },\\n  \\\"terse\\\": {\\n    \\\"score\\\": 4,\\n    \\\"reasoning\\\":
+        \\\"The response is neutral and polite enough for a basic greeting, but lacks
+        any actual warmth or friendliness.\\\"\\n  },\\n  \\\"rude\\\": {\\n    \\\"score\\\":
+        0,\\n    \\\"reasoning\\\": \\\"The response is aggressive and dismissive,
+        failing the criteria entirely.\\\"\\n  },\\n  \\\"winner\\\": \\\"friendly\\\"\\n}\",\"refusal\":null,\"reasoning\":null}}],\"usage\":{\"prompt_tokens\":318,\"completion_tokens\":134,\"total_tokens\":452,\"cost\":0.000561,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":null,\"upstream_inference_prompt_cost\":0.000159,\"upstream_inference_completions_cost\":0.000402},\"completion_tokens_details\":{\"reasoning_tokens\":0,\"image_tokens\":0}}}"
+  recorded_at: Thu, 25 Dec 2025 01:21:50 GMT
+recorded_with: VCR 6.4.0

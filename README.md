@@ -1,35 +1,73 @@
 # Qualspec
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/qualspec`. To experiment with that code, run `bin/console` for an interactive prompt.
+LLM-judged qualitative testing for Ruby. Evaluate AI agents, compare models, and test subjective qualities that traditional assertions can't capture.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
-Install the gem and add to the application's Gemfile by executing:
-
-```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+```ruby
+gem "qualspec"
 ```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+## Quick Start
 
-```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+### Compare Models (CLI)
+
+```ruby
+# eval/comparison.rb
+Qualspec.evaluation "Model Comparison" do
+  candidates do
+    candidate "gpt4", model: "openai/gpt-4"
+    candidate "claude", model: "anthropic/claude-3-sonnet"
+  end
+
+  scenario "helpfulness" do
+    prompt "How do I center a div in CSS?"
+    eval "provides a working solution"
+    eval "explains the approach"
+  end
+end
 ```
 
-## Usage
+```bash
+qualspec eval/comparison.rb
+```
 
-TODO: Write usage instructions here
+### Test Your Agent (RSpec)
 
-## Development
+```ruby
+require "qualspec/rspec"
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+RSpec.describe MyAgent do
+  include Qualspec::RSpec::Helpers
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+  it "responds helpfully" do
+    response = MyAgent.call("Hello")
 
-## Contributing
+    result = qualspec_evaluate(response, "responds in a friendly manner")
+    expect(result).to be_passing
+  end
+end
+```
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/qualspec.
+## Configuration
+
+Set your API key:
+
+```bash
+export OPENROUTER_API_KEY=your_key
+# or
+export OPENAI_API_KEY=your_key
+```
+
+## Documentation
+
+- [Getting Started](docs/getting-started.md)
+- [Evaluation Suites](docs/evaluation-suites.md) - CLI for model comparison
+- [RSpec Integration](docs/rspec-integration.md) - Testing your agents
+- [Rubrics](docs/rubrics.md) - Builtin and custom evaluation criteria
+- [Configuration](docs/configuration.md) - All options
+- [Recording](docs/recording.md) - VCR integration
+
+## License
+
+MIT
