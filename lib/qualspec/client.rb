@@ -58,7 +58,7 @@ module Qualspec
       MSG
     end
 
-    def chat(model:, messages:, json_mode: true, with_metadata: false)
+    def chat(model:, messages:, json_mode: true, with_metadata: false, temperature: nil)
       payload = {
         model: model,
         messages: messages
@@ -66,6 +66,9 @@ module Qualspec
 
       # Request structured JSON output
       payload[:response_format] = { type: 'json_object' } if json_mode
+
+      # Set temperature if provided
+      payload[:temperature] = temperature if temperature
 
       start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 

@@ -16,6 +16,8 @@ module Qualspec
         output << ''
         output << summary_table
         output << ''
+        output << variant_summary if has_variants?
+        output << ''
         output << timing_section if timing?
         output << ''
         output << scenario_breakdown
@@ -89,6 +91,41 @@ module Qualspec
 
       def timing?
         !@results.timing.empty?
+      end
+
+      def has_variants?
+        by_variant = @results.scores_by_variant
+        return false if by_variant.empty?
+        return false if by_variant.size == 1 && by_variant.keys.first == 'default'
+
+        true
+      end
+
+      def variant_summary
+        by_variant = @results.scores_by_variant
+        return nil if by_variant.empty?
+
+        variants = by_variant.keys
+        max_name = [variants.map(&:length).max, 10].max
+
+        lines = []
+        lines << '## By Variant'
+        lines << ''
+
+        header = "| #{'Variant'.ljust(max_name)} | Score | Pass Rate |"
+        lines << header
+        lines << "|#{'-' * (max_name + 2)}|-------|-----------|"
+
+        sorted = by_variant.sort_by { |_, v| -v[:avg_score] }
+
+        sorted.each do |variant, stats|
+          score = stats[:avg_score].to_s.rjust(5)
+          pass_rate = "#{stats[:pass_rate]}%".rjust(8)
+
+          lines << "| #{variant.ljust(max_name)} | #{score} | #{pass_rate} |"
+        end
+
+        lines.join("\n")
       end
 
       def timing_section
@@ -201,26 +238,61 @@ module Qualspec
         return nil if responses.empty?
 
         lines = []
-        lines << '## Responses'
+        lines << '## Detailed Responses'
         lines << ''
 
-        # Group by scenario
-        scenarios = responses.values.first&.keys || []
+        # Navigate the nested structure: candidate -> scenario -> variant -> temp
+        responses.each do |candidate, scenarios|
+          scenarios.each do |scenario, variants|
+            variants.each do |variant, temps|
+              temps.each do |temp, data|
+                # Build section header
+                header_parts = ["#{candidate} / #{scenario}"]
+                header_parts << "[#{variant}]" if variant && variant != 'default'
+                header_parts << "@temp=#{temp}" if temp
+                lines << "### #{header_parts.join(' ')}"
+                lines << ''
 
-        scenarios.each do |scenario|
-          lines << "### #{scenario}"
-          lines << ''
+                # Show variant info if present
+                if data[:variant_data]
+                  vd = data[:variant_data]
+                  lines << "**Credential:** #{vd[:credential]}" if vd[:credential] && !vd[:credential].to_s.empty?
+                  lines << "**Stance:** #{vd[:stance]}" if vd[:stance] && vd[:stance] != :neutral
+                  if vd[:full_prompt] && !vd[:full_prompt].to_s.empty?
+                    lines << ''
+                    lines << '**Prompt:**'
+                    lines << '```'
+                    lines << vd[:full_prompt].to_s.strip
+                    lines << '```'
+                  end
+                  lines << ''
+                end
 
-          responses.each do |candidate, candidate_responses|
-            response = candidate_responses[scenario]
-            next unless response
+                # Show timing if available
+                timing_key = "#{scenario}/#{variant}"
+                duration = @results.timing.dig(candidate, timing_key)
+                if duration
+                  lines << "**Time:** #{format_duration(duration)}"
+                  lines << ''
+                end
 
-            lines << "**#{candidate}:**"
-            lines << '```'
-            lines << response.to_s.strip[0..500]
-            lines << '...' if response.to_s.length > 500
-            lines << '```'
-            lines << ''
+                # Show response
+                content = data[:content] || data
+                content_str = content.to_s.strip
+                lines << '**Response:**'
+                lines << '```'
+                if content_str.length > 1000
+                  lines << content_str[0..1000]
+                  lines << "... [truncated, #{content_str.length} chars total]"
+                else
+                  lines << content_str
+                end
+                lines << '```'
+                lines << ''
+                lines << '-' * 40
+                lines << ''
+              end
+            end
           end
         end
 

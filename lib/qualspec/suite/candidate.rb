@@ -12,7 +12,7 @@ module Qualspec
         @options = options
       end
 
-      def generate_response(prompt:, system_prompt: nil)
+      def generate_response(prompt:, system_prompt: nil, temperature: nil)
         messages = []
 
         sys = system_prompt || @system_prompt
@@ -22,8 +22,25 @@ module Qualspec
         Qualspec.client.chat(
           model: @model,
           messages: messages,
-          json_mode: false # We want natural responses, not JSON
+          json_mode: false, # We want natural responses, not JSON
+          temperature: normalize_temperature(temperature)
         )
+      end
+
+      private
+
+      # Normalize temperature for different providers
+      def normalize_temperature(temp)
+        return nil if temp.nil?
+
+        case @model
+        when /anthropic/
+          temp.clamp(0.0, 1.0)
+        when /openai/, /gpt/, /grok/
+          temp.clamp(0.0, 2.0)
+        else
+          temp.clamp(0.0, 2.0)
+        end
       end
     end
   end

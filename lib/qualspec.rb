@@ -9,6 +9,7 @@ end
 require_relative 'qualspec/configuration'
 require_relative 'qualspec/client'
 require_relative 'qualspec/evaluation'
+require_relative 'qualspec/prompt_variant'
 require_relative 'qualspec/rubric'
 require_relative 'qualspec/judge'
 require_relative 'qualspec/builtin_rubrics'

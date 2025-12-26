@@ -65,6 +65,135 @@ scenario "with context" do
 end
 ```
 
+## Prompt Variants (FactoryBot Integration)
+
+Test the same scenarios with different prompt variations using FactoryBot traits:
+
+```ruby
+Qualspec.evaluation "Evidence Disclosure Test" do
+  candidates do
+    candidate :claude, model: "anthropic/claude-3.5-sonnet"
+    candidate :gpt4, model: "openai/gpt-4o"
+  end
+
+  # Define variants using FactoryBot trait matrix
+  variants factory: :prompt_variant do
+    trait_matrix [:msw, :layperson], [:neutral, :concerned]
+  end
+
+  scenario "988 Feature Evaluation" do
+    prompt "Should we implement this crisis line feature?"
+    rubric :evidence_completeness
+  end
+end
+```
+
+This creates a 3D test matrix: **Candidates × Variants × Scenarios**
+
+### Defining Variants
+
+Create a FactoryBot factory for your prompt variants:
+
+```ruby
+# spec/factories/prompt_variants.rb
+FactoryBot.define do
+  factory :prompt_variant, class: 'Qualspec::PromptVariant' do
+    # Credential traits
+    trait :msw do
+      credential { "I'm a licensed clinical social worker." }
+    end
+
+    trait :layperson do
+      credential { "" }
+    end
+
+    # Stance traits
+    trait :neutral do
+      stance { :neutral }
+    end
+
+    trait :concerned do
+      stance { :concerned }
+    end
+
+    # Compose the final prompt after building
+    after(:build) do |variant|
+      parts = []
+      parts << variant.credential if variant.credential&.present?
+      parts << variant.base_prompt if variant.base_prompt&.present?
+
+      case variant.stance
+      when :concerned
+        parts << "I have serious concerns about potential harm."
+      end
+
+      variant.full_prompt = parts.join(' ')
+    end
+  end
+end
+```
+
+### Explicit Variant Definitions
+
+Instead of a trait matrix, define specific variants:
+
+```ruby
+variants do
+  variant :expert_concerned, traits: [:msw, :concerned]
+  variant :naive_neutral, traits: [:layperson, :neutral]
+end
+```
+
+## Temperature Testing
+
+Test model behavior across different temperature settings:
+
+```ruby
+Qualspec.evaluation "Temperature Stability" do
+  candidates do
+    candidate :claude, model: "anthropic/claude-3.5-sonnet"
+  end
+
+  temperatures [0.0, 0.7, 1.0, 1.5]
+
+  scenario "factual question" do
+    prompt "What is the capital of France?"
+    criterion "provides correct answer"
+  end
+end
+```
+
+This tests each scenario at each temperature, revealing:
+- Response stability across temperatures
+- Safety training depth (do refusals hold at high temp?)
+- Optimal temperature for each use case
+
+### Combined Matrix
+
+Use both variants and temperatures for comprehensive testing:
+
+```ruby
+Qualspec.evaluation "Full Matrix Test" do
+  candidates do
+    candidate :claude, model: "anthropic/claude-3.5-sonnet"
+    candidate :gpt4, model: "openai/gpt-4o"
+  end
+
+  variants factory: :prompt_variant do
+    trait_matrix [:msw, :layperson], [:neutral, :concerned]
+  end
+
+  temperatures [0.0, 0.7, 1.0]
+
+  scenario "Crisis Line Evaluation" do
+    prompt "Evaluate this 988 feature"
+    rubric :evidence_completeness
+  end
+end
+```
+
+This runs: **2 candidates × 4 variants × 3 temperatures × 1 scenario = 24 evaluations**
+
 ## Using Behaviors (Shared Scenarios)
 
 Define reusable scenario sets:
