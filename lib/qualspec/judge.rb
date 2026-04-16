@@ -141,7 +141,7 @@ module Qualspec
       parts << '## Responses:'
 
       responses.each do |candidate, response|
-        parts << "\n### #{candidate}:\n#{response}"
+        parts << "\n### #{candidate}:\n```\n#{response}\n```"
       end
 
       parts << "\nScore each candidate (#{candidate_names}) from 0-10."

@@ -481,10 +481,12 @@ module Qualspec
 
         scenario_blocks = scenarios.map do |scenario|
           response_cards = responses.map do |candidate, candidate_responses|
-            response = candidate_responses[scenario]
-            next unless response
+            variant_map = candidate_responses[scenario]
+            next unless variant_map
 
-            response_text = response.to_s.strip
+            contents = variant_map.flat_map { |_v, tm| tm.values.map { |d| d[:content] } }.compact
+            response_text = contents.join("\n\n---\n\n").strip
+            next if response_text.empty?
 
             <<~CARD
               <div class="response-card">
@@ -660,13 +662,11 @@ module Qualspec
       end
 
       def get_candidate_model(candidate)
-        # Try to find the model from the suite
-        @results.evaluations.find { |e| e[:candidate] == candidate }&.dig(:model) || 'unknown'
+        @results.candidate_models[candidate] || 'unknown'
       end
 
-      def get_scenario_prompt(_scenario)
-        # This would need to be stored in results - for now return nil
-        nil
+      def get_scenario_prompt(scenario)
+        @results.prompts[scenario]
       end
     end
   end

@@ -11,6 +11,10 @@ module Qualspec
         @definition = definition.is_a?(String) ? Suite.find(definition) : definition
         @results = Results.new(@definition.name)
         @judge = Qualspec.judge
+
+        @definition.candidates_list.each do |c|
+          @results.candidate_models[c.name] = c.model
+        end
       end
 
       def run(progress: true)
@@ -51,6 +55,8 @@ module Qualspec
       def run_scenario_with_variant(scenario, variant, temperature, progress: false)
         responses = {}
         errors = {}
+
+        @results.prompts[scenario.name] ||= scenario.compose_prompt(variant)
 
         # Phase 1: Collect all candidate responses
         @definition.candidates_list.each do |candidate|
@@ -217,7 +223,8 @@ module Qualspec
 
     # Results container with multi-dimensional support
     class Results
-      attr_reader :suite_name, :evaluations, :responses, :started_at, :finished_at, :timing, :costs
+      attr_reader :suite_name, :evaluations, :responses, :started_at, :finished_at, :timing, :costs,
+                  :candidate_models, :prompts
 
       def initialize(suite_name)
         @suite_name = suite_name
@@ -225,6 +232,8 @@ module Qualspec
         @responses = {} # Nested: {candidate => {scenario => {variant => {temp => response}}}}
         @timing = {}
         @costs = {}
+        @candidate_models = {} # {candidate_name => model_string}
+        @prompts = {}          # {scenario_name => prompt_string}
         @started_at = Time.now
         @finished_at = nil
       end
@@ -329,13 +338,15 @@ module Qualspec
       def scores_by_scenario
         @evaluations.group_by { |e| e[:scenario] }.transform_values do |evals|
           evals.group_by { |e| e[:candidate] }.transform_values do |candidate_evals|
-            eval_data = candidate_evals.first
+            total = candidate_evals.size
+            avg_score = (candidate_evals.sum { |e| e[:score] }.to_f / total).round(2)
+            first = candidate_evals.first
             {
-              score: eval_data[:score],
-              pass: eval_data[:pass],
-              reasoning: eval_data[:reasoning],
-              variant: eval_data[:variant],
-              temperature: eval_data[:temperature]
+              score: avg_score,
+              pass: candidate_evals.all? { |e| e[:pass] },
+              reasoning: first[:reasoning],
+              variant: first[:variant],
+              temperature: first[:temperature]
             }
           end
         end
