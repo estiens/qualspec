@@ -9,3 +9,27 @@
 
 # rspec failure tracking
 .rspec_status
+
+# Built gems
+*.gem
+
+# Claude Code
+CLAUDE.md
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Ruby
+.ruby-version
+.ruby-gemset
+.bundle/
+vendor/bundle/
