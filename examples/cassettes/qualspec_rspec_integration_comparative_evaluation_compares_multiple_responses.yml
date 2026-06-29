@@ -18,10 +18,10 @@ http_interactions:
         \"actual-name-1\"\n}\n\nUse \"winner\": \"tie\" if scores are equal or too
         close to call.\n"},{"role":"user","content":"## Evaluation criteria:\n1. responds
         in a friendly manner\n## Candidates to evaluate: \"friendly\", \"terse\",
-        \"rude\"\n## Responses:\n\n### friendly:\nHello! Great to meet you! How can
-        I brighten your day?\n\n### terse:\nHi.\n\n### rude:\nWhat do you want?\n\nScore
-        each candidate (\"friendly\", \"terse\", \"rude\") from 0-10.\nUse these EXACT
-        names in your JSON response. Declare a winner."}],"response_format":{"type":"json_object"}}'
+        \"rude\"\n## Responses:\n\n### friendly:\n```\nHello! Great to meet you! How
+        can I brighten your day?\n```\n\n### terse:\n```\nHi.\n```\n\n### rude:\n```\nWhat
+        do you want?\n```\n\nScore each candidate (\"friendly\", \"terse\", \"rude\")
+        from 0-10.\nUse these EXACT names in your JSON response. Declare a winner."}],"response_format":{"type":"json_object"}}'
     headers:
       Content-Type:
       - application/json
