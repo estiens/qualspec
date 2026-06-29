@@ -53,8 +53,8 @@ module Qualspec
       return if @config.api_key_configured?
 
       raise Qualspec::Error, <<~MSG.strip
-        QUALSPEC_API_KEY is required but not set.
-        Set it via environment variable or Qualspec.configure { |c| c.api_key = '...' }
+        No API key set. Set QUALSPEC_API_KEY (or OPEN_ROUTER_API_KEY) as an
+        environment variable, or use Qualspec.configure { |c| c.api_key = '...' }
       MSG
     end
 
@@ -69,6 +69,10 @@ module Qualspec
 
       # Set temperature if provided
       payload[:temperature] = temperature if temperature
+
+      # Ask OpenRouter to include usage accounting (cost + token details).
+      # Only when metadata is requested, so cost-less calls stay lean.
+      payload[:usage] = { include: true } if with_metadata
 
       start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
@@ -108,12 +112,15 @@ module Qualspec
     end
 
     def extract_cost(response, data)
-      # OpenRouter includes cost in response or headers
-      header_cost = response.headers['x-openrouter-cost']
-      return header_cost.to_f if header_cost
+      # OpenRouter returns cost under usage.cost when usage accounting is
+      # requested (usage: { include: true }). Fall back to other shapes for
+      # other OpenAI-compatible providers.
+      usage = data['usage'] || {}
+      cost = usage['cost'] || usage['total_cost'] || data['cost']
+      return cost.to_f if cost
 
-      # Check response body (some providers include it)
-      data.dig('usage', 'total_cost') || data['cost']
+      header_cost = response.headers['x-openrouter-cost']
+      header_cost&.to_f
     end
 
     def extract_tokens(data)

@@ -66,10 +66,10 @@ parser = OptionParser.new do |opts|
     puts opts
     puts
     puts 'Environment variables:'
-    puts '  QUALSPEC_API_URL   API endpoint (default: http://localhost:11434/v1)'
-    puts '  QUALSPEC_API_KEY   API key for authentication'
-    puts '  QUALSPEC_MODEL     Default model for candidates'
-    puts '  QUALSPEC_JUDGE_MODEL  Model to use as judge'
+    puts '  QUALSPEC_API_URL   API endpoint (default: https://openrouter.ai/api/v1)'
+    puts '  QUALSPEC_API_KEY   API key for authentication (falls back to OPEN_ROUTER_API_KEY)'
+    puts '  QUALSPEC_MODEL     Default model for candidates (default: openrouter/auto)'
+    puts '  QUALSPEC_JUDGE_MODEL  Model to use as judge (default: same as QUALSPEC_MODEL)'
     puts
     puts 'Example:'
     puts '  qualspec eval/model_comparison.rb'

@@ -15,6 +15,8 @@ module Qualspec
         @definition.candidates_list.each do |c|
           @results.candidate_models[c.name] = c.model
         end
+
+        @results.metadata_captured = @definition.track_cost?
       end
 
       def run(progress: true)
@@ -106,7 +108,8 @@ module Qualspec
         response = candidate.generate_response(
           prompt: final_prompt,
           system_prompt: final_system_prompt,
-          temperature: effective_temperature
+          temperature: effective_temperature,
+          with_metadata: @definition.track_cost?
         )
 
         duration_ms = ((Process.clock_gettime(Process::CLOCK_MONOTONIC) - start_time) * 1000).round
@@ -225,6 +228,7 @@ module Qualspec
     class Results
       attr_reader :suite_name, :evaluations, :responses, :started_at, :finished_at, :timing, :costs,
                   :candidate_models, :prompts
+      attr_accessor :metadata_captured
 
       def initialize(suite_name)
         @suite_name = suite_name
@@ -236,6 +240,32 @@ module Qualspec
         @prompts = {}          # {scenario_name => prompt_string}
         @started_at = Time.now
         @finished_at = nil
+        @metadata_captured = false # set true when the suite enables track_cost
+      end
+
+      # Whether per-call cost/token metadata was captured this run.
+      def costs_tracked?
+        @metadata_captured
+      end
+
+      # Total cost per candidate. Raises if cost tracking wasn't enabled.
+      def cost_by_candidate
+        ensure_cost_tracking!
+        @costs.dup
+      end
+
+      # Rank candidates by quality-per-dollar (avg score / total cost), best
+      # first. Candidates with zero recorded cost sort last. Raises a helpful
+      # error if cost tracking wasn't enabled for the run.
+      def value_ranking
+        ensure_cost_tracking!
+
+        ranked = scores_by_candidate.map do |candidate, stats|
+          cost = @costs[candidate].to_f
+          score_per_dollar = cost.positive? ? (stats[:avg_score] / cost).round : nil
+          [candidate, { avg_score: stats[:avg_score], cost: cost, score_per_dollar: score_per_dollar }]
+        end
+        ranked.sort_by { |_, v| -(v[:score_per_dollar] || 0) }.to_h
       end
 
       def record_response(candidate:, scenario:, response:, variant: 'default', temperature: nil, duration_ms: nil, cost: nil, variant_data: nil)
@@ -384,6 +414,24 @@ module Qualspec
           evaluations: @evaluations,
           responses: @responses
         }
+      end
+
+      private
+
+      def ensure_cost_tracking!
+        return if @metadata_captured
+
+        raise Qualspec::Error, <<~MSG.strip
+          Cost data was not captured for this run, so cost/value analysis is unavailable.
+          Enable it with `track_cost` in the suite definition:
+
+            Qualspec.evaluation 'My Suite' do
+              track_cost
+              ...
+            end
+
+          (track_cost adds usage accounting to each request via with_metadata.)
+        MSG
       end
     end
   end

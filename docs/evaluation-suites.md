@@ -29,8 +29,14 @@ candidates do
     system: "You are an extremely helpful assistant."
 
   # Multiple candidates
-  candidate "gemini", model: "google/gemini-2.5-flash-preview"
-  candidate "grok", model: "x-ai/grok-3-fast"
+  candidate "gemini", model: "google/gemini-3-flash-preview"
+  candidate "grok", model: "x-ai/grok-4.1-fast"
+
+  # Reference a curated model by name (see config/models.yml)
+  candidate "glm", model: Qualspec.model(:glm)
+
+  # Omit model: entirely to use the default (openrouter/auto)
+  candidate "auto"
 end
 ```
 
@@ -193,6 +199,43 @@ end
 ```
 
 This runs: **2 candidates × 4 variants × 3 temperatures × 1 scenario = 24 evaluations**
+
+## Cost Tracking
+
+Cost capture is opt-in. Add `track_cost` to a suite to record per-call cost and
+tokens (via OpenRouter usage accounting) so you can analyze the quality/cost
+trade-off:
+
+```ruby
+Qualspec.evaluation "Best Value" do
+  track_cost
+
+  candidates do
+    candidate :flash, model: Qualspec.model(:deepseek_flash)  # cheap
+    candidate :pro,   model: Qualspec.model(:deepseek_pro)    # pricey
+  end
+
+  scenario "reasoning task" do
+    prompt "A bat and ball cost $1.10. The bat is $1 more than the ball. How much is the ball?"
+    rubric :reasoning_quality
+  end
+end
+```
+
+After running, the `Results` object exposes cost analysis:
+
+```ruby
+results.costs_tracked?     # => true
+results.cost_by_candidate  # => { "flash" => 0.00014, "pro" => 0.00095 }
+
+# Rank by quality-per-dollar (avg score ÷ cost), best first:
+results.value_ranking
+# => { "flash" => { avg_score: 9.5, cost: 0.00014, score_per_dollar: 63982 }, ... }
+```
+
+Calling `value_ranking` or `cost_by_candidate` without `track_cost` raises a
+clear error telling you to enable it. See `examples/best_value.rb` for a full
+runnable example.
 
 ## Using Behaviors (Shared Scenarios)
 

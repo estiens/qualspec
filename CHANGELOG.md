@@ -1,5 +1,36 @@
 # Changelog
 
+## [0.2.0] - 2026-06-28
+
+### Added
+
+- **Named model registry** — curated models in `config/models.yml`, resolved via
+  `Qualspec.model(:name)` / `Qualspec.models`. Unknown/blank names fall back to
+  the default. Override the file with `QUALSPEC_MODELS_FILE`.
+- **Cost tracking (opt-in)** — `track_cost` in the suite DSL captures per-call
+  cost + tokens via OpenRouter usage accounting. `Results#value_ranking` and
+  `Results#cost_by_candidate` expose quality-per-dollar analysis (and raise a
+  helpful error if cost tracking wasn't enabled).
+- `Recorder.use_cassette` — replays an existing cassette (no API key needed),
+  records a fresh one when missing. Used by the new examples.
+- API key is now configurable via `Qualspec.configure { |c| c.api_key = ... }`,
+  falling back to `QUALSPEC_API_KEY` then `OPEN_ROUTER_API_KEY`.
+- New runnable examples: `customer_service_comparison`, `date_awareness_gate`,
+  `best_value`, `character_consistency` — each ships a committed VCR cassette.
+
+### Changed
+
+- Default model is now `openrouter/auto` (was `google/gemini-3-flash-preview`),
+  so qualspec works with nothing configured.
+- `candidate` no longer requires `model:` — it defaults to the configured model.
+- `Client#chat` requests usage accounting and reads cost from `usage.cost` when
+  `with_metadata: true` (previously cost was never captured).
+
+### Fixed
+
+- Cost data was never populated (metadata was never requested); cost reporting
+  now works when `track_cost` is enabled.
+
 ## [0.1.0] - 2025-12-26
 
 ### Added

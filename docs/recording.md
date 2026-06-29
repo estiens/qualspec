@@ -29,6 +29,28 @@ qualspec --playback my_session eval/suite.rb
 
 Replays from the cassette with no network calls. Fails if a request isn't in the cassette.
 
+## Programmatic Recording
+
+For scripts (like the files in `examples/`), drive the recorder directly. Point
+it at a cassette directory, then use `use_cassette`, which **replays an existing
+cassette without needing an API key** and records a fresh one only when it's
+missing:
+
+```ruby
+Qualspec::Recorder.setup(cassette_dir: File.expand_path("cassettes", __dir__))
+
+Qualspec::Recorder.use_cassette("my_run") do
+  Qualspec.run("My Suite", output: :stdout)
+end
+```
+
+This is how the bundled examples ship committed cassettes that anyone can replay
+for free. To re-record, delete the cassette and run again with a key set.
+
+`Recorder.record(name)` (record new, replay existing) and
+`Recorder.playback(name)` (replay only, error on miss) are also available when
+you want to force a mode.
+
 ## RSpec Recording
 
 ### Per-Test Recording

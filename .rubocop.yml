@@ -1,1 +1,15 @@
 inherit_from: .rubocop_todo.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
+AllCops:
+  Exclude:
+    # Example scripts are illustrative docs, not library code.
+    - 'examples/**/*'
+
+# Spec files legitimately have long describe/context blocks.
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'

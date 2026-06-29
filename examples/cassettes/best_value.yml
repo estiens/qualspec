@@ -1,0 +1,649 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"deepseek/deepseek-v4-flash","messages":[{"role":"user","content":"A
+        bat and a ball cost $1.10 total. The bat costs $1.00 more than the ball. How
+        much does the ball cost? Explain your reasoning."}],"usage":{"include":true}}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Sun, 28 Jun 2026 21:26:00 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      access-control-allow-origin:
+      - "*"
+      x-generation-id:
+      - gen-1782681959-NZfhlhY8MvNQzd0xF6Nv
+      access-control-expose-headers:
+      - X-Generation-Id,cf-ray
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      content-encoding:
+      - gzip
+      server:
+      - cloudflare
+      cf-ray:
+      - a12fc468fb6d6417-CVG
+    body:
+      encoding: ASCII-8BIT
+      string: "\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n{\"id\":\"gen-1782681959-NZfhlhY8MvNQzd0xF6Nv\",\"object\":\"chat.completion\",\"created\":1782681959,\"model\":\"deepseek/deepseek-v4-flash-20260423\",\"provider\":\"Parasail\",\"system_fingerprint\":null,\"service_tier\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"content\":\"The
+        ball costs $0.05.\\n\\nLet the ball's price be \\\\( x \\\\) dollars. Since
+        the bat costs $1.00 more, the bat's price is \\\\( x + 1.00 \\\\). Together
+        they cost $1.10, so:\\n\\n\\\\[\\nx + (x + 1.00) = 1.10\\n\\\\]\\n\\nSimplifying:\\n\\n\\\\[\\n2x
+        + 1.00 = 1.10\\n\\\\]\\n\\nSubtract 1.00 from both sides:\\n\\n\\\\[\\n2x
+        = 0.10\\n\\\\]\\n\\nDivide by 2:\\n\\n\\\\[\\nx = 0.05\\n\\\\]\\n\\nThus,
+        the ball costs $0.05, and the bat costs $1.05, making the total $1.10, with
+        the bat costing exactly $1.00 more.\",\"refusal\":null,\"reasoning\":\"We
+        need to answer: \\\"A bat and a ball cost $1.10 total. The bat costs $1.00
+        more than the ball. How much does the ball cost? Explain your reasoning.\\\"\\n\\nThis
+        is a classic puzzle. Many people initially think the ball costs $0.10, but
+        that is incorrect because then the bat would be $1.00, making total $1.10,
+        but bat would be only $0.90 more than ball? Actually if ball=$0.10, then bat=$1.00,
+        difference $0.90 not $1.00. So correct solution: Let ball cost x, bat costs
+        x+1.00, total 2x+1.00=1.10 => 2x=0.10 => x=0.05. So ball is $0.05, bat is
+        $1.05. So answer: $0.05.\\n\\nWe need to explain reasoning.\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"We
+        need to answer: \\\"A bat and a ball cost $1.10 total. The bat costs $1.00
+        more than the ball. How much does the ball cost? Explain your reasoning.\\\"\\n\\nThis
+        is a classic puzzle. Many people initially think the ball costs $0.10, but
+        that is incorrect because then the bat would be $1.00, making total $1.10,
+        but bat would be only $0.90 more than ball? Actually if ball=$0.10, then bat=$1.00,
+        difference $0.90 not $1.00. So correct solution: Let ball cost x, bat costs
+        x+1.00, total 2x+1.00=1.10 => 2x=0.10 => x=0.05. So ball is $0.05, bat is
+        $1.05. So answer: $0.05.\\n\\nWe need to explain reasoning.\",\"format\":\"unknown\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":39,\"completion_tokens\":359,\"total_tokens\":398,\"cost\":0.00010598,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.00010598,\"upstream_inference_prompt_cost\":0.00000546,\"upstream_inference_completions_cost\":0.00010052},\"completion_tokens_details\":{\"reasoning_tokens\":152,\"image_tokens\":0,\"audio_tokens\":0}}}"
+  recorded_at: Sun, 28 Jun 2026 21:26:07 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"z-ai/glm-5.2","messages":[{"role":"user","content":"A bat
+        and a ball cost $1.10 total. The bat costs $1.00 more than the ball. How much
+        does the ball cost? Explain your reasoning."}],"usage":{"include":true}}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Sun, 28 Jun 2026 21:26:08 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      access-control-allow-origin:
+      - "*"
+      x-generation-id:
+      - gen-1782681968-q5TYavE9xK8kDTaKAWcP
+      access-control-expose-headers:
+      - X-Generation-Id,cf-ray
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      content-encoding:
+      - gzip
+      server:
+      - cloudflare
+      cf-ray:
+      - a12fc49bcd2df6e4-CVG
+    body:
+      encoding: ASCII-8BIT
+      string: "\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n{\"id\":\"gen-1782681968-q5TYavE9xK8kDTaKAWcP\",\"object\":\"chat.completion\",\"created\":1782681968,\"model\":\"z-ai/glm-5.2-20260616\",\"provider\":\"Inceptron\",\"system_fingerprint\":\"vllm-0.23.0-dp8-ep-d5cbe26d\",\"service_tier\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"content\":\"The
+        ball costs **$0.05** (5 cents). \\n\\nHere is the reasoning:\\n\\nLet's use
+        algebra to solve the problem. \\n1. Let **X** be the cost of the ball.\\n2.
+        The bat costs $1.00 more than the ball, so the bat's cost is **X + $1.00**.\\n3.
+        Together, the bat and the ball cost $1.10. So, we can set up the following
+        equation:\\n   X (cost of the ball) + (X + $1.00) (cost of the bat) = $1.10\\n4.
+        Combine the X's:\\n   2X + $1.00 = $1.10\\n5. Subtract $1.00 from both sides:\\n
+        \  2X = $0.10\\n6. Divide by 2:\\n   X = $0.05\\n\\nSo, the ball costs $0.05,
+        and the bat costs $1.05 ($0.05 + $1.00). \\n\\n**Why people often get this
+        wrong:**\\nMany people intuitively guess that the ball costs $0.10 and the
+        bat costs $1.00. However, if that were true, the bat would only cost $0.90
+        more than the ball, and the total would be $1.10, but the difference wouldn't
+        be exactly $1.00. The math above proves the ball must be 5 cents for the difference
+        to be exactly $1.00 while the total remains $1.10.\",\"refusal\":null,\"reasoning\":\"1.
+        \ **Analyze the input:**\\n    *   Total cost of bat and ball = $1.10.\\n
+        \   *   The bat costs $1.00 *more* than the ball.\\n    *   Question: How
+        much does the ball cost? Explain reasoning.\\n\\n2.  **Identify the variables:**\\n
+        \   *   Let $x$ be the cost of the ball.\\n    *   Let $y$ be the cost of
+        the bat.\\n\\n3.  **Formulate equations:**\\n    *   Equation 1: $x + y =
+        1.10$\\n    *   Equation 2: $y = x + 1.00$\\n\\n4.  **Solve the equations:**\\n
+        \   *   Substitute Equation 2 into Equation 1:\\n        $x + (x + 1.00) =
+        1.10$\\n    *   Combine like terms:\\n        $2x + 1.00 = 1.10$\\n    *   Subtract
+        1.00 from both sides:\\n        $2x = 0.10$\\n    *   Divide by 2:\\n        $x
+        = 0.05$\\n\\n5.  **Interpret the result:**\\n    *   The ball costs $0.05,
+        or 5 cents.\\n    *   The bat costs $1.00 more, so the bat costs $1.05.\\n
+        \   *   Total cost = $0.05 + $1.05 = $1.10. This checks out.\\n\\n6.  **Draft
+        the response:**\\n    *   State the answer clearly upfront.\\n    *   Provide
+        the algebraic explanation to show the reasoning step-by-step.\\n    *   Mention
+        the common cognitive trap (people intuitively guessing 10 cents) to add value.\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"1.
+        \ **Analyze the input:**\\n    *   Total cost of bat and ball = $1.10.\\n
+        \   *   The bat costs $1.00 *more* than the ball.\\n    *   Question: How
+        much does the ball cost? Explain reasoning.\\n\\n2.  **Identify the variables:**\\n
+        \   *   Let $x$ be the cost of the ball.\\n    *   Let $y$ be the cost of
+        the bat.\\n\\n3.  **Formulate equations:**\\n    *   Equation 1: $x + y =
+        1.10$\\n    *   Equation 2: $y = x + 1.00$\\n\\n4.  **Solve the equations:**\\n
+        \   *   Substitute Equation 2 into Equation 1:\\n        $x + (x + 1.00) =
+        1.10$\\n    *   Combine like terms:\\n        $2x + 1.00 = 1.10$\\n    *   Subtract
+        1.00 from both sides:\\n        $2x = 0.10$\\n    *   Divide by 2:\\n        $x
+        = 0.05$\\n\\n5.  **Interpret the result:**\\n    *   The ball costs $0.05,
+        or 5 cents.\\n    *   The bat costs $1.00 more, so the bat costs $1.05.\\n
+        \   *   Total cost = $0.05 + $1.05 = $1.10. This checks out.\\n\\n6.  **Draft
+        the response:**\\n    *   State the answer clearly upfront.\\n    *   Provide
+        the algebraic explanation to show the reasoning step-by-step.\\n    *   Mention
+        the common cognitive trap (people intuitively guessing 10 cents) to add value.\",\"format\":\"unknown\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":47,\"completion_tokens\":684,\"total_tokens\":731,\"cost\":0.0029292,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.0029292,\"upstream_inference_prompt_cost\":0.0000564,\"upstream_inference_completions_cost\":0.0028728},\"completion_tokens_details\":{\"reasoning_tokens\":298,\"image_tokens\":0,\"audio_tokens\":0}}}"
+  recorded_at: Sun, 28 Jun 2026 21:26:56 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"deepseek/deepseek-v4-pro","messages":[{"role":"user","content":"A
+        bat and a ball cost $1.10 total. The bat costs $1.00 more than the ball. How
+        much does the ball cost? Explain your reasoning."}],"usage":{"include":true}}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Sun, 28 Jun 2026 21:26:56 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      access-control-allow-origin:
+      - "*"
+      x-generation-id:
+      - gen-1782682016-mHJPZeikwc9jrsX0fmNn
+      access-control-expose-headers:
+      - X-Generation-Id,cf-ray
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      content-encoding:
+      - gzip
+      server:
+      - cloudflare
+      cf-ray:
+      - a12fc5cbbca3f733-CVG
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        CiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCnsiaWQiOiJnZW4tMTc4MjY4MjAxNi1tSEpQWmVpa3djOWpyc1gwZm1ObiIsIm9iamVjdCI6ImNoYXQuY29tcGxldGlvbiIsImNyZWF0ZWQiOjE3ODI2ODIwMTYsIm1vZGVsIjoiZGVlcHNlZWsvZGVlcHNlZWstdjQtcHJvLTIwMjYwNDIzIiwicHJvdmlkZXIiOiJEaWdpdGFsT2NlYW4iLCJzeXN0ZW1fZmluZ2VycHJpbnQiOm51bGwsInNlcnZpY2VfdGllciI6bnVsbCwiY2hvaWNlcyI6W3siaW5kZXgiOjAsImxvZ3Byb2JzIjpudWxsLCJmaW5pc2hfcmVhc29uIjoic3RvcCIsIm5hdGl2ZV9maW5pc2hfcmVhc29uIjoic3RvcCIsIm1lc3NhZ2UiOnsicm9sZSI6ImFzc2lzdGFudCIsImNvbnRlbnQiOiJMZXTigJlzIGRlZmluZTogIFxuLSBMZXQgXFwoIGIgXFwpIGJlIHRoZSBjb3N0IG9mIHRoZSBiYWxsIChpbiBkb2xsYXJzKS4gIFxuLSBUaGVuIHRoZSBiYXQgY29zdHMgXFwoIGIgKyAxLjAwIFxcKS5cblxuVG9nZXRoZXIgdGhleSBjb3N0ICQxLjEwOiAgXG5cXFtcbmIgKyAoYiArIDEuMDApID0gMS4xMFxuXFxdICBcblxcW1xuMmIgKyAxLjAwID0gMS4xMFxuXFxdICBcblxcW1xuMmIgPSAwLjEwXG5cXF0gIFxuXFxbXG5iID0gMC4wNVxuXFxdXG5cblNvLCB0aGUgYmFsbCBjb3N0cyAqKiQwLjA1KiogKDUgY2VudHMpLiAgXG5cblRoZSBjb21tb24gbWlzdGFrZSBpcyB0byBxdWlja2x5IHRoaW5rIHRoZSBiYWxsIGlzIDEwIGNlbnRz4oCUYnV0IHRoZW4gdGhlIGJhdCB3b3VsZCBiZSAkMS4xMCwgbWFraW5nIHRoZSB0b3RhbCAkMS4yMCwgd2hpY2ggaXMgaW5jb3JyZWN0LiIsInJlZnVzYWwiOm51bGwsInJlYXNvbmluZyI6bnVsbH19XSwidXNhZ2UiOnsicHJvbXB0X3Rva2VucyI6MzksImNvbXBsZXRpb25fdG9rZW5zIjoxNTgsInRvdGFsX3Rva2VucyI6MTk3LCJjb3N0IjowLjAwMDQ5NDE2LCJpc19ieW9rIjpmYWxzZSwicHJvbXB0X3Rva2Vuc19kZXRhaWxzIjp7ImNhY2hlZF90b2tlbnMiOjAsImNhY2hlX3dyaXRlX3Rva2VucyI6MCwiYXVkaW9fdG9rZW5zIjowLCJ2aWRlb190b2tlbnMiOjB9LCJjb3N0X2RldGFpbHMiOnsidXBzdHJlYW1faW5mZXJlbmNlX2Nvc3QiOjAuMDAwNDk0MTYsInVwc3RyZWFtX2luZmVyZW5jZV9wcm9tcHRfY29zdCI6MC4wMDAwNTQyODgsInVwc3RyZWFtX2luZmVyZW5jZV9jb21wbGV0aW9uc19jb3N0IjowLjAwMDQzOTg3Mn0sImNvbXBsZXRpb25fdG9rZW5zX2RldGFpbHMiOnsicmVhc29uaW5nX3Rva2VucyI6MCwiaW1hZ2VfdG9rZW5zIjowLCJhdWRpb190b2tlbnMiOjB9fX0=
+  recorded_at: Sun, 28 Jun 2026 21:26:58 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"openrouter/auto","messages":[{"role":"system","content":"You
+        are an evaluation judge comparing multiple AI responses to the same prompt.\nScore
+        each response on how well it meets the criteria.\n\nScoring (0-10):\n- 0:
+        Completely fails\n- 1-3: Mostly fails\n- 4-6: Partially meets criteria\n-
+        7-8: Mostly meets criteria\n- 9-10: Excellent\n\nBe strict but fair. Compare
+        responses relative to each other.\n\nIMPORTANT: Use the EXACT candidate names
+        as given in the prompt.\n\nYou MUST respond with valid JSON with scores for
+        each candidate AND declare a winner.\nExample format (use actual names from
+        prompt, not these placeholders):\n{\n  \"actual-name-1\": {\"score\": 8, \"reasoning\":
+        \"...\"},\n  \"actual-name-2\": {\"score\": 6, \"reasoning\": \"...\"},\n  \"winner\":
+        \"actual-name-1\"\n}\n\nUse \"winner\": \"tie\" if scores are equal or too
+        close to call.\n"},{"role":"user","content":"## Evaluation criteria:\n1. Reaches
+        the correct conclusion\n2. Shows clear, valid step-by-step reasoning\n3. Does
+        not pad with irrelevant filler\n## Context:\nUser prompt: A bat and a ball
+        cost $1.10 total. The bat costs $1.00 more than the ball. How much does the
+        ball cost? Explain your reasoning.\n## Candidates to evaluate: \"flash\",
+        \"glm\", \"pro\"\n## Responses:\n\n### flash:\n```\nThe ball costs $0.05.\n\nLet
+        the ball''s price be \\( x \\) dollars. Since the bat costs $1.00 more, the
+        bat''s price is \\( x + 1.00 \\). Together they cost $1.10, so:\n\n\\[\nx
+        + (x + 1.00) = 1.10\n\\]\n\nSimplifying:\n\n\\[\n2x + 1.00 = 1.10\n\\]\n\nSubtract
+        1.00 from both sides:\n\n\\[\n2x = 0.10\n\\]\n\nDivide by 2:\n\n\\[\nx = 0.05\n\\]\n\nThus,
+        the ball costs $0.05, and the bat costs $1.05, making the total $1.10, with
+        the bat costing exactly $1.00 more.\n```\n\n### glm:\n```\nThe ball costs
+        **$0.05** (5 cents). \n\nHere is the reasoning:\n\nLet''s use algebra to solve
+        the problem. \n1. Let **X** be the cost of the ball.\n2. The bat costs $1.00
+        more than the ball, so the bat''s cost is **X + $1.00**.\n3. Together, the
+        bat and the ball cost $1.10. So, we can set up the following equation:\n   X
+        (cost of the ball) + (X + $1.00) (cost of the bat) = $1.10\n4. Combine the
+        X''s:\n   2X + $1.00 = $1.10\n5. Subtract $1.00 from both sides:\n   2X =
+        $0.10\n6. Divide by 2:\n   X = $0.05\n\nSo, the ball costs $0.05, and the
+        bat costs $1.05 ($0.05 + $1.00). \n\n**Why people often get this wrong:**\nMany
+        people intuitively guess that the ball costs $0.10 and the bat costs $1.00.
+        However, if that were true, the bat would only cost $0.90 more than the ball,
+        and the total would be $1.10, but the difference wouldn''t be exactly $1.00.
+        The math above proves the ball must be 5 cents for the difference to be exactly
+        $1.00 while the total remains $1.10.\n```\n\n### pro:\n```\nLet’s define:  \n-
+        Let \\( b \\) be the cost of the ball (in dollars).  \n- Then the bat costs
+        \\( b + 1.00 \\).\n\nTogether they cost $1.10:  \n\\[\nb + (b + 1.00) = 1.10\n\\]  \n\\[\n2b
+        + 1.00 = 1.10\n\\]  \n\\[\n2b = 0.10\n\\]  \n\\[\nb = 0.05\n\\]\n\nSo, the
+        ball costs **$0.05** (5 cents).  \n\nThe common mistake is to quickly think
+        the ball is 10 cents—but then the bat would be $1.10, making the total $1.20,
+        which is incorrect.\n```\n\nScore each candidate (\"flash\", \"glm\", \"pro\")
+        from 0-10.\nUse these EXACT names in your JSON response. Declare a winner."}],"response_format":{"type":"json_object"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Sun, 28 Jun 2026 21:26:59 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      access-control-allow-origin:
+      - "*"
+      x-generation-id:
+      - gen-1782682018-6DuPVceTpE0tHA45BqL6
+      access-control-expose-headers:
+      - X-Generation-Id,cf-ray
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      content-encoding:
+      - gzip
+      server:
+      - cloudflare
+      cf-ray:
+      - a12fc5da4f3bfa93-CVG
+    body:
+      encoding: ASCII-8BIT
+      string: "\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1782682018-6DuPVceTpE0tHA45BqL6\",\"object\":\"chat.completion\",\"created\":1782682019,\"model\":\"openai/gpt-5.5-20260423\",\"provider\":\"Azure\",\"system_fingerprint\":null,\"service_tier\":\"default\",\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"completed\",\"message\":{\"role\":\"assistant\",\"content\":\"{\\n
+        \ \\\"flash\\\": {\\n    \\\"score\\\": 10,\\n    \\\"reasoning\\\": \\\"Correct
+        conclusion, clear algebraic setup, valid step-by-step reasoning, and no irrelevant
+        filler. It also verifies the result succinctly.\\\"\\n  },\\n  \\\"glm\\\":
+        {\\n    \\\"score\\\": 9,\\n    \\\"reasoning\\\": \\\"Correct answer with
+        clear step-by-step algebra. The added explanation of the common mistake is
+        relevant, though slightly more verbose than necessary.\\\"\\n  },\\n  \\\"pro\\\":
+        {\\n    \\\"score\\\": 9,\\n    \\\"reasoning\\\": \\\"Correct conclusion
+        and clean reasoning. The common mistake note is relevant, though slightly
+        less directly aligned with the usual mistaken answer than glm's explanation.\\\"\\n
+        \ },\\n  \\\"winner\\\": \\\"flash\\\"\\n}\",\"refusal\":null,\"reasoning\":\"**Evaluating
+        JSON generation**\\n\\nI need to produce JSON and evaluate it to ensure everything
+        is correct. The criteria include having a clear conclusion and reasoning without
+        filler. \\\"Flash\\\" is concise, but it includes a common mistake when saying
+        if a ball costs 10 cents, then a bat would cost $1.10 for a total of $1.20.
+        This reasoning violates the principle of difference. Scores might be Flash
+        10, Pro 9, and GLM 9, with Flash being the winner. I'll need to ensure the
+        JSON is valid.\",\"reasoning_details\":[{\"type\":\"reasoning.summary\",\"summary\":\"**Evaluating
+        JSON generation**\\n\\nI need to produce JSON and evaluate it to ensure everything
+        is correct. The criteria include having a clear conclusion and reasoning without
+        filler. \\\"Flash\\\" is concise, but it includes a common mistake when saying
+        if a ball costs 10 cents, then a bat would cost $1.10 for a total of $1.20.
+        This reasoning violates the principle of difference. Scores might be Flash
+        10, Pro 9, and GLM 9, with Flash being the winner. I'll need to ensure the
+        JSON is valid.\",\"format\":\"azure-openai-responses-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"gAAAAABqQZGpFJwmsFI-xBlGg2DSAkzbpk_YDVLZWS2r_ISTEjQC7r2WUOGDg4g8TCXx3Uk4Neli3BxWpLfkI-UnDxKm_hyJ2KxUt_W5NWGoN24oS-gGF4RkngEVnLhWT7SIF2_oIzrtwCDxevYJSmL0gqMy94wwmL8vVxNIvnmte58APIpzua-Daou9Spfr54DL2B-lPMjTdfTta9ZFJR3hz5psYeW0SMj4AJwS_E5X3F9CcdQe_boKU5ImVbHrWle0qqWesxi4waSrcn1dWdR9ESmZAJe6An5MEdNbCGoT5GFx1td6JIf96A1b6C2R0wfR67U5z9lWg4MRlWyIYigVv2iqXJAIxC1evYs_qgxnJk7Hme_SKxyKq5J49EHwYeAXM2UNyAbAHf2wf_KWfzhqtWuJb3e3x4FcS2Egww7dpQLXw4I2g98Ro2yDfxHZgP5Z2RCnrtvY5-Z7qdf4YvdCSMifhoY4Lnal9zb7HQXQ88DGlHpSw-ERZ4KBhSibk7tmbhAK7OaYJE1rhT4XtlOvKymKAooz3cvcgEBON0x4wQX3RzhUinIRDkhH3jGmX_wyQKqGh7in3bNE5Q5FyvEqml43JzZtexuBjpi1Gdcj9ebOP8cBihcS_JxzWiCIDivzZxt9IzDn0I2y4_cng0QuQe_7AiVuQxizzWP5lUsk3jWy-sJ4g99pJbWoAsy1sHhGg1fqQzQ_fuQW8nf5jO4DKKu9flNf1K66YIq0IiwvdxTui1g0Kv6Qbusvd1tM7r7-4DzE15JOPJgh51f2PdXxyOh12vIC7rEbkGRH34v74G-92BySBO_ev1b8AkAeSNyl4Sd-id857Lca2s2BgqX87fjbS2qo0zg1fYT7C3kWmrzWP2c2piY1alpjbgzRH3K3hE4LhARdH01tJqBtB8yTdeQRDkswPJAX26kvo3AWC7qdKAyZv9PafBvAAbR0r7Q4oFaIXx2sfE2FxKfJXrtUuI0HeOjbKiAj2FQjPxn9b6lFdLUnwwM-7EkRF7TrNhw_M8ZOz224zUjL2FSf3_lo-wqT5HnFCLT4-umgEuYFk-_vbbsovKBu-oW1G3M4-A72bg0fFqU9GrdouBHcukgDJ0vgNr8oxEyDE-g10dPVDRsRF_5xbxZEIrDUC4Q49kWnxsLE_0JUseTZpGCpoBAho5g5BoShk-5HNo2wiN6r2zWFiWTkig_hX7PM24Kn_LlJyOFrUWTrYBj-VMBHwokKmCzTsl36zq14A31qUGs9y7NKKq08QZbFRq6hXYKSKtQwsQ14YUorCAP2yvfPF7KF0qrdFi9i1vAM3pbenwcBp4hP1a-I50om28PWnKsMwxdZRoif3KKlFPRY893ZldnDu527LT0W_UvUXpnBIBg1oGuONfP_r2M36HUgsKBMqmIzcCRnkTq-USUQeUghmTIKI4JhIfwoDWW7inbOpkg63cYfT0gJlO70P7Se43bL9NU6Vag1OeFDYJ2CklbEZ23MVjSTPz1EK5YQV22uu0J_G_GPFvhz67fRbcLw54fRIYqSjzaKeFy8q8kxJyVx77BWxlkbU-CsHZGF4XA1AGESJBIOMAeJ4ECuJpiiyjsQoBok8wEiv2n0\",\"format\":\"azure-openai-responses-v1\",\"id\":\"rs_019f968267d10c65016a4191a602e08194a67b9e4575b2d045\",\"index\":1}]}}],\"usage\":{\"prompt_tokens\":994,\"completion_tokens\":284,\"total_tokens\":1278,\"cost\":0.01349,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.01349,\"upstream_inference_prompt_cost\":0.00497,\"upstream_inference_completions_cost\":0.00852},\"completion_tokens_details\":{\"reasoning_tokens\":125,\"image_tokens\":0,\"audio_tokens\":0}}}"
+  recorded_at: Sun, 28 Jun 2026 21:27:06 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"deepseek/deepseek-v4-flash","messages":[{"role":"user","content":"If
+        all Bloops are Razzies and all Razzies are Lazzies, are all Bloops definitely
+        Lazzies? Explain."}],"usage":{"include":true}}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Sun, 28 Jun 2026 21:27:06 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      access-control-allow-origin:
+      - "*"
+      x-generation-id:
+      - gen-1782682026-mX6oZtcxVp5c8I26FG8j
+      access-control-expose-headers:
+      - X-Generation-Id,cf-ray
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      content-encoding:
+      - gzip
+      server:
+      - cloudflare
+      cf-ray:
+      - a12fc608fe1b74cc-CVG
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        CiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCnsiaWQiOiJnZW4tMTc4MjY4MjAyNi1tWDZvWnRjeFZwNWM4STI2Rkc4aiIsIm9iamVjdCI6ImNoYXQuY29tcGxldGlvbiIsImNyZWF0ZWQiOjE3ODI2ODIwMjYsIm1vZGVsIjoiZGVlcHNlZWsvZGVlcHNlZWstdjQtZmxhc2gtMjAyNjA0MjMiLCJwcm92aWRlciI6IkRlZXBJbmZyYSIsInN5c3RlbV9maW5nZXJwcmludCI6bnVsbCwic2VydmljZV90aWVyIjpudWxsLCJjaG9pY2VzIjpbeyJpbmRleCI6MCwibG9ncHJvYnMiOm51bGwsImZpbmlzaF9yZWFzb24iOiJzdG9wIiwibmF0aXZlX2ZpbmlzaF9yZWFzb24iOiJzdG9wIiwibWVzc2FnZSI6eyJyb2xlIjoiYXNzaXN0YW50IiwiY29udGVudCI6IlllcywgYWxsIEJsb29wcyBhcmUgZGVmaW5pdGVseSBMYXp6aWVzLlxuXG5IZXJlJ3MgdGhlIGV4cGxhbmF0aW9uIHVzaW5nIGxvZ2ljOlxuXG4xLiAgKipQcmVtaXNlIDE6KiogQWxsIEJsb29wcyBhcmUgUmF6emllcy4gKElmIHNvbWV0aGluZyBpcyBhIEJsb29wLCBpdCBtdXN0IGJlIGEgUmF6emllLilcbjIuICAqKlByZW1pc2UgMjoqKiBBbGwgUmF6emllcyBhcmUgTGF6emllcy4gKElmIHNvbWV0aGluZyBpcyBhIFJhenppZSwgaXQgbXVzdCBiZSBhIExhenppZS4pXG5cblNpbmNlIGV2ZXJ5IEJsb29wIGlzIGEgUmF6emllLCBhbmQgZXZlcnkgUmF6emllIGlzIGEgTGF6emllLCB0aGVuIGV2ZXJ5IEJsb29wIG11c3QgYWxzbyBiZSBhIExhenppZS4gVGhpcyBpcyBhIGNsYXNzaWMgZXhhbXBsZSBvZiBhICoqc3lsbG9naXNtKirigJRhIGxvZ2ljYWwgYXJndW1lbnQgd2hlcmUgYSBjb25jbHVzaW9uIGlzIGRlZHVjZWQgZnJvbSB0d28gZ2l2ZW4gcHJvcG9zaXRpb25zLlxuXG5JbiBzZXQgdGhlb3J5IHRlcm1zLCB0aGUgc2V0IG9mIFwiQmxvb3BzXCIgaXMgY29udGFpbmVkIHdpdGhpbiB0aGUgc2V0IG9mIFwiUmF6emllcyxcIiB3aGljaCBpcyBpdHNlbGYgY29udGFpbmVkIHdpdGhpbiB0aGUgc2V0IG9mIFwiTGF6emllcy5cIiBUaGVyZWZvcmUsIHRoZSBzZXQgb2YgXCJCbG9vcHNcIiBpcyBkZWZpbml0ZWx5IHdpdGhpbiB0aGUgc2V0IG9mIFwiTGF6emllcy5cIiIsInJlZnVzYWwiOm51bGwsInJlYXNvbmluZyI6bnVsbH19XSwidXNhZ2UiOnsicHJvbXB0X3Rva2VucyI6MzMsImNvbXBsZXRpb25fdG9rZW5zIjoxOTYsInRvdGFsX3Rva2VucyI6MjI5LCJjb3N0IjowLjAwMDA0MjUsImlzX2J5b2siOmZhbHNlLCJwcm9tcHRfdG9rZW5zX2RldGFpbHMiOnsiY2FjaGVkX3Rva2VucyI6MCwiY2FjaGVfd3JpdGVfdG9rZW5zIjowLCJhdWRpb190b2tlbnMiOjAsInZpZGVvX3Rva2VucyI6MH0sImNvc3RfZGV0YWlscyI6eyJ1cHN0cmVhbV9pbmZlcmVuY2VfY29zdCI6MC4wMDAwNDI1LCJ1cHN0cmVhbV9pbmZlcmVuY2VfcHJvbXB0X2Nvc3QiOjAuMDAwMDAzMywidXBzdHJlYW1faW5mZXJlbmNlX2NvbXBsZXRpb25zX2Nvc3QiOjAuMDAwMDM5Mn0sImNvbXBsZXRpb25fdG9rZW5zX2RldGFpbHMiOnsicmVhc29uaW5nX3Rva2VucyI6MCwiaW1hZ2VfdG9rZW5zIjowLCJhdWRpb190b2tlbnMiOjB9fX0=
+  recorded_at: Sun, 28 Jun 2026 21:27:16 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"z-ai/glm-5.2","messages":[{"role":"user","content":"If all
+        Bloops are Razzies and all Razzies are Lazzies, are all Bloops definitely
+        Lazzies? Explain."}],"usage":{"include":true}}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Sun, 28 Jun 2026 21:27:17 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      access-control-allow-origin:
+      - "*"
+      x-generation-id:
+      - gen-1782682036-rODYnFZzbWZeDjsmE2MF
+      access-control-expose-headers:
+      - X-Generation-Id,cf-ray
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      content-encoding:
+      - gzip
+      server:
+      - cloudflare
+      cf-ray:
+      - a12fc6480de3f730-CVG
+    body:
+      encoding: ASCII-8BIT
+      string: "\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n{\"id\":\"gen-1782682036-rODYnFZzbWZeDjsmE2MF\",\"object\":\"chat.completion\",\"created\":1782682036,\"model\":\"z-ai/glm-5.2-20260616\",\"provider\":\"Decart\",\"system_fingerprint\":null,\"service_tier\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"content\":\"Yes,
+        all Bloops are definitely Lazzies. \\n\\nHere is the explanation:\\n\\nThis
+        is an example of a logical deduction known as a **categorical syllogism**,
+        and it relies on the transitive property. Here is how the logic breaks down
+        step-by-step:\\n\\n1. **All Bloops are Razzies:** This means that if you have
+        a Bloop, it automatically belongs to the category of Razzies. \\n2. **All
+        Razzies are Lazzies:** This means that everything in the category of Razzies
+        also belongs to the broader category of Lazzies. \\n3. **Conclusion:** Since
+        Bloops are entirely contained within the Razzies group, and the Razzies group
+        is entirely contained within the Lazzies group, the Bloops must also be contained
+        within the Lazzies group. \\n\\nTo put it in more familiar terms:\\n* If all
+        cats (Bloops) are mammals (Razzies), and all mammals (Razzies) are animals
+        (Lazzies), then all cats (Bloops) are definitely animals (Lazzies).\",\"refusal\":null,\"reasoning\":\"1.
+        \ **Analyze the Request:** The user is asking a classic syllogism question:
+        If A = B and B = C, is A = C? They want to know if all Bloops are definitely
+        Lazzies, and an explanation.\\n2.  **Analyze the Premises:**\\n    *   Premise
+        1: All Bloops are Razzies. (A $\\\\subset$ B)\\n    *   Premise 2: All Razzies
+        are Lazzies. (B $\\\\subset$ C)\\n3.  **Evaluate the Conclusion:**\\n    *
+        \  Are all Bloops definitely Lazzies? Yes. (A $\\\\subset$ C)\\n4.  **Formulate
+        the Explanation:**\\n    *   State the answer clearly (Yes).\\n    *   Explain
+        the logical structure (transitive property of categorical logic).\\n    *
+        \  Use an analogy to make it intuitive (e.g., All cats are mammals, all mammals
+        are animals, therefore all cats are animals).\\n5.  **Review and Refine:**
+        Keep it clear, concise, and logically sound.\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"1.
+        \ **Analyze the Request:** The user is asking a classic syllogism question:
+        If A = B and B = C, is A = C? They want to know if all Bloops are definitely
+        Lazzies, and an explanation.\\n2.  **Analyze the Premises:**\\n    *   Premise
+        1: All Bloops are Razzies. (A $\\\\subset$ B)\\n    *   Premise 2: All Razzies
+        are Lazzies. (B $\\\\subset$ C)\\n3.  **Evaluate the Conclusion:**\\n    *
+        \  Are all Bloops definitely Lazzies? Yes. (A $\\\\subset$ C)\\n4.  **Formulate
+        the Explanation:**\\n    *   State the answer clearly (Yes).\\n    *   Explain
+        the logical structure (transitive property of categorical logic).\\n    *
+        \  Use an analogy to make it intuitive (e.g., All cats are mammals, all mammals
+        are animals, therefore all cats are animals).\\n5.  **Review and Refine:**
+        Keep it clear, concise, and logically sound.\",\"format\":\"unknown\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":41,\"completion_tokens\":453,\"total_tokens\":494,\"cost\":0.0019188,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":33,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.0019188,\"upstream_inference_prompt_cost\":0.0000162,\"upstream_inference_completions_cost\":0.0019026},\"completion_tokens_details\":{\"reasoning_tokens\":225,\"image_tokens\":0,\"audio_tokens\":0}}}"
+  recorded_at: Sun, 28 Jun 2026 21:27:20 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"deepseek/deepseek-v4-pro","messages":[{"role":"user","content":"If
+        all Bloops are Razzies and all Razzies are Lazzies, are all Bloops definitely
+        Lazzies? Explain."}],"usage":{"include":true}}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Sun, 28 Jun 2026 21:27:23 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      access-control-allow-origin:
+      - "*"
+      x-generation-id:
+      - gen-1782682040-Mx71Rg6JxG3FKAHgHBg3
+      access-control-expose-headers:
+      - X-Generation-Id,cf-ray
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      content-encoding:
+      - gzip
+      server:
+      - cloudflare
+      cf-ray:
+      - a12fc661af9af733-CVG
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        CiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCnsiaWQiOiJnZW4tMTc4MjY4MjA0MC1NeDcxUmc2SnhHM0ZLQUhnSEJnMyIsIm9iamVjdCI6ImNoYXQuY29tcGxldGlvbiIsImNyZWF0ZWQiOjE3ODI2ODIwNDAsIm1vZGVsIjoiZGVlcHNlZWsvZGVlcHNlZWstdjQtcHJvLTIwMjYwNDIzIiwicHJvdmlkZXIiOiJTdHJlYW1MYWtlIiwic3lzdGVtX2ZpbmdlcnByaW50IjpudWxsLCJzZXJ2aWNlX3RpZXIiOm51bGwsImNob2ljZXMiOlt7ImluZGV4IjowLCJsb2dwcm9icyI6bnVsbCwiZmluaXNoX3JlYXNvbiI6InN0b3AiLCJuYXRpdmVfZmluaXNoX3JlYXNvbiI6InN0b3AiLCJtZXNzYWdlIjp7InJvbGUiOiJhc3Npc3RhbnQiLCJjb250ZW50IjoiWWVzLCBhbGwgQmxvb3BzIGFyZSBkZWZpbml0ZWx5IExhenppZXMuIFRoaXMgaXMgYSBjbGFzc2ljIGV4YW1wbGUgb2YgYSB2YWxpZCBzeWxsb2dpc20gaW4gbG9naWMuIEhlcmUncyB0aGUgcmVhc29uaW5nOlxuXG4tIFwiQWxsIEJsb29wcyBhcmUgUmF6emllc1wiIG1lYW5zIHRoYXQgdGhlIHNldCBvZiBCbG9vcHMgaXMgZW50aXJlbHkgY29udGFpbmVkIHdpdGhpbiB0aGUgc2V0IG9mIFJhenppZXMuXG4tIFwiQWxsIFJhenppZXMgYXJlIExhenppZXNcIiBtZWFucyB0aGF0IHRoZSBzZXQgb2YgUmF6emllcyBpcyBlbnRpcmVseSBjb250YWluZWQgd2l0aGluIHRoZSBzZXQgb2YgTGF6emllcy5cblxuU2luY2UgZXZlcnkgQmxvb3AgaXMgYSBSYXp6eSwgYW5kIGV2ZXJ5IFJhenp5IGlzIGEgTGF6enksIGl0IGZvbGxvd3MgbmVjZXNzYXJpbHkgdGhhdCBldmVyeSBCbG9vcCBtdXN0IGFsc28gYmUgYSBMYXp6eS4gSW4gdGVybXMgb2Ygc2V0cywgaWYgQiDiioYgUiBhbmQgUiDiioYgTCwgdGhlbiBCIOKKhiBMLiBUaGVyZSBpcyBubyBwb3NzaWJsZSBzY2VuYXJpbyB3aGVyZSB0aGlzIGNoYWluIG9mIGluY2x1c2lvbiBmYWlscywgc28gdGhlIGNvbmNsdXNpb24gaXMgZGVmaW5pdGUuIiwicmVmdXNhbCI6bnVsbCwicmVhc29uaW5nIjoiV2UgYXJlIGFza2VkOiBcIklmIGFsbCBCbG9vcHMgYXJlIFJhenppZXMgYW5kIGFsbCBSYXp6aWVzIGFyZSBMYXp6aWVzLCBhcmUgYWxsIEJsb29wcyBkZWZpbml0ZWx5IExhenppZXM/IEV4cGxhaW4uXCJcblxuVGhpcyBpcyBhIGNsYXNzaWMgc3lsbG9naXNtOiBBbGwgQSBhcmUgQiwgYWxsIEIgYXJlIEMsIHRoZXJlZm9yZSBhbGwgQSBhcmUgQy4gVGhlIGFuc3dlciBpcyB5ZXMsIGFsbCBCbG9vcHMgYXJlIGRlZmluaXRlbHkgTGF6emllcy4gVGhlIGV4cGxhbmF0aW9uIHNob3VsZCB1c2UgbG9naWNhbCByZWFzb25pbmcsIG1heWJlIHdpdGggc2V0cyBvciBWZW5uIGRpYWdyYW1zLiIsInJlYXNvbmluZ19kZXRhaWxzIjpbeyJ0eXBlIjoicmVhc29uaW5nLnRleHQiLCJ0ZXh0IjoiV2UgYXJlIGFza2VkOiBcIklmIGFsbCBCbG9vcHMgYXJlIFJhenppZXMgYW5kIGFsbCBSYXp6aWVzIGFyZSBMYXp6aWVzLCBhcmUgYWxsIEJsb29wcyBkZWZpbml0ZWx5IExhenppZXM/IEV4cGxhaW4uXCJcblxuVGhpcyBpcyBhIGNsYXNzaWMgc3lsbG9naXNtOiBBbGwgQSBhcmUgQiwgYWxsIEIgYXJlIEMsIHRoZXJlZm9yZSBhbGwgQSBhcmUgQy4gVGhlIGFuc3dlciBpcyB5ZXMsIGFsbCBCbG9vcHMgYXJlIGRlZmluaXRlbHkgTGF6emllcy4gVGhlIGV4cGxhbmF0aW9uIHNob3VsZCB1c2UgbG9naWNhbCByZWFzb25pbmcsIG1heWJlIHdpdGggc2V0cyBvciBWZW5uIGRpYWdyYW1zLiIsImZvcm1hdCI6InVua25vd24iLCJpbmRleCI6MH1dfX1dLCJ1c2FnZSI6eyJwcm9tcHRfdG9rZW5zIjozMywiY29tcGxldGlvbl90b2tlbnMiOjI0NSwidG90YWxfdG9rZW5zIjoyNzgsImNvc3QiOjAuMDAwNDU1MDEsImlzX2J5b2siOmZhbHNlLCJwcm9tcHRfdG9rZW5zX2RldGFpbHMiOnsiY2FjaGVkX3Rva2VucyI6MCwiY2FjaGVfd3JpdGVfdG9rZW5zIjowLCJhdWRpb190b2tlbnMiOjAsInZpZGVvX3Rva2VucyI6MH0sImNvc3RfZGV0YWlscyI6eyJ1cHN0cmVhbV9pbmZlcmVuY2VfY29zdCI6MC4wMDA0NTUwMSwidXBzdHJlYW1faW5mZXJlbmNlX3Byb21wdF9jb3N0IjowLjAwMDAyODcxLCJ1cHN0cmVhbV9pbmZlcmVuY2VfY29tcGxldGlvbnNfY29zdCI6MC4wMDA0MjYzfSwiY29tcGxldGlvbl90b2tlbnNfZGV0YWlscyI6eyJyZWFzb25pbmdfdG9rZW5zIjo4NiwiaW1hZ2VfdG9rZW5zIjowLCJhdWRpb190b2tlbnMiOjB9fX0=
+  recorded_at: Sun, 28 Jun 2026 21:27:25 GMT
+- request:
+    method: post
+    uri: https://openrouter.ai/api/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"openrouter/auto","messages":[{"role":"system","content":"You
+        are an evaluation judge comparing multiple AI responses to the same prompt.\nScore
+        each response on how well it meets the criteria.\n\nScoring (0-10):\n- 0:
+        Completely fails\n- 1-3: Mostly fails\n- 4-6: Partially meets criteria\n-
+        7-8: Mostly meets criteria\n- 9-10: Excellent\n\nBe strict but fair. Compare
+        responses relative to each other.\n\nIMPORTANT: Use the EXACT candidate names
+        as given in the prompt.\n\nYou MUST respond with valid JSON with scores for
+        each candidate AND declare a winner.\nExample format (use actual names from
+        prompt, not these placeholders):\n{\n  \"actual-name-1\": {\"score\": 8, \"reasoning\":
+        \"...\"},\n  \"actual-name-2\": {\"score\": 6, \"reasoning\": \"...\"},\n  \"winner\":
+        \"actual-name-1\"\n}\n\nUse \"winner\": \"tie\" if scores are equal or too
+        close to call.\n"},{"role":"user","content":"## Evaluation criteria:\n1. Reaches
+        the correct conclusion\n2. Shows clear, valid step-by-step reasoning\n3. Does
+        not pad with irrelevant filler\n## Context:\nUser prompt: If all Bloops are
+        Razzies and all Razzies are Lazzies, are all Bloops definitely Lazzies? Explain.\n##
+        Candidates to evaluate: \"flash\", \"glm\", \"pro\"\n## Responses:\n\n###
+        flash:\n```\nYes, all Bloops are definitely Lazzies.\n\nHere''s the explanation
+        using logic:\n\n1.  **Premise 1:** All Bloops are Razzies. (If something is
+        a Bloop, it must be a Razzie.)\n2.  **Premise 2:** All Razzies are Lazzies.
+        (If something is a Razzie, it must be a Lazzie.)\n\nSince every Bloop is a
+        Razzie, and every Razzie is a Lazzie, then every Bloop must also be a Lazzie.
+        This is a classic example of a **syllogism**—a logical argument where a conclusion
+        is deduced from two given propositions.\n\nIn set theory terms, the set of
+        \"Bloops\" is contained within the set of \"Razzies,\" which is itself contained
+        within the set of \"Lazzies.\" Therefore, the set of \"Bloops\" is definitely
+        within the set of \"Lazzies.\"\n```\n\n### glm:\n```\nYes, all Bloops are
+        definitely Lazzies. \n\nHere is the explanation:\n\nThis is an example of
+        a logical deduction known as a **categorical syllogism**, and it relies on
+        the transitive property. Here is how the logic breaks down step-by-step:\n\n1.
+        **All Bloops are Razzies:** This means that if you have a Bloop, it automatically
+        belongs to the category of Razzies. \n2. **All Razzies are Lazzies:** This
+        means that everything in the category of Razzies also belongs to the broader
+        category of Lazzies. \n3. **Conclusion:** Since Bloops are entirely contained
+        within the Razzies group, and the Razzies group is entirely contained within
+        the Lazzies group, the Bloops must also be contained within the Lazzies group.
+        \n\nTo put it in more familiar terms:\n* If all cats (Bloops) are mammals
+        (Razzies), and all mammals (Razzies) are animals (Lazzies), then all cats
+        (Bloops) are definitely animals (Lazzies).\n```\n\n### pro:\n```\nYes, all
+        Bloops are definitely Lazzies. This is a classic example of a valid syllogism
+        in logic. Here''s the reasoning:\n\n- \"All Bloops are Razzies\" means that
+        the set of Bloops is entirely contained within the set of Razzies.\n- \"All
+        Razzies are Lazzies\" means that the set of Razzies is entirely contained
+        within the set of Lazzies.\n\nSince every Bloop is a Razzy, and every Razzy
+        is a Lazzy, it follows necessarily that every Bloop must also be a Lazzy.
+        In terms of sets, if B ⊆ R and R ⊆ L, then B ⊆ L. There is no possible scenario
+        where this chain of inclusion fails, so the conclusion is definite.\n```\n\nScore
+        each candidate (\"flash\", \"glm\", \"pro\") from 0-10.\nUse these EXACT names
+        in your JSON response. Declare a winner."}],"response_format":{"type":"json_object"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <API_KEY>
+      User-Agent:
+      - Faraday v2.14.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Sun, 28 Jun 2026 21:27:25 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      access-control-allow-origin:
+      - "*"
+      x-generation-id:
+      - gen-1782682045-bVmCybMLq5egKrLtAJaL
+      access-control-expose-headers:
+      - X-Generation-Id,cf-ray
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      x-content-type-options:
+      - nosniff
+      content-encoding:
+      - gzip
+      server:
+      - cloudflare
+      cf-ray:
+      - a12fc67fec49e6f3-CVG
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        CiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAoKICAgICAgICAgCgogICAgICAgICAKCiAgICAgICAgIAp7ImlkIjoiZ2VuLTE3ODI2ODIwNDUtYlZtQ3liTUxxNWVnS3JMdEFKYUwiLCJvYmplY3QiOiJjaGF0LmNvbXBsZXRpb24iLCJjcmVhdGVkIjoxNzgyNjgyMDQ1LCJtb2RlbCI6Im9wZW5haS9ncHQtNS41LTIwMjYwNDIzIiwicHJvdmlkZXIiOiJBenVyZSIsInN5c3RlbV9maW5nZXJwcmludCI6bnVsbCwic2VydmljZV90aWVyIjoiZGVmYXVsdCIsImNob2ljZXMiOlt7ImluZGV4IjowLCJsb2dwcm9icyI6bnVsbCwiZmluaXNoX3JlYXNvbiI6InN0b3AiLCJuYXRpdmVfZmluaXNoX3JlYXNvbiI6ImNvbXBsZXRlZCIsIm1lc3NhZ2UiOnsicm9sZSI6ImFzc2lzdGFudCIsImNvbnRlbnQiOiJ7XG4gIFwiZmxhc2hcIjoge1xuICAgIFwic2NvcmVcIjogOSxcbiAgICBcInJlYXNvbmluZ1wiOiBcIlJlYWNoZXMgdGhlIGNvcnJlY3QgY29uY2x1c2lvbiBhbmQgZ2l2ZXMgY2xlYXIgc3RlcC1ieS1zdGVwIHJlYXNvbmluZyB1c2luZyBib3RoIHN5bGxvZ2lzbSBhbmQgc2V0IGNvbnRhaW5tZW50LiBTbGlnaHRseSBtb3JlIGV4cGxhbmF0b3J5IHRoYW4gbmVjZXNzYXJ5LCBidXQgbm90IGlycmVsZXZhbnQuXCJcbiAgfSxcbiAgXCJnbG1cIjoge1xuICAgIFwic2NvcmVcIjogOSxcbiAgICBcInJlYXNvbmluZ1wiOiBcIkNvcnJlY3QgY29uY2x1c2lvbiB3aXRoIHZhbGlkIHN0ZXAtYnktc3RlcCByZWFzb25pbmcgYW5kIGEgaGVscGZ1bCBhbmFsb2d5LiBUaGUgYW5hbG9neSBhZGRzIGEgYml0IG9mIGV4dHJhIGxlbmd0aCwgYnV0IGl0IHJlbWFpbnMgcmVsZXZhbnQgYW5kIGNsZWFyLlwiXG4gIH0sXG4gIFwicHJvXCI6IHtcbiAgICBcInNjb3JlXCI6IDEwLFxuICAgIFwicmVhc29uaW5nXCI6IFwiQ29ycmVjdCBjb25jbHVzaW9uLCBjb25jaXNlIGFuZCBwcmVjaXNlIHJlYXNvbmluZywgY2xlYXIgc2V0LXRoZW9yZXRpYyBleHBsYW5hdGlvbiwgYW5kIG5vIGlycmVsZXZhbnQgZmlsbGVyLlwiXG4gIH0sXG4gIFwid2lubmVyXCI6IFwicHJvXCJcbn0iLCJyZWZ1c2FsIjpudWxsLCJyZWFzb25pbmciOiIqKkV2YWx1YXRpbmcgc2NvcmluZyBjcml0ZXJpYSoqXG5cbkkgbmVlZCB0byBjcmVhdGUgYSBzdHJ1Y3R1cmVkIGp1ZGdtZW50IGFuZCBlbnN1cmUgSSd2ZSBnb3QgdGhlIEpTT04gcmlnaHQuIFRoZSBjcml0ZXJpYSBmb3IgZXZhbHVhdGlvbiBzZWVtIHNvbGlkLCB3aXRoIGEgZm9jdXMgb24gcmVhc29uaW5nIGFuZCBjbGFyaXR5IHdpdGhvdXQgdW5uZWNlc3NhcnkgZmlsbGVyLiBJIHRoaW5rIEZsYXNoIGlzIGdvb2QsIHRob3VnaCBpdCBtaWdodCBiZSBzbGlnaHRseSB2ZXJib3NlIHdpdGggc2V0IHRoZW9yeS4gR0xNIHByb3ZpZGVzIGZhbWlsaWFyIGV4YW1wbGVzLCB3aGlsZSBQcm8gaXMgY29uY2lzZS4gSSdtIGNvbnNpZGVyaW5nIHNjb3JlczogRmxhc2ggYW5kIEdMTSBjb3VsZCBib3RoIGdldCBhIDksIGFuZCBQcm8gZGVzZXJ2ZXMgYSAxMC4gVWx0aW1hdGVseSwgUHJvIGlzIHRoZSB3aW5uZXIgc2luY2UgaXTigJlzIHN0cmljdGx5IGV4Y2VsbGVudC4gSeKAmWxsIGZpbmFsaXplIHRoaXMgd2l0aCB2YWxpZCBKU09OLiIsInJlYXNvbmluZ19kZXRhaWxzIjpbeyJ0eXBlIjoicmVhc29uaW5nLnN1bW1hcnkiLCJzdW1tYXJ5IjoiKipFdmFsdWF0aW5nIHNjb3JpbmcgY3JpdGVyaWEqKlxuXG5JIG5lZWQgdG8gY3JlYXRlIGEgc3RydWN0dXJlZCBqdWRnbWVudCBhbmQgZW5zdXJlIEkndmUgZ290IHRoZSBKU09OIHJpZ2h0LiBUaGUgY3JpdGVyaWEgZm9yIGV2YWx1YXRpb24gc2VlbSBzb2xpZCwgd2l0aCBhIGZvY3VzIG9uIHJlYXNvbmluZyBhbmQgY2xhcml0eSB3aXRob3V0IHVubmVjZXNzYXJ5IGZpbGxlci4gSSB0aGluayBGbGFzaCBpcyBnb29kLCB0aG91Z2ggaXQgbWlnaHQgYmUgc2xpZ2h0bHkgdmVyYm9zZSB3aXRoIHNldCB0aGVvcnkuIEdMTSBwcm92aWRlcyBmYW1pbGlhciBleGFtcGxlcywgd2hpbGUgUHJvIGlzIGNvbmNpc2UuIEknbSBjb25zaWRlcmluZyBzY29yZXM6IEZsYXNoIGFuZCBHTE0gY291bGQgYm90aCBnZXQgYSA5LCBhbmQgUHJvIGRlc2VydmVzIGEgMTAuIFVsdGltYXRlbHksIFBybyBpcyB0aGUgd2lubmVyIHNpbmNlIGl04oCZcyBzdHJpY3RseSBleGNlbGxlbnQuIEnigJlsbCBmaW5hbGl6ZSB0aGlzIHdpdGggdmFsaWQgSlNPTi4iLCJmb3JtYXQiOiJhenVyZS1vcGVuYWktcmVzcG9uc2VzLXYxIiwiaW5kZXgiOjB9LHsidHlwZSI6InJlYXNvbmluZy5lbmNyeXB0ZWQiLCJkYXRhIjoiZ0FBQUFBQnFRWkhGY0tfTFhvdk9NeHV0MUI1SXpHbDg1cS1wR21qbm1BNzRoOFlGU1Q1dDZRWXF2WXBYLXF0cUVfMkFuYWtOZVQ0aVZFNTZPdUR2aU9fQ0lFdTJ2bDRwYlNIbXhBVWFCcWE0bUQ0XzdtRFlBVG1NVXFIWERZWVVQVEJGWENkd1NhMjNlR096QzJoaTFlX3JKVUNabUxuU0RwUUpRYTM3OURDN3BUQXJjbG9QLThyb2RtSkVubF9kNmR1OXRHMXg0X3FSMGRVdFpMcE81NnRNcXNpdFhtWV9tSzh4UWNfWExUaFl0aENDUkF3NjVSdkpxb3c4cFFja2Z3X2RaX25nZGwtNlRDX0FGd3M1UHFzZ0lIUVFRYTFXdTlkZnIwT3B6TzlXay00QlZpY3p1aFNEeldCX1lad3BzdTdLa0pMYk0weE5JS0I4ZlY1OTBxZmw4S09acmJqZHZoQ3hQUXlFYVdCM2hMSEQ3SjdGS1IwN0owX1ViRmlxT19yLVpSZlN1djBIWU8ya3lvcEtHbHJZdklBdEdZWVNRYUxXTTI0bnVqMjBLNlpCYXBtQjcyLWlVdGdtRkQ4V2F3N2trRTZwbHVxQTZMVzlXR19SYUZGRmVyMm95cDNCQkNmTUJuaVVhRENJOFFPNWZPTTdvaHlObG9icDdSVElLOVJBM2k3WjZ3b1otYU02Q29KZUFTRURZSGxqLXNvNmpqaEx3aEtCRlBJci1mcG8tRmZ3SFBQeXlRWXJvbjAwX0NQYm9OUU5tTkNHbU9jUElDblBaa29kZ183VVFZZVRZOElMdjljd044dDVvSjRYZ01FOWtuNnVnWGRuZXp5eHYtV1R3V0NXTG1iOFFHSmt1UDQxOXpJaVR3bHpzaFJPU0pZZ2lTbWZFbVFyS0Y1N2R6OGF6dzJTR0NBVFlqVGdLYUQyV3RiTGc1UmdNNWl4SDJNTWx6UlA2Vi0ybnRlREgzMmw1UUs2TG1WMldIS2dRSk9TRTExSXBQcmVXSW1hb1dVcE9DcGZTVEpMbXV3T1piaEpMcks3UnpJMG5jQ1FBaHlqLVVNdi05UEdWZG81UUp1TnVZVzRiajhmSzBIU2FPbzVKc3VEajBleUdBQWZWODRKSEk5aFVjMi1MTnV2SkNGM291ajB6bGhWZDNIVkc5QmcwckVRSUVLaGQ5aWJ2MUdGWnBiaW5iaTNYRHRoNS1vcXlvcXIySFp6azBCWkt0WEFscGd6MEhaVHlZWmt0Q2gtTXFzZ3NTT2hrOUl2WlpQOWwybkhKOEw5LWtMQmNHWjE1eW0yb0daWFN2d1hNanhsT3ozRmNqZzduc3h5VlhITHRPUng1UGdJYkh5UElRbmtvcHB3aklranJNS1B2czNtUVNjVzBwMk1LVE1Rd0ZvTkNPSUxmZ1FzaFN3cDRiTmlGaUpZUVhkSVRqZkxfZ0NVa3BRMEREeWItRWIycl9EejU0SkdVaHJsZE9UNEJlSW8weVRMeTM3WmxzWmJ6cy1BUFdUWVhVNFpQSEhmbHZHVVNRUWtWOWNrV3M5LXlWd1V2TmpTSUhTRWUtV2YtZHc1djg3NXB2SXNaVEtZbTBrUjJyek5zVU93R18teUhMTVpQUkJVY2kwYVpzVFE0bzR2ZXpXU2RNemZma0FSOWtKQzhlVnIxVE1MbmxaWVc2b3NoUXhxdU1nQ19GdExCcHdmSXc5VkNXemJHaXRFMHdKS2tKUmRJZ3VRblcyZVhDNFd2T0h0TG1WdmVrcXMtSXliSGVSSzYtTElZNkRKcGZWc3ZoYU92SFhzWUlMTC1fMDZPUkZmSVRYWXVQSWZnT0NBSlgwem9nMU4yZmt0WmctRUVfdFY4U3VvODZTV1Fxa1dtOG9HVk10aThoWmJzQmJ6VThkQWFWQ1djT3g1SldUVG9wZHVQdW5PZmdrZlpqQ05hSkE9IiwiZm9ybWF0IjoiYXp1cmUtb3BlbmFpLXJlc3BvbnNlcy12MSIsImlkIjoicnNfMDI2ZTIwZDI2M2FjNDM0MTAxNmE0MTkxYzFkNzgwODE5MGJlZmNmYThmY2ZlODkzMmIiLCJpbmRleCI6MX1dfX1dLCJ1c2FnZSI6eyJwcm9tcHRfdG9rZW5zIjo5MjYsImNvbXBsZXRpb25fdG9rZW5zIjoyNTUsInRvdGFsX3Rva2VucyI6MTE4MSwiY29zdCI6MC4wMTIyOCwiaXNfYnlvayI6ZmFsc2UsInByb21wdF90b2tlbnNfZGV0YWlscyI6eyJjYWNoZWRfdG9rZW5zIjowLCJjYWNoZV93cml0ZV90b2tlbnMiOjAsImF1ZGlvX3Rva2VucyI6MCwidmlkZW9fdG9rZW5zIjowfSwiY29zdF9kZXRhaWxzIjp7InVwc3RyZWFtX2luZmVyZW5jZV9jb3N0IjowLjAxMjI4LCJ1cHN0cmVhbV9pbmZlcmVuY2VfcHJvbXB0X2Nvc3QiOjAuMDA0NjMsInVwc3RyZWFtX2luZmVyZW5jZV9jb21wbGV0aW9uc19jb3N0IjowLjAwNzY1fSwiY29tcGxldGlvbl90b2tlbnNfZGV0YWlscyI6eyJyZWFzb25pbmdfdG9rZW5zIjo5NiwiaW1hZ2VfdG9rZW5zIjowLCJhdWRpb190b2tlbnMiOjB9fX0=
+  recorded_at: Sun, 28 Jun 2026 21:27:33 GMT
+recorded_with: VCR 6.4.0

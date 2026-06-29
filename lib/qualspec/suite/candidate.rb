@@ -5,14 +5,16 @@ module Qualspec
     class Candidate
       attr_reader :name, :model, :system_prompt, :options
 
-      def initialize(name, model:, system_prompt: nil, **options)
+      def initialize(name, model: nil, system_prompt: nil, **options)
         @name = name.to_s
-        @model = model
+        # Fall back to the configured default model (ultimately openrouter/auto)
+        # so a candidate works even when no model is specified.
+        @model = model || Qualspec.configuration.default_model
         @system_prompt = system_prompt
         @options = options
       end
 
-      def generate_response(prompt:, system_prompt: nil, temperature: nil)
+      def generate_response(prompt:, system_prompt: nil, temperature: nil, with_metadata: false)
         messages = []
 
         sys = system_prompt || @system_prompt
@@ -23,7 +25,8 @@ module Qualspec
           model: @model,
           messages: messages,
           json_mode: false, # We want natural responses, not JSON
-          temperature: normalize_temperature(temperature)
+          temperature: normalize_temperature(temperature),
+          with_metadata: with_metadata
         )
       end
 

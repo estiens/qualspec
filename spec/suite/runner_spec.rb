@@ -25,7 +25,7 @@ RSpec.describe Qualspec::Suite::Runner do
   end
 
   # Build a minimal Definition without running IO
-  def build_definition(name: 'Runner Test Suite', candidates: nil, scenarios: nil)
+  def build_definition(name: 'Runner Test Suite')
     Qualspec.evaluation(name) do
       candidates do
         candidate 'model-a', model: 'provider/model-a'

@@ -7,6 +7,7 @@ module Qualspec
 end
 
 require_relative 'qualspec/configuration'
+require_relative 'qualspec/model_registry'
 require_relative 'qualspec/client'
 require_relative 'qualspec/evaluation'
 require_relative 'qualspec/prompt_variant'
@@ -37,6 +38,7 @@ module Qualspec
       @configuration = nil
       @client = nil
       @judge = nil
+      @models = nil
       Rubric.clear!
       Suite.clear!
       Suite::Behavior.clear!
@@ -48,6 +50,21 @@ module Qualspec
 
     def judge
       @judge ||= Judge.new
+    end
+
+    # Registry of named models loaded from config/models.yml (or
+    # QUALSPEC_MODELS_FILE). See ModelRegistry.
+    def models
+      @models ||= ModelRegistry.new
+    end
+
+    # Resolve a named model to its slug, falling back to the default
+    # (openrouter/auto). Returns the default when name is nil/unknown.
+    #
+    #   Qualspec.model(:glm)  # => "z-ai/glm-5.2"
+    #   Qualspec.model        # => "openrouter/auto"
+    def model(name = nil)
+      models.resolve(name)
     end
 
     # Convenience method for defining rubrics

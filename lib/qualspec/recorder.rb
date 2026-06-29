@@ -40,6 +40,20 @@ module Qualspec
         VCR.use_cassette(name, record: :none, &block)
       end
 
+      # Replay a cassette if it already exists (no API key required), otherwise
+      # record a fresh one. Ideal for examples that ship a committed cassette so
+      # they run for free, but still record on first run.
+      def use_cassette(name, &block)
+        setup unless configured?
+        mode = cassette_exists?(name) ? :none : :new_episodes
+        VCR.use_cassette(name, record: mode, &block)
+      end
+
+      def cassette_exists?(name)
+        require_vcr!
+        File.exist?(File.join(VCR.configuration.cassette_library_dir, "#{name}.yml"))
+      end
+
       private
 
       def require_vcr!

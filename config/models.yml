@@ -1,0 +1,23 @@
+# Curated OpenRouter models for qualspec.
+#
+# Reference these by name in suites/specs instead of hardcoding slugs:
+#
+#   candidate :flash, model: Qualspec.model(:deepseek_flash)
+#   Qualspec.model(:glm)        # => "z-ai/glm-5.2"
+#   Qualspec.model(:unknown)    # => falls back to `default` below
+#   Qualspec.model              # => the default
+#   Qualspec.models             # => the full name => slug hash
+#
+# `default` is the universal fallback. `openrouter/auto` routes to a sensible
+# model for any request, so things work even with nothing configured.
+# Override per-process with QUALSPEC_MODEL / QUALSPEC_JUDGE_MODEL, or point
+# QUALSPEC_MODELS_FILE at a different YAML file.
+default: openrouter/auto
+
+models:
+  owl_alpha:       openrouter/owl-alpha
+  deepseek_flash:  deepseek/deepseek-v4-flash
+  deepseek_pro:    deepseek/deepseek-v4-pro
+  minimax:         minimax/minimax-m3
+  glm:             z-ai/glm-5.2
+  gemini_flash:    google/gemini-3-flash-preview

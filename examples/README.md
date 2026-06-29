@@ -1,5 +1,10 @@
 # Qualspec Examples
 
+> **See [EXAMPLES.md](EXAMPLES.md) for the full showcase** — runnable scripts
+> for model comparison, pass/fail gates, cost/value analysis, and multi-turn
+> ranking, each replayable for free from a committed VCR cassette. The notes
+> below cover the variant-matrix examples specifically.
+
 ## Simple Variant Comparison
 
 Demonstrates multi-dimensional testing with prompt variants.

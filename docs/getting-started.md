@@ -18,7 +18,7 @@ bundle install
 
 ## Configuration
 
-Set your API key:
+Set your API key (`OPEN_ROUTER_API_KEY` also works as a fallback):
 
 ```bash
 export QUALSPEC_API_KEY=your_openrouter_key
@@ -41,10 +41,13 @@ You can also configure programmatically:
 Qualspec.configure do |config|
   config.api_url = "https://openrouter.ai/api/v1"
   config.api_key = ENV["MY_API_KEY"]
-  config.judge_model = "google/gemini-2.5-flash-preview"
+  config.judge_model = "openrouter/auto"
   config.request_timeout = 120
 end
 ```
+
+Models can be referenced by name from `config/models.yml` via `Qualspec.model(:name)`,
+and the default everywhere is `openrouter/auto`. See [Configuration](configuration.md#models).
 
 ## Two Ways to Use Qualspec
 

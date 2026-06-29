@@ -11,8 +11,23 @@ module Qualspec
         @scenarios_list = []
         @variants_config = nil
         @temperature_list = [nil] # nil means use model default
+        @track_cost = false
 
         instance_eval(&block) if block_given? # rubocop:disable Style/EvalWithLocation -- DSL pattern requires eval
+      end
+
+      # DSL: capture per-call cost + token metadata so cost/value analysis works.
+      # Off by default — evaluations that don't look at cost skip the overhead.
+      #
+      # @example
+      #   track_cost
+      def track_cost(value = true) # rubocop:disable Style/OptionalBooleanParameter -- reads as a DSL toggle
+        @track_cost = value
+      end
+      alias capture_metadata track_cost
+
+      def track_cost?
+        @track_cost
       end
 
       # DSL: define candidates
@@ -20,7 +35,7 @@ module Qualspec
         instance_eval(&block) # rubocop:disable Style/EvalWithLocation -- DSL pattern requires eval
       end
 
-      def candidate(name, model:, system_prompt: nil, **options)
+      def candidate(name, model: nil, system_prompt: nil, **options)
         @candidates_list << Candidate.new(name, model: model, system_prompt: system_prompt, **options)
       end
 
